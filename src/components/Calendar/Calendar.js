@@ -6,7 +6,7 @@ import { useStateValue } from '../../StateProvider';
 const Calendar = ({ onCellClick }) => {
   const { days, month, todayDateFormatted, calendarRows, selectedDate, getNextMonth, getPrevMonth } = CalendarUse();
 
-  const [{ }, dispatch] = useStateValue()
+  const [{ }, dispatch] = useStateValue();
 
   const dateClickHandler = date => {
     console.log(date);

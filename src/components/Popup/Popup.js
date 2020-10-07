@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import './Popup.css';
 
 function Popup() {
-  const [toggleOpen, setToggleOpen] = useState(false)
+  const [toggleOpen, setToggleOpen] = useState(false);
 
-  const [moreDetails, setMoreDetails] = useState(false)
+  const [moreDetails, setMoreDetails] = useState(false);
 
-  const [index, setIndex] = useState(null)
+  const [index, setIndex] = useState(null);
 
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('');
 
   const validateIputDate = (e) => {
     if ((e.keyCode < 47 || e.keyCode > 57) || e.target.value.length > 5) {
@@ -17,10 +17,10 @@ function Popup() {
       if (e.keyCode === 48) {
         console.log(0);
       }
-      setValue(e.target.value)
+      setValue(e.target.value);
     }
 
-  }
+  };
   return (
     <>
       {Array(5)
