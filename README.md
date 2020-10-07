@@ -1,4 +1,7 @@
 ### Personal Scheduling Service
+
+## IT-Nation Hackaton
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
