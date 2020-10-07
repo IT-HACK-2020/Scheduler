@@ -6,6 +6,7 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case 'SET_DATE':
+      console.log(state.currentDateClick);
       return {
         ...state,
         currentDateClick: action.date

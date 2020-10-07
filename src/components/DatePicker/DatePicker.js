@@ -3,8 +3,11 @@ import { useState } from 'react'
 import './DatePicker.css'
 import * as Calendar from './Calendar'
 import classnames from 'classnames'
+import { useStateValue } from '../../StateProvider'
 
 export default function DatePicker({ onChange, toggle }) {
+
+  const [{ currentDateClick }] = useStateValue()
   const Default = {
     data: new Date(),
     years: Array(100).fill().map((el, index) => (
@@ -14,7 +17,6 @@ export default function DatePicker({ onChange, toggle }) {
     weekDays: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
     onChange: Function.prototype
   }
-
 
 
   const [state, setState] = useState({

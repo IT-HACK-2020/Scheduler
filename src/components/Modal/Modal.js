@@ -15,6 +15,11 @@ const Modal = ({ isShowing, hide }) => {
     console.log(date);
     setDate(date)
   }
+  const setNullDateandClose = () => {
+    hide()
+    setDate(null);
+
+  }
   return (
     isShowing ? ReactDOM.createPortal(
       <>
@@ -22,7 +27,7 @@ const Modal = ({ isShowing, hide }) => {
         <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
           <div className="modal">
             <div className="modal-header">
-              <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
+              <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={setNullDateandClose}>
                 <span aria-hidden="true">×</span>
               </button>
             </div>
@@ -38,7 +43,7 @@ const Modal = ({ isShowing, hide }) => {
             <input type="text" name="" id="place" /><br />
 
             <label htmlFor="start">Start</label>
-            <input type="text" value={date && date.toLocaleDateString()} name="" id="start" />
+            <input type="text" value={(date && date.toLocaleDateString()) || currentDateClick} name="" id="start" />
             <button onClick={() => { setdatePickerOpen(!datePickerOpen) }}>Choose Date start</button>
             <DatePicker
               onChange={handleDataChange}

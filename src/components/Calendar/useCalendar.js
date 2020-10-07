@@ -13,7 +13,7 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
   const todayDate = new Date();
 
   //todayFormatted will be used to compare dates to today’s date and add class to today’s date.
-  const todayDateFormatted = `${todayDate.getDate()}-${todayDate.getMonth() + 1}-${todayDate.getFullYear()}`;
+  const todayDateFormatted = `${todayDate.getDate()}/${todayDate.getMonth() + 1}/${todayDate.getFullYear()}`;
   //week order from Monday to Sunday
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 0];
 
@@ -51,14 +51,14 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
         if (j < startingPointMonth) {
           calendarRows[i] = [...calendarRows[i], {
             classes: 'in-prev-month',
-            date: `${prevMonthStartingPoint}-${selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth()}-${selectedDate.getMonth() === 0 ? selectedDate.getFullYear() - 1 : selectedDate.getFullYear()}`,
+            date: `${prevMonthStartingPoint}/${selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth()}/${selectedDate.getMonth() === 0 ? selectedDate.getFullYear() - 1 : selectedDate.getFullYear()}`,
             value: prevMonthStartingPoint
           }];
           prevMonthStartingPoint++;
         } else {
           calendarRows[i] = [...calendarRows[i], {
             classes: '',
-            date: `${curMonthCounter}-${selectedDate.getMonth() + 1}-${selectedDate.getFullYear()}`,
+            date: `${curMonthCounter}/${selectedDate.getMonth() + 1}/${selectedDate.getFullYear()}`,
             value: curMonthCounter
           }];
           curMonthCounter++;
@@ -66,14 +66,14 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
       } else if (i > 1 && curMonthCounter < daysInMonth + 1) {
         calendarRows[i] = [...calendarRows[i], {
           classes: '',
-          date: `${curMonthCounter}-${selectedDate.getMonth() + 1}-${selectedDate.getFullYear()}`,
+          date: `${curMonthCounter}/${selectedDate.getMonth() + 1}/${selectedDate.getFullYear()}`,
           value: curMonthCounter
         }];
         curMonthCounter++;
       } else {
         calendarRows[i] = [...calendarRows[i], {
           classes: 'in-next-month',
-          date: `${nextMonthCounter}-${selectedDate.getMonth() + 2 === 13 ? 1 : selectedDate.getMonth() + 2}-${selectedDate.getMonth() + 2 === 13 ? selectedDate.getFullYear() + 1 : selectedDate.getFullYear()}`,
+          date: `${nextMonthCounter}/${selectedDate.getMonth() + 2 === 13 ? 1 : selectedDate.getMonth() + 2}/${selectedDate.getMonth() + 2 === 13 ? selectedDate.getFullYear() + 1 : selectedDate.getFullYear()}`,
           value: nextMonthCounter
         }];
         nextMonthCounter++;
