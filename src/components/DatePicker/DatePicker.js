@@ -25,7 +25,7 @@ export default function DatePicker({ onChange, toggle }) {
     selectDate: null
   })
 
-  let monthData = Calendar.getMonthData(state.data.getFullYear(), state.data.getMonth())
+  let monthData = Calendar.getMonthData(state.data.getFullYear(), state.data.getMonth());
 
   const handlePrevMonthButtonClick = () => {
     const date = new Date(

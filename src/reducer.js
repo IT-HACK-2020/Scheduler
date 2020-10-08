@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
       console.log(state.currentDateClick);
       return {
         ...state,
-        currentDateClick: action.date
+        currentDateClick: action.date.toLocaleDateString()
       }
   }
 }

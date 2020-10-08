@@ -40,7 +40,6 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
   //object of data(days) *each object will have 3 properties(classes, date and output value)*
   const calendarRows = {};
 
-
   for (let i = 1; i < rows + 1; i++) {
     for (let j = 1; j < cols + 1; j++) {
       if (!calendarRows[i]) {
@@ -51,14 +50,22 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
         if (j < startingPointMonth) {
           calendarRows[i] = [...calendarRows[i], {
             classes: 'in-prev-month',
-            date: `${prevMonthStartingPoint}/${selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth()}/${selectedDate.getMonth() === 0 ? selectedDate.getFullYear() - 1 : selectedDate.getFullYear()}`,
+            date: new Date(
+              selectedDate.getMonth() === 0 ? selectedDate.getFullYear() - 1 : selectedDate.getFullYear(),
+              selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth() - 1 ,
+              prevMonthStartingPoint
+            ),
             value: prevMonthStartingPoint
           }];
           prevMonthStartingPoint++;
         } else {
           calendarRows[i] = [...calendarRows[i], {
             classes: '',
-            date: `${curMonthCounter}/${selectedDate.getMonth() + 1}/${selectedDate.getFullYear()}`,
+            date: new Date(
+              selectedDate.getFullYear(),
+              selectedDate.getMonth() + 1,
+              curMonthCounter
+            ),
             value: curMonthCounter
           }];
           curMonthCounter++;
@@ -66,20 +73,30 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
       } else if (i > 1 && curMonthCounter < daysInMonth + 1) {
         calendarRows[i] = [...calendarRows[i], {
           classes: '',
-          date: `${curMonthCounter}/${selectedDate.getMonth() + 1}/${selectedDate.getFullYear()}`,
+          date: new Date(
+            selectedDate.getFullYear(),
+            selectedDate.getMonth(),
+            curMonthCounter
+          ),
           value: curMonthCounter
         }];
         curMonthCounter++;
       } else {
         calendarRows[i] = [...calendarRows[i], {
           classes: 'in-next-month',
-          date: `${nextMonthCounter}/${selectedDate.getMonth() + 2 === 13 ? 1 : selectedDate.getMonth() + 2}/${selectedDate.getMonth() + 2 === 13 ? selectedDate.getFullYear() + 1 : selectedDate.getFullYear()}`,
+          date: new Date(
+            selectedDate.getMonth() + 2 === 13 ? selectedDate.getFullYear() + 1 : selectedDate.getFullYear(),
+            selectedDate.getMonth() + 2 === 13 ? 1 : selectedDate.getMonth() + 1,
+            nextMonthCounter
+          ),
           value: nextMonthCounter
         }];
         nextMonthCounter++;
       }
     }
   }
+
+
 
   //to change the selectedDate to the  previous month's first day 
   const getPrevMonth = () => {
