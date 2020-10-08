@@ -1,0 +1,17 @@
+.calendar-picker {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.calendar-picker th {
+  min-width: 40px !important;
+  height: 10px;
+  color: #ffffff;
+}
+.calendar-picker .day {
+  height: 15px;
+}
+
+.calendar-picker .empty {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+}

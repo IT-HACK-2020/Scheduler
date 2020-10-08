@@ -65,7 +65,10 @@ export default function DatePicker({ onChange, toggle }) {
   return (
     toggle && <div className="calendar-picker">
       <header>
-        <button onClick={handlePrevMonthButtonClick}>{'<'}</button>
+        <button onClick={(e) => {
+          e.preventDefault()
+          handlePrevMonthButtonClick()
+        }}>{'↓'}</button>
 
         <select
           ref={el => monthSelect = el}
@@ -89,7 +92,10 @@ export default function DatePicker({ onChange, toggle }) {
           })}
         </select>
 
-        <button onClick={handleNextMonthButtonClick}>{'>'}</button>
+        <button onClick={(e) => {
+          e.preventDefault()
+          handleNextMonthButtonClick()
+        }}>{'↑'}</button>
       </header>
 
       <table>
@@ -116,7 +122,7 @@ export default function DatePicker({ onChange, toggle }) {
                     })}
                     onClick={() => { handleDayClick(date) }}
                   >{date.getDate()}</td>
-                  : <td key={index}></td>
+                  : <td key={index} className='empty'></td>
               )}
             </tr>
           )}

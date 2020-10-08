@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useStateValue } from '../../StateProvider';
 import DatePicker from '../DatePicker/DatePicker';
+import { TimePicker } from '../TimePicker/TimePicker';
 import './Modal.css';
 
 const Modal = ({ isShowing, hide }) => {
@@ -12,14 +13,17 @@ const Modal = ({ isShowing, hide }) => {
 
   const [datePickerOpen, setdatePickerOpen] = useState(false);
 
+  const [startDateTime, setStartDateTiime] = useState(null)
+
   const handleDataChange = (date) => {
     console.log(date);
     setDate(date);
+
   };
   const setNullDateandClose = () => {
     hide()
     setDate(null);
-
+    setdatePickerOpen(false)
   }
   return (
     isShowing ? ReactDOM.createPortal(
@@ -51,7 +55,12 @@ const Modal = ({ isShowing, hide }) => {
               <div className="form-item">
                 <label htmlFor="start">Time start</label>
                 <br />
-                <input type="text" value={(date && date.toLocaleDateString()) || currentDateClick} name="" id="start"></input>
+                <input type="text" value={(date
+                  &&
+                  `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`)
+                  ||
+                  currentDateClick}
+                  name="" id="start"></input>
                 <button className='data-picker' onClick={(e) => {
                   e.preventDefault()
                   setdatePickerOpen(!datePickerOpen)
@@ -60,6 +69,7 @@ const Modal = ({ isShowing, hide }) => {
                   onChange={handleDataChange}
                   toggle={datePickerOpen}
                 />
+                <TimePicker />
               </div>
               <div className="form-item">
                 <label htmlFor="end">Time end</label><br />
