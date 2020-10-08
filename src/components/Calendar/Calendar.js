@@ -39,7 +39,7 @@ const Calendar = ({ onCellClick }) => {
             Object.values(calendarRows).map(cols => {
               return <tr key={cols[0].date}>
                 {cols.map(col => (
-                  col.date === todayDateFormatted
+                  JSON.stringify(col.date) === JSON.stringify(todayDateFormatted)
                     ? <td key={col.date} className={`${col.classes} day today`}
                       onClick={() => {
                         dateClickHandler(col.date);

@@ -13,7 +13,7 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
   const todayDate = new Date();
 
   //todayFormatted will be used to compare dates to today’s date and add class to today’s date.
-  const todayDateFormatted = `${todayDate.getDate()}/${todayDate.getMonth() + 1}/${todayDate.getFullYear()}`;
+  const todayDateFormatted = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
   //week order from Monday to Sunday
   const daysOfWeek = [1, 2, 3, 4, 5, 6, 0];
 
@@ -63,7 +63,7 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
             classes: '',
             date: new Date(
               selectedDate.getFullYear(),
-              selectedDate.getMonth() + 1,
+              selectedDate.getMonth(),
               curMonthCounter
             ),
             value: curMonthCounter
@@ -95,8 +95,6 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
       }
     }
   }
-
-
 
   //to change the selectedDate to the  previous month's first day 
   const getPrevMonth = () => {
