@@ -5,7 +5,7 @@ import * as Calendar from './Calendar'
 import classnames from 'classnames'
 import { useStateValue } from '../../StateProvider'
 
-export default function DatePicker({ onChange, toggle }) {
+export default function DatePicker({ onChangehandle, toggle }) {
 
 
   const Default = {
@@ -20,7 +20,12 @@ export default function DatePicker({ onChange, toggle }) {
     onChange: Function.prototype
   }
 
+<<<<<<< HEAD
   const [{ currentDateClick }] = useStateValue();
+=======
+  const [{ currentDateClick }] = useStateValue()
+
+>>>>>>> d37fe8af8d9c2f0df892cbeae55432f3730abc86
   const [state, setState] = useState({
     data: currentDateClick,
     currentData: new Date(),
@@ -61,7 +66,7 @@ export default function DatePicker({ onChange, toggle }) {
   const handleDayClick = date => {
     console.log(date);
     setState({ ...state, selectDate: date });
-    onChange(date);
+    onChangehandle(date);
   }
 
   return (
