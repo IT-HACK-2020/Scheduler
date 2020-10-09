@@ -19,6 +19,7 @@ const Modal = ({ isShowing, hide }) => {
   const [datePickerEndOpen, setdatePickerEndOpen] = useState(false);
 
   const [timeStart, setTimeStart] = useState(null)
+  const [timeEnd, setTimeEnd] = useState(null)
 
   const handleDataChange = (date) => {
     console.log(date);
@@ -34,13 +35,19 @@ const Modal = ({ isShowing, hide }) => {
   const handleTimeChangeStart = (time) => {
     setTimeStart(time)
   }
+  const handleTimeChangeEnd = (time) => {
+    setTimeEnd(time)
+  }
   const setNullDateandClose = () => {
     hide()
     setDateStart(null)
     setDateEnd(null)
     setdatePickerOpen(false)
     setdatePickerEndOpen(false)
+    setTimeEnd(false);
+    setTimeStart(false);
   }
+
   return (
     isShowing ? ReactDOM.createPortal(
       <>
@@ -104,7 +111,7 @@ const Modal = ({ isShowing, hide }) => {
               <div className="form-item">
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-start">Time start</label><br />
-                <input type="text" value={timeStart} name="" id="time-start" />
+                <input type="text" value={timeStart || new Date().getHours()} name="" id="time-start" />
                 <TimePicker
                   onChangehandle={handleTimeChangeStart}
                 />
@@ -112,7 +119,10 @@ const Modal = ({ isShowing, hide }) => {
               <div className="form-item">
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-end">Time end</label><br />
-                <input type="text" name="" id="time-end" />
+                <input type="text" value={timeEnd || new Date().getHours()} name="" id="time-end" />
+                <TimePicker
+                  onChangehandle={handleTimeChangeEnd}
+                />
               </div>
               <div className="form-item w-100">
                 <label htmlFor="desc">Description</label><br />
