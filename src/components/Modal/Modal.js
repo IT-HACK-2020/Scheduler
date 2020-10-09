@@ -9,21 +9,34 @@ import './Modal.css';
 const Modal = ({ isShowing, hide }) => {
   const [{ currentDateClick }] = useStateValue();
 
-  const [date, setDate] = useState(null);
+  const [dateStart, setDateStart] = useState(null);
+
+  const [dateEnd, setDateEnd] = useState(null);
 
   const [datePickerOpen, setdatePickerOpen] = useState(false);
+
+  const [datePickerEndOpen, setdatePickerEndOpen] = useState(false);
 
   const [startDateTime, setStartDateTiime] = useState(null)
 
   const handleDataChange = (date) => {
     console.log(date);
-    setDate(date);
-
+    setDateStart(date);
+    setdatePickerOpen(false)
   };
+
+  const handleDataChangeEnd = (date) => {
+    console.log(date);
+    setDateEnd(date);
+    setdatePickerEndOpen(false)
+  };
+
   const setNullDateandClose = () => {
     hide()
-    setDate(null);
+    setDateStart(null)
+    setDateEnd(null)
     setdatePickerOpen(false)
+    setdatePickerEndOpen(false)
   }
   return (
     isShowing ? ReactDOM.createPortal(
@@ -56,9 +69,9 @@ const Modal = ({ isShowing, hide }) => {
                 <p class="far fa-calendar-alt icon" onClick={() => { setdatePickerOpen(!datePickerOpen) }}></p>
                 <label htmlFor="start">Date start</label>
                 <br />
-                <input type="text" name="" value={(date
+                <input type="text" name="" value={(dateStart
                   &&
-                  `${date.toLocaleDateString()}`)
+                  `${dateStart.toLocaleDateString()}`)
                   ||
                   currentDateClick} id="start" />
                 <DatePicker
@@ -67,9 +80,17 @@ const Modal = ({ isShowing, hide }) => {
                 />
               </div>
               <div className="form-item">
-                <p class="far fa-calendar-alt icon"></p>
+                <p onClick={() => { setdatePickerEndOpen(!datePickerEndOpen) }} class="far fa-calendar-alt icon"></p>
                 <label htmlFor="end">Date end</label><br />
-                <input type="text" name="" id="end" />
+                <input type="text" value={(dateEnd
+                  &&
+                  `${dateEnd.toLocaleDateString()}`)
+                  ||
+                  currentDateClick} name="" id="end" />
+                <DatePicker
+                  onChange={handleDataChangeEnd}
+                  toggle={datePickerEndOpen}
+                />
               </div>
               <div className="form-item">
                 <p class="far fa-clock icon"></p>

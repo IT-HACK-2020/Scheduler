@@ -7,7 +7,7 @@ import { useStateValue } from '../../StateProvider'
 
 export default function DatePicker({ onChange, toggle }) {
 
-  const [{ currentDateClick }] = useStateValue();
+  // const [{ currentDateClick }] = useStateValue();
   const Default = {
     data: new Date(),
     years: Array(100).fill().map((el, index) => (
