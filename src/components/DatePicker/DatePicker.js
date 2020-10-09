@@ -20,12 +20,8 @@ export default function DatePicker({ onChangehandle, toggle }) {
     onChange: Function.prototype
   }
 
-<<<<<<< HEAD
-  const [{ currentDateClick }] = useStateValue();
-=======
   const [{ currentDateClick }] = useStateValue()
 
->>>>>>> d37fe8af8d9c2f0df892cbeae55432f3730abc86
   const [state, setState] = useState({
     data: currentDateClick,
     currentData: new Date(),

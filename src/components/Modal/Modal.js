@@ -69,14 +69,10 @@ const Modal = ({ isShowing, hide }) => {
                 <input type="text" name="" id="place" />
               </div>
               <div className="form-item">
-<<<<<<< HEAD
-                <p className="far fa-calendar-alt icon" onClick={() => { setdatePickerOpen(!datePickerOpen) }}></p>
-=======
                 <p class="far fa-calendar-alt icon" onClick={() => {
                   setdatePickerOpen(!datePickerOpen)
                   setdatePickerEndOpen(false)
                 }}></p>
->>>>>>> d37fe8af8d9c2f0df892cbeae55432f3730abc86
                 <label htmlFor="start">Date start</label>
                 <br />
                 <input type="text" name="" value={(dateStart
@@ -90,14 +86,10 @@ const Modal = ({ isShowing, hide }) => {
                 />
               </div>
               <div className="form-item">
-<<<<<<< HEAD
-                <p onClick={() => { setdatePickerEndOpen(!datePickerEndOpen) }} className="far fa-calendar-alt icon"></p>
-=======
                 <p onClick={() => {
                   setdatePickerEndOpen(!datePickerEndOpen)
                   setdatePickerOpen(false)
                 }} class="far fa-calendar-alt icon"></p>
->>>>>>> d37fe8af8d9c2f0df892cbeae55432f3730abc86
                 <label htmlFor="end">Date end</label><br />
                 <input type="text" value={(dateEnd
                   &&
