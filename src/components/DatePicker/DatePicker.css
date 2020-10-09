@@ -1,18 +1,19 @@
 .calendar-picker {
   position: absolute;
-  z-index:3000;
+  z-index: 3000;
   background-color: #fff;
-  border:1px solid #e253e7;
+  border: 1px solid #e253e7;
   margin-top: 2px;
-  -webkit-animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-	        animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+  -webkit-animation: swing-in-top-bck 0.6s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
-.calendar-picker header{
+.calendar-picker header {
   background-color: #e253e7;
 }
-.calendar-picker .arrow{
-  padding:5px;
-  min-width:25px;
+.calendar-picker .arrow {
+  padding: 5px;
+  min-width: 25px;
   background-color: transparent;
 }
 .calendar-picker th {
@@ -25,49 +26,50 @@
   background-color: #e0a6e2;
   font-size: 12px;
 }
-.calendar-picker .today{
-  background-color:  #e253e7;
-}
 
 .calendar-picker .empty {
   background-color: #ffffff;
   border: none;
 }
-.calendar-picker .selected{
-  border: 1px solid black ;
+.calendar-picker .selected {
+  border: 1px solid black;
   font-weight: bold;
   background-color: #f5eff5;
+}
+
+.calendar-picker .today {
+  background-color: #e253e7;
 }
 
 @-webkit-keyframes swing-in-top-bck {
   0% {
     -webkit-transform: rotateX(70deg);
-            transform: rotateX(70deg);
+    transform: rotateX(70deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
+    transform: rotateX(0deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 1;
   }
 }
 @keyframes swing-in-top-bck {
   0% {
     -webkit-transform: rotateX(70deg);
-            transform: rotateX(70deg);
+    transform: rotateX(70deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
+    transform: rotateX(0deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 1;
   }
 }
