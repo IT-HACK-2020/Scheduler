@@ -90,6 +90,7 @@
   .form-item{
     width:44%;
     margin: 10px 5px;
+    position: relative;
   }
   .form-item textarea{
     resize: none; 
@@ -127,4 +128,12 @@
   .btn-container{
     display: flex;
     justify-content: space-between;
+  }
+  .icon{
+    position: absolute;
+    bottom:0;
+    right:0;
+    font-size: 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
   }

@@ -7,14 +7,16 @@ import { useStateValue } from '../../StateProvider'
 
 export default function DatePicker({ onChange, toggle }) {
 
-  const [{ currentDateClick }] = useStateValue()
+  const [{ currentDateClick }] = useStateValue();
   const Default = {
     data: new Date(),
     years: Array(100).fill().map((el, index) => (
       new Date().getFullYear() - 50 + index
     )),
-    month: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-    weekDays: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
+    month: ['January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'],
+    weekDays: ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'],
     onChange: Function.prototype
   }
 
@@ -47,28 +49,28 @@ export default function DatePicker({ onChange, toggle }) {
   let monthSelect, yearSelect
 
   const handleSelectChange = () => {
-    const year = yearSelect.value
-    const month = monthSelect.value
+    const year = yearSelect.value;
+    const month = monthSelect.value;
 
-    const date = new Date(year, month)
-    setState({ ...state, data: date })
+    const date = new Date(year, month);
+    setState({ ...state, data: date });
     console.log(date);
   }
 
 
   const handleDayClick = date => {
     console.log(date);
-    setState({ ...state, selectDate: date })
-    onChange(date)
+    setState({ ...state, selectDate: date });
+    onChange(date);
   }
 
   return (
     toggle && <div className="calendar-picker">
       <header>
-        <button onClick={(e) => {
+        <button className='arrow' onClick={(e) => {
           e.preventDefault()
           handlePrevMonthButtonClick()
-        }}>{'↓'}</button>
+        }}>↓</button>
 
         <select
           ref={el => monthSelect = el}
@@ -92,10 +94,10 @@ export default function DatePicker({ onChange, toggle }) {
           })}
         </select>
 
-        <button onClick={(e) => {
+        <button className='arrow' onClick={(e) => {
           e.preventDefault()
           handleNextMonthButtonClick()
-        }}>{'↑'}</button>
+        }}>↑</button>
       </header>
 
       <table>

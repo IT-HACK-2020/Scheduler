@@ -53,47 +53,44 @@ const Modal = ({ isShowing, hide }) => {
                 <input type="text" name="" id="place" />
               </div>
               <div className="form-item">
-                <label htmlFor="start">Time start</label>
+                <p class="far fa-calendar-alt icon" onClick={() => { setdatePickerOpen(!datePickerOpen) }}></p>
+                <label htmlFor="start">Date start</label>
                 <br />
-                <input type="text" value={(date
+                <input type="text" name="" value={(date
                   &&
-                  `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`)
+                  `${date.toLocaleDateString()}`)
                   ||
-                  currentDateClick}
-                  name="" id="start"></input>
-                <button className='data-picker' onClick={(e) => {
-                  e.preventDefault()
-                  setdatePickerOpen(!datePickerOpen)
-                }}>Choose selected date</button>
+                  currentDateClick} id="start" />
                 <DatePicker
                   onChange={handleDataChange}
                   toggle={datePickerOpen}
                 />
-                <TimePicker />
               </div>
               <div className="form-item">
-                <label htmlFor="end">Time end</label><br />
+                <p class="far fa-calendar-alt icon"></p>
+                <label htmlFor="end">Date end</label><br />
                 <input type="text" name="" id="end" />
+              </div>
+              <div className="form-item">
+                <p class="far fa-clock icon"></p>
+                <label htmlFor="time-start">Time start</label><br />
+                <input type="text" name="" id="time-start" />
+              </div>
+              <div className="form-item">
+                <p class="far fa-clock icon"></p>
+                <label htmlFor="time-end">Time end</label><br />
+                <input type="text" name="" id="time-end" />
               </div>
               <div className="form-item w-100">
                 <label htmlFor="desc">Description</label><br />
                 <textarea type="text" name="" id="desc" />
               </div>
-
-
-              {/* <label htmlFor="start">Start time</label>
-            <input type="text" value={date && date.toLocaleDateString()} name="" id="start" /> */}
             </form>
-            {/* <button className='data-picker' onClick={() => { setdatePickerOpen(!datePickerOpen) }}>Choose selected date</button>
-            <DatePicker
-              onChange={handleDataChange}
-              toggle={datePickerOpen}
-            /> */}
             <div className="btn-container">
               <button className="btn-delete">Delete</button>
               <div className="btn-wrapper">
                 <button className="btn-save">Save</button>
-                <button className="btn-cancel">Cancel</button>
+                <button className="btn-cancel" onClick={setNullDateandClose}>Cancel</button>
               </div>
             </div>
           </div>

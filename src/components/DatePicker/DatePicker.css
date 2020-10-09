@@ -1,17 +1,73 @@
 .calendar-picker {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
+  z-index:3000;
+  background-color: #fff;
+  border:1px solid #e253e7;
+  margin-top: 2px;
+  -webkit-animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+	        animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
+.calendar-picker header{
+  background-color: #e253e7;
+}
+.calendar-picker .arrow{
+  padding:5px;
+  min-width:25px;
+  background-color: transparent;
 }
 .calendar-picker th {
-  min-width: 40px !important;
+  min-width: 23px !important;
   height: 10px;
-  color: #ffffff;
+  color: #000;
 }
 .calendar-picker .day {
   height: 15px;
+  background-color: #e0a6e2;
+  font-size: 12px;
+}
+.calendar-picker .today{
+  background-color:  #e253e7;
 }
 
 .calendar-picker .empty {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #ffffff;
   border: none;
+}
+.calendar-picker .selected{
+  border: 1px solid black ;
+  font-weight: bold;
+  background-color: #f5eff5;
+}
+
+@-webkit-keyframes swing-in-top-bck {
+  0% {
+    -webkit-transform: rotateX(70deg);
+            transform: rotateX(70deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+}
+@keyframes swing-in-top-bck {
+  0% {
+    -webkit-transform: rotateX(70deg);
+            transform: rotateX(70deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
 }
