@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useStateValue } from '../../StateProvider';
+import './TimePicker.css';
 
 export const TimePicker = ({ onChangehandle }) => {
 
@@ -23,7 +24,7 @@ export const TimePicker = ({ onChangehandle }) => {
         name="" id="">
         {
           time.map((el, index) => {
-            return <option key={index} value={el}>{
+            return <option selected={el === new Date().getHours()} key={index} value={el}>{
               (el + '').length < 2 ? '0' + el : el
             }</option>
           })

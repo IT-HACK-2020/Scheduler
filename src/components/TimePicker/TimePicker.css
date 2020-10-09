@@ -1,0 +1,8 @@
+.time-picker select{
+    min-width:180px;
+    border:none;
+    border-bottom: 1px solid rgb(134, 134, 134);
+    font-size: 16px;
+    outline: none;
+    margin-top: 5px;
+}

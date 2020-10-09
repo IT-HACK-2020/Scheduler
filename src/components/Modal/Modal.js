@@ -111,7 +111,7 @@ const Modal = ({ isShowing, hide }) => {
               <div className="form-item">
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-start">Time start</label><br />
-                <input type="text" value={timeStart || new Date().getHours()} name="" id="time-start" />
+                {/* <input type="text" value={timeStart || new Date().getHours()} name="" id="time-start" /> */}
                 <TimePicker
                   onChangehandle={handleTimeChangeStart}
                 />
@@ -119,7 +119,7 @@ const Modal = ({ isShowing, hide }) => {
               <div className="form-item">
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-end">Time end</label><br />
-                <input type="text" value={timeEnd || new Date().getHours()} name="" id="time-end" />
+                {/* <input type="text" value={timeEnd || new Date().getHours()} name="" id="time-end" /> */}
                 <TimePicker
                   onChangehandle={handleTimeChangeEnd}
                 />
