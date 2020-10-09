@@ -26,7 +26,6 @@
   background-color: #e0a6e2;
   font-size: 12px;
 }
-<<<<<<< HEAD
 .calendar-picker .selected{
   border: 1px solid black ;
   font-weight: bold;
@@ -35,21 +34,17 @@
 .calendar-picker .today{
   background-color:  #e253e7;
 }
-=======
->>>>>>> d37fe8af8d9c2f0df892cbeae55432f3730abc86
 
 .calendar-picker .empty {
   background-color: #ffffff;
   border: none;
 }
-<<<<<<< HEAD
-=======
+
 .calendar-picker .selected {
   border: 1px solid black;
   font-weight: bold;
   background-color: #f5eff5;
 }
->>>>>>> d37fe8af8d9c2f0df892cbeae55432f3730abc86
 
 .calendar-picker .today {
   background-color: #e253e7;
