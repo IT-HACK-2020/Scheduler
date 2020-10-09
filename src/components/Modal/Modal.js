@@ -46,7 +46,7 @@ const Modal = ({ isShowing, hide }) => {
           <div className="modal">
             <div className="modal-intro">
               <p>
-                {`Selected date:  ${currentDateClick}`}
+                {`Selected date:  ${currentDateClick.toLocaleDateString()}`}
               </p>
             </div>
             <div className="modal-header">
@@ -66,39 +66,39 @@ const Modal = ({ isShowing, hide }) => {
                 <input type="text" name="" id="place" />
               </div>
               <div className="form-item">
-                <p class="far fa-calendar-alt icon" onClick={() => { setdatePickerOpen(!datePickerOpen) }}></p>
+                <p className="far fa-calendar-alt icon" onClick={() => { setdatePickerOpen(!datePickerOpen) }}></p>
                 <label htmlFor="start">Date start</label>
                 <br />
                 <input type="text" name="" value={(dateStart
                   &&
                   `${dateStart.toLocaleDateString()}`)
                   ||
-                  currentDateClick} id="start" />
+                  currentDateClick.toLocaleDateString()} id="start" />
                 <DatePicker
                   onChange={handleDataChange}
                   toggle={datePickerOpen}
                 />
               </div>
               <div className="form-item">
-                <p onClick={() => { setdatePickerEndOpen(!datePickerEndOpen) }} class="far fa-calendar-alt icon"></p>
+                <p onClick={() => { setdatePickerEndOpen(!datePickerEndOpen) }} className="far fa-calendar-alt icon"></p>
                 <label htmlFor="end">Date end</label><br />
                 <input type="text" value={(dateEnd
                   &&
                   `${dateEnd.toLocaleDateString()}`)
                   ||
-                  currentDateClick} name="" id="end" />
+                  currentDateClick.toLocaleDateString()} name="" id="end" />
                 <DatePicker
                   onChange={handleDataChangeEnd}
                   toggle={datePickerEndOpen}
                 />
               </div>
               <div className="form-item">
-                <p class="far fa-clock icon"></p>
+                <p className="far fa-clock icon"></p>
                 <label htmlFor="time-start">Time start</label><br />
                 <input type="text" name="" id="time-start" />
               </div>
               <div className="form-item">
-                <p class="far fa-clock icon"></p>
+                <p className="far fa-clock icon"></p>
                 <label htmlFor="time-end">Time end</label><br />
                 <input type="text" name="" id="time-end" />
               </div>

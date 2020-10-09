@@ -7,7 +7,7 @@ import { useStateValue } from '../../StateProvider'
 
 export default function DatePicker({ onChange, toggle }) {
 
-  // const [{ currentDateClick }] = useStateValue();
+
   const Default = {
     data: new Date(),
     years: Array(100).fill().map((el, index) => (
@@ -20,11 +20,11 @@ export default function DatePicker({ onChange, toggle }) {
     onChange: Function.prototype
   }
 
-
+  const [{ currentDateClick }] = useStateValue();
   const [state, setState] = useState({
-    data: new Date(),
+    data: currentDateClick,
     currentData: new Date(),
-    selectDate: null
+    selectDate: currentDateClick
   })
 
   let monthData = Calendar.getMonthData(state.data.getFullYear(), state.data.getMonth());

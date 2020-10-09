@@ -25,6 +25,11 @@
   background-color: #e0a6e2;
   font-size: 12px;
 }
+.calendar-picker .selected{
+  border: 1px solid black ;
+  font-weight: bold;
+  background-color: #f5eff5;
+}
 .calendar-picker .today{
   background-color:  #e253e7;
 }
@@ -32,11 +37,6 @@
 .calendar-picker .empty {
   background-color: #ffffff;
   border: none;
-}
-.calendar-picker .selected{
-  border: 1px solid black ;
-  font-weight: bold;
-  background-color: #f5eff5;
 }
 
 @-webkit-keyframes swing-in-top-bck {
