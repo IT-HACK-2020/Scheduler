@@ -37,7 +37,7 @@ export const TimePicker = ({ onChangehandle }) => {
                   {((el + '').length < 2 ? '0' + el : el) + ':' + minutes[0]}
                 </option>
                 <option
-                  selected={(el === new Date().getHours()) && new Date().getMinutes() > minutes[1]}
+                  selected={(el === new Date().getHours()) && new Date().getMinutes() >= minutes[1]}
                   key={index}
                   value={((el + '').length < 2 ? '0' + el : el) + ':' + minutes[1]}>
                   {((el + '').length < 2 ? '0' + el : el) + ':' + minutes[1]}
