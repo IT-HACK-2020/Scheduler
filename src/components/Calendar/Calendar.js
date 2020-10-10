@@ -6,7 +6,7 @@ import { useStateValue } from '../../StateProvider';
 const Calendar = ({ onCellClick }) => {
   const { days, month, todayDateFormatted, calendarRows, selectedDate, getNextMonth, getPrevMonth } = CalendarUse();
 
-  const [{ }, dispatch] = useStateValue();
+  const [{ saveData }, dispatch] = useStateValue()
 
   const dateClickHandler = date => {
     console.log(date);
@@ -49,8 +49,16 @@ const Calendar = ({ onCellClick }) => {
                     : <td key={col.date} className={`${col.classes} day`}
                       onClick={() => {
                         dateClickHandler(col.date);
+                        console.log(col.date.toLocaleDateString())
+                        console.log(saveData)
                       }}>
                       {col.value}
+
+                      {saveData.map((el) => {
+                        if (el.day === col.date.toLocaleDateString()) {
+                          return <div>{el.title}</div>
+                        }
+                      })}
                     </td>
                 ))}
               </tr>

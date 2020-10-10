@@ -8,7 +8,8 @@ import './Modal.css';
 
 const Modal = ({ isShowing, hide }) => {
 
-  const [{ currentDateClick }] = useStateValue();
+
+  const [{ currentDateClick, saveData }, dispatch] = useStateValue();
 
   const [dateStart, setDateStart] = useState(null);
 
@@ -48,6 +49,31 @@ const Modal = ({ isShowing, hide }) => {
     setTimeStart(false);
   }
 
+
+  const saveDataOnClick = (dateStart, dateEnd, timeStart, timeEnd, currentDateClick) => {
+    dispatch({
+      type: "SAVE_DATE",
+      day: currentDateClick.toLocaleDateString(),
+      title: 'title',
+      location: 'location',
+      dateStart: dateStart,
+      //  (dateStart
+      //   &&
+      //   `${dateStart.toLocaleDateString()}`)
+      //   ||
+      //   currentDateClick.toLocaleDateString(),
+      dateEnd: dateEnd,
+      // (dateEnd
+      //   &&
+      //   `${dateEnd.toLocaleDateString()}`)
+      //   ||
+      //   currentDateClick.toLocaleDateString(),
+      timeStart: timeStart,
+      timeEnd: timeEnd
+    });
+    console.log(saveData);
+    setNullDateandClose()
+  }
   return (
     isShowing ? ReactDOM.createPortal(
       <>
@@ -147,7 +173,9 @@ const Modal = ({ isShowing, hide }) => {
             <div className="btn-container">
               <button className="btn-delete">Delete</button>
               <div className="btn-wrapper">
-                <button className="btn-save">Save</button>
+                <button
+                  onClick={() => { saveDataOnClick(dateStart, dateEnd, timeStart, timeEnd, currentDateClick) }}
+                  className="btn-save">Save</button>
                 <button className="btn-cancel" onClick={setNullDateandClose}>Cancel</button>
               </div>
             </div>
