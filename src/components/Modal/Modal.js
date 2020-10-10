@@ -19,8 +19,17 @@ const Modal = ({ isShowing, hide }) => {
 
   const [datePickerEndOpen, setdatePickerEndOpen] = useState(false);
 
-  const [timeStart, setTimeStart] = useState(null)
-  const [timeEnd, setTimeEnd] = useState(null)
+  const currentHoursAndMinutes = `${(new Date().getHours().toString().length < 2 ?
+    ("0" + new Date().getHours().toString()) :
+    (new Date().getHours()))}:${new Date().getMinutes().toString().length < 2 ?
+      ("0" + new Date().getMinutes().toString()) :
+      (new Date().getMinutes())}`;
+
+
+  const [timeStart, setTimeStart] = useState(currentHoursAndMinutes);
+
+  const [timeEnd, setTimeEnd] = useState(currentHoursAndMinutes);
+
 
   const handleDataChange = (date) => {
     console.log(date);
@@ -35,18 +44,28 @@ const Modal = ({ isShowing, hide }) => {
   };
   const handleTimeChangeStart = (time) => {
     setTimeStart(time)
-  }
+  };
   const handleTimeChangeEnd = (time) => {
     setTimeEnd(time)
-  }
+  };
+  const onChangeTimeEndInput = (e) => {
+    setTimeEnd(e.target.value);
+    console.log(timeEnd);
+  };
+  const onChangeTimeStartInput = (e) => {
+    setTimeStart(e.target.value)
+    console.log(timeStart);
+  };
+
   const setNullDateandClose = () => {
     hide()
     setDateStart(null)
     setDateEnd(null)
     setdatePickerOpen(false)
     setdatePickerEndOpen(false)
-    setTimeEnd(false);
-    setTimeStart(false);
+    setTimeEnd(currentHoursAndMinutes);
+    setTimeStart(currentHoursAndMinutes);
+
   }
 
 
@@ -137,13 +156,9 @@ const Modal = ({ isShowing, hide }) => {
               <div className="form-item">
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-start">Time start</label><br />
-                <input type="text" value={timeStart
-                  ||
-                  `${(new Date().getHours().toString().length < 2 ?
-                    ("0" + new Date().getHours().toString()) :
-                    (new Date().getHours()))}:${new Date().getMinutes().toString().length < 2 ?
-                      ("0" + new Date().getMinutes().toString()) :
-                      (new Date().getMinutes())}`}
+                <input type="text"
+                  onChange={onChangeTimeStartInput}
+                  value={timeStart}
                   name=""
                   id="time-start" />
                 <TimePicker
@@ -153,14 +168,10 @@ const Modal = ({ isShowing, hide }) => {
               <div className="form-item">
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-end">Time end</label><br />
-                <input type="text" value={timeEnd
-                  ||
-                  `${(new Date().getHours().toString().length < 2 ?
-                    ("0" + new Date().getHours().toString()) :
-                    (new Date().getHours()))}:${new Date().getMinutes().toString().length < 2 ?
-                      ("0" + new Date().getMinutes().toString()) :
-                      (new Date().getMinutes())}`
-                } name="" id="time-end" />
+                <input type="text"
+                  onChange={onChangeTimeEndInput}
+                  value={timeEnd} name="" id="time-end" />
+
                 <TimePicker
                   onChangehandle={handleTimeChangeEnd}
                 />
