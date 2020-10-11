@@ -50,13 +50,13 @@ const Modal = ({ isShowing, hide }) => {
 
   const handleDataChange = (date) => {
     setInputValueDateStart(null);
-    setDateStart(date);
+    setDateStart(date.toLocaleDateString());
     setdatePickerOpen(false);
   };
 
   const handleDataChangeEnd = (date) => {
     setInputValueDateEnd(null);
-    setDateEnd(date);
+    setDateEnd(date.toLocaleDateString());
     setdatePickerEndOpen(false);
   };
   const handleTimeChangeStart = (time) => {
@@ -108,9 +108,7 @@ const Modal = ({ isShowing, hide }) => {
       day: currentDateClick.toLocaleDateString(),
       title: title,
       location: location,
-      dateStart:
-        inputValueDateStart ||
-        dateStart ||
+      dateStart: inputValueDateStart || dateStart ||
         currentDateClick.toLocaleDateString(),
       dateEnd:
         inputValueDateEnd || dateEnd || currentDateClick.toLocaleDateString(),
@@ -190,7 +188,7 @@ const Modal = ({ isShowing, hide }) => {
                   name=""
                   value={
                     inputValueDateStart ||
-                    (dateStart && `${dateStart.toLocaleDateString()}`) ||
+                    dateStart ||
                     currentDateClick.toLocaleDateString()
                   }
                   onChange={(e) => InputOnChangeDateStart(e)}
@@ -215,7 +213,7 @@ const Modal = ({ isShowing, hide }) => {
                   type="text"
                   value={
                     inputValueDateEnd ||
-                    (dateEnd && `${dateEnd.toLocaleDateString()}`) ||
+                    dateEnd ||
                     currentDateClick.toLocaleDateString()
                   }
                   name=""
