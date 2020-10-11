@@ -97,4 +97,13 @@ th{
     display: inline-block;
     margin-left: 5px;
 }
+.create-event{
+    padding: 0px 5px;
+    background-color: #f8f7f8;
+    position: absolute;
+    top:0;
+    right:0;
+    border:1px solid black;
+    color:black;
+}
 

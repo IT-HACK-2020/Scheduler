@@ -11,9 +11,9 @@ const Modal = ({ isShowing, hide }) => {
 
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
 
-  const [dateStart, setDateStart] = useState(null);
+  const [dateStart, setDateStart] = useState(currentDateClick);
 
-  const [dateEnd, setDateEnd] = useState(null);
+  const [dateEnd, setDateEnd] = useState(currentDateClick);
 
   const [datePickerOpen, setdatePickerOpen] = useState(false);
 
@@ -73,8 +73,8 @@ const Modal = ({ isShowing, hide }) => {
 
   const setNullDateandClose = () => {
     hide()
-    setDateStart(null)
-    setDateEnd(null)
+    setDateStart('')
+    setDateEnd('')
     setdatePickerOpen(false)
     setdatePickerEndOpen(false)
     setTimeEnd(currentHoursAndMinutes);
@@ -90,8 +90,8 @@ const Modal = ({ isShowing, hide }) => {
       day: currentDateClick.toLocaleDateString(),
       title: title,
       location: location,
-      dateStart: dateStart.toLocaleDateString(),
-      dateEnd: dateEnd.toLocaleDateString(),
+      dateStart: dateStart,
+      dateEnd: dateEnd,
       timeStart: timeStart,
       timeEnd: timeEnd,
       description: desc

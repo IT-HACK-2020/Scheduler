@@ -41,28 +41,35 @@ const Calendar = ({ onCellClick }) => {
                 {cols.map(col => (
                   JSON.stringify(col.date) === JSON.stringify(todayDateFormatted)
                     ? <td key={col.date} className={`${col.classes} day today`}
-                      onClick={() => {
-                        dateClickHandler(col.date);
-                      }}
+
                     >{col.value}
+                      <span className="create-event" onClick={() => {
+                        dateClickHandler(col.date);
+                      }}>+</span>
                     </td>
                     : <td key={col.date} className={`${col.classes} day`}
-                      onClick={() => {
+                    >
+                      {col.value}
+                      <span className="create-event" onClick={() => {
                         dateClickHandler(col.date);
                         console.log(col.date.toLocaleDateString())
                         console.log(saveData)
-                      }}>
-                      {col.value}
+                      }}>+</span>
 
                       {saveData.map((el) => {
                         if (el.day === col.date.toLocaleDateString()) {
                           return (
                             <div className='event'>
-                              <span className="event__time-start">{el.timeStart}</span>
-                              <span className='event__title'>{el.title}</span>
+                              <label htmlFor="status">
+                                <input type="checkbox" id="status" />
+                                <span className="event__time-start">{el.timeStart}</span>
+                                <span className='event__title'>{el.title}</span>
+                              </label>
                             </div>
                           )
                         }
+                      }).sort(function (a, b) {
+                        return new Date(a.dateStart + " " + a.timeStart) - new Date(b.dateStart + " " + b.timeStart);
                       })}
                     </td>
                 ))}
