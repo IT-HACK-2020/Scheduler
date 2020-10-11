@@ -19,6 +19,10 @@ const Calendar = ({ onCellClick }) => {
 
   };
 
+  function compareObjectsByTimeStart(a, b) {
+    return a.timeStart.localeCompare(b.timeStart);
+  }
+
   return (
     <>
       <div className="header">
@@ -46,8 +50,8 @@ const Calendar = ({ onCellClick }) => {
                       console.log(col.date.toLocaleDateString())
                       console.log(saveData)
                     }}>+</span>
-                    {saveData.map((el) => {
-                      if (el.day === col.date.toLocaleDateString()) {
+                    {saveData.sort(compareObjectsByTimeStart).map((el) => {
+                      if (el.dateStart === col.date.toLocaleDateString()) {
                         return (
                           <div className='event'>
                             <label htmlFor="status">
@@ -58,8 +62,6 @@ const Calendar = ({ onCellClick }) => {
                           </div>
                         )
                       }
-                    }).sort(function (a, b) {
-                      return new Date(a.dateStart + " " + a.timeStart) - new Date(b.dateStart + " " + b.timeStart);
                     })}
                   </td>)
                 )}
