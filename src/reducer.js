@@ -22,7 +22,8 @@ const reducer = (state = initialState, action) => {
           dateStart: action.dateStart,
           dateEnd: action.dateEnd,
           timeStart: action.timeStart,
-          timeEnd: action.timeEnd
+          timeEnd: action.timeEnd,
+          description: action.description
         }]
       }
   }

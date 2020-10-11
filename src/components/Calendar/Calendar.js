@@ -56,7 +56,12 @@ const Calendar = ({ onCellClick }) => {
 
                       {saveData.map((el) => {
                         if (el.day === col.date.toLocaleDateString()) {
-                          return <div>{el.title}</div>
+                          return (
+                            <div className='event'>
+                              <span className="event__time-start">{el.timeStart}</span>
+                              <span className='event__title'>{el.title}</span>
+                            </div>
+                          )
                         }
                       })}
                     </td>

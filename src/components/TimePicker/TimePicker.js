@@ -11,7 +11,7 @@ export const TimePicker = ({ onChangehandle }) => {
 
   const minutes = ['00', '30']
 
-  const [selectValue, setSelectValue] = useState(null)
+  const [selectValue, setSelectValue] = useState()
 
   const handleChange = (e) => {
     setSelectValue(e.target.value)
@@ -38,7 +38,7 @@ export const TimePicker = ({ onChangehandle }) => {
                 </option>
                 <option
                   selected={(el === new Date().getHours()) && new Date().getMinutes() >= minutes[1]}
-                  key={index}
+                  key={index + '100'}
                   value={((el + '').length < 2 ? '0' + el : el) + ':' + minutes[1]}>
                   {((el + '').length < 2 ? '0' + el : el) + ':' + minutes[1]}
                 </option>)

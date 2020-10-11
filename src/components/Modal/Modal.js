@@ -30,6 +30,20 @@ const Modal = ({ isShowing, hide }) => {
 
   const [timeEnd, setTimeEnd] = useState(currentHoursAndMinutes);
 
+  //save event's data
+  const [title, setTitle] = useState('');
+  const [location, setLocation] = useState('');
+  const [desc, setDesc] = useState('');
+
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+  const onChangeLocation = (e) => {
+    setLocation(e.target.value);
+  };
+  const onChangeDesc = (e) => {
+    setDesc(e.target.value);
+  };
 
   const handleDataChange = (date) => {
     console.log(date);
@@ -43,10 +57,10 @@ const Modal = ({ isShowing, hide }) => {
     setdatePickerEndOpen(false)
   };
   const handleTimeChangeStart = (time) => {
-    setTimeStart(time)
+    setTimeStart(time);
   };
   const handleTimeChangeEnd = (time) => {
-    setTimeEnd(time)
+    setTimeEnd(time);
   };
   const onChangeTimeEndInput = (e) => {
     setTimeEnd(e.target.value);
@@ -65,7 +79,8 @@ const Modal = ({ isShowing, hide }) => {
     setdatePickerEndOpen(false)
     setTimeEnd(currentHoursAndMinutes);
     setTimeStart(currentHoursAndMinutes);
-
+    setTitle('');
+    setLocation('');
   }
 
 
@@ -73,22 +88,13 @@ const Modal = ({ isShowing, hide }) => {
     dispatch({
       type: "SAVE_DATE",
       day: currentDateClick.toLocaleDateString(),
-      title: 'title',
-      location: 'location',
-      dateStart: dateStart,
-      //  (dateStart
-      //   &&
-      //   `${dateStart.toLocaleDateString()}`)
-      //   ||
-      //   currentDateClick.toLocaleDateString(),
-      dateEnd: dateEnd,
-      // (dateEnd
-      //   &&
-      //   `${dateEnd.toLocaleDateString()}`)
-      //   ||
-      //   currentDateClick.toLocaleDateString(),
+      title: title,
+      location: location,
+      dateStart: dateStart.toLocaleDateString(),
+      dateEnd: dateEnd.toLocaleDateString(),
       timeStart: timeStart,
-      timeEnd: timeEnd
+      timeEnd: timeEnd,
+      description: desc
     });
     console.log(saveData);
     setNullDateandClose()
@@ -114,11 +120,11 @@ const Modal = ({ isShowing, hide }) => {
             <form className="form">
               <div className="form-item">
                 <label htmlFor="title">Title</label><br />
-                <input type="text" name="" id="title" />
+                <input type="text" name="" id="title" value={title} onChange={(e) => onChangeTitle(e)} />
               </div>
               <div className="form-item">
                 <label htmlFor="place">Place</label><br />
-                <input type="text" name="" id="place" />
+                <input type="text" name="" id="place" value={location} onChange={(e) => onChangeLocation(e)} />
               </div>
               <div className="form-item">
                 <p class="far fa-calendar-alt icon" onClick={() => {
@@ -131,7 +137,7 @@ const Modal = ({ isShowing, hide }) => {
                   &&
                   `${dateStart.toLocaleDateString()}`)
                   ||
-                  currentDateClick.toLocaleDateString()} id="start" />
+                  currentDateClick.toLocaleDateString()} onChange={handleDataChange} id="start" />
                 <DatePicker
                   onChangehandle={handleDataChange}
                   toggle={datePickerOpen}
@@ -178,18 +184,18 @@ const Modal = ({ isShowing, hide }) => {
               </div>
               <div className="form-item w-100">
                 <label htmlFor="desc">Description</label><br />
-                <textarea type="text" name="" id="desc" />
+                <textarea type="text" name="" id="desc" value={desc} onChange={(e) => onChangeDesc(e)} />
+              </div>
+              <div className="btn-container">
+                <button className="btn-delete">Delete</button>
+                <div className="btn-wrapper">
+                  <button
+                    onClick={() => { saveDataOnClick(dateStart, dateEnd, timeStart, timeEnd, currentDateClick) }}
+                    className="btn-save">Save</button>
+                  <button className="btn-cancel" onClick={setNullDateandClose}>Cancel</button>
+                </div>
               </div>
             </form>
-            <div className="btn-container">
-              <button className="btn-delete">Delete</button>
-              <div className="btn-wrapper">
-                <button
-                  onClick={() => { saveDataOnClick(dateStart, dateEnd, timeStart, timeEnd, currentDateClick) }}
-                  className="btn-save">Save</button>
-                <button className="btn-cancel" onClick={setNullDateandClose}>Cancel</button>
-              </div>
-            </div>
           </div>
         </div>
       </>, document.body
