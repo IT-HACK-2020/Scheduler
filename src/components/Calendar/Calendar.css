@@ -2,40 +2,64 @@
     text-align: center;
     width:95%;
     margin: 0 auto;
-}
-.table{
-    width:100%;
-    height:100%;
-    border: 1px solid rgb(173, 172, 172); 
-    border-collapse: collapse;
-    text-align: left;
+    height: 95vh;
 }
 
-.week{
-    background-color: #e253e7;
-}
-.week-day{
-    width: 100px;
-    height:60px;
-    text-align: center;
-}
-.calendar{
-    height:100%;
-}
 .header{
+    height:5%;
     display: flex;
     justify-content: space-between;
     padding: 5px 20px;
     background-color: #e0a6e2;
 }
 .header p{
+    display: inline-block;
     font-size: 20px;
     font-weight: bold;
 }
+
+.table{
+    height:95%;
+    width:100%;
+    border: 1px solid rgb(173, 172, 172); 
+    border-collapse: collapse;
+    text-align: left;
+
+    display: grid;
+    grid-template-rows: 60px auto;
+	grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+}
+
+thead,
+tbody,
+tr {
+  display: contents;
+}
+
+th {
+    background-color: #e253e7;
+    text-align: center;
+    height:60px;
+    padding-top: 20px;
+}
+
+/* 
+.week{
+    background-color: #e253e7;
+    width: 100%;
+}
+.week-day{
+    width: 100%;
+    height:60px;
+    text-align: center;
+} 
+*/
+
 .day{
-    height:80px;
+    /* height:80px; */
     border: 1px solid rgb(173, 172, 172); 
     transition: .2s ease-in;
+    cursor: pointer;
 }
 .day:hover{
     background-color: rgb(231, 229, 229); 
@@ -77,12 +101,14 @@ th{
 } 
 .in-prev-month,
 .in-next-month {
-    opacity: 0.5;
+    /* opacity: 0.5; */
+    background-color: #ccc;
 }
 
 .in-prev-month:hover,
 .in-next-month:hover {
-    opacity: 0.2;
+    /* opacity: 0.5; */
+    background-color: #ddd;
 }
 
 /*event*/
@@ -91,7 +117,6 @@ th{
     border: 1px solid black;
     font-size: 14px;
     margin-bottom: 2px;
-    position: relative;
 }
 .event__title{
     display: inline-block;
@@ -105,10 +130,5 @@ th{
     right:0;
     border:1px solid black;
     color:black;
-}
-.edit{
-    position: absolute;
-    top:5px;
-    right:5px;
 }
 
