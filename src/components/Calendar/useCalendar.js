@@ -32,8 +32,11 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
   let curMonthCounter = 1;
   let nextMonthCounter = 1;
 
+
   //one month can have days spread up to 6 weeks
-  const rows = 6;
+  const rows = Math.floor(((daysInMonth + startingPointMonth - 1) / 6));
+  // const rows = 6;
+
   //7 days in a week
   const cols = 7;
 
@@ -52,7 +55,7 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
             classes: 'in-prev-month',
             date: new Date(
               selectedDate.getMonth() === 0 ? selectedDate.getFullYear() - 1 : selectedDate.getFullYear(),
-              selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth() - 1 ,
+              selectedDate.getMonth() === 0 ? 12 : selectedDate.getMonth() - 1,
               prevMonthStartingPoint
             ),
             value: prevMonthStartingPoint
