@@ -41,9 +41,8 @@ const Calendar = ({ onCellClick, getEventForEdit }) => {
         <button className="button" onClick={getPrevMonth}>
           Previous
         </button>
-        <p>{`${
-          month[selectedDate.getMonth()]
-        } - ${selectedDate.getFullYear()}`}</p>
+        <p>{`${month[selectedDate.getMonth()]
+          } - ${selectedDate.getFullYear()}`}</p>
         <button className="button" onClick={getNextMonth}>
           Next
         </button>
@@ -65,7 +64,7 @@ const Calendar = ({ onCellClick, getEventForEdit }) => {
                     key={col.date}
                     className={
                       JSON.stringify(col.date) ===
-                      JSON.stringify(todayDateFormatted)
+                        JSON.stringify(todayDateFormatted)
                         ? `${col.classes} day today`
                         : `${col.classes} day`
                     }
@@ -97,7 +96,7 @@ const Calendar = ({ onCellClick, getEventForEdit }) => {
                                 editClick(el);
                               }}
                             >
-                              EDIT
+                              <i class="fas fa-edit edit"></i>
                             </span>
                           </div>
                         );
