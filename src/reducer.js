@@ -23,6 +23,7 @@ const reducer = (state = initialState, action) => {
           dateEnd: action.dateEnd,
           timeStart: action.timeStart,
           timeEnd: action.timeEnd,
+          allDay: action.allDay,
           description: action.description
         }]
       }

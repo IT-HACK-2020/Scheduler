@@ -25,6 +25,20 @@ const Modal = ({ isShowing, hide }) => {
       : new Date().getMinutes()
     }`;
 
+
+  //status checkbox
+  const [timeZoneChecked, setTimeZoneChecked] = useState(false);
+  const [allDayChecked, setAllDayChecked] = useState(true);
+
+  const onHandleChangeTimeZone = () => {
+    setTimeZoneChecked(!timeZoneChecked);
+    setAllDayChecked(false);
+  };
+  const onHandleChangeAllDay = () => {
+    setAllDayChecked(!allDayChecked);
+    setTimeZoneChecked(false);
+  };
+
   const [timeStart, setTimeStart] = useState(currentHoursAndMinutes);
 
   const [timeEnd, setTimeEnd] = useState(currentHoursAndMinutes);
@@ -94,6 +108,8 @@ const Modal = ({ isShowing, hide }) => {
     setLocation("");
     setInputValueDateStart(null);
     setInputValueDateEnd(null);
+    setTimeZoneChecked(false);
+    setAllDayChecked(true);
   };
 
   const saveDataOnClick = (
@@ -110,11 +126,11 @@ const Modal = ({ isShowing, hide }) => {
       location: location,
       dateStart: inputValueDateStart || dateStart ||
         currentDateClick.toLocaleDateString(),
-      dateEnd:
-        inputValueDateEnd || dateEnd || currentDateClick.toLocaleDateString(),
-      timeStart: timeStart,
-      timeEnd: timeEnd,
+      dateEnd: inputValueDateEnd || dateEnd || currentDateClick.toLocaleDateString(),
+      timeStart: allDayChecked ? '00:00' : timeStart,
+      timeEnd: allDayChecked ? '23:59' : timeEnd,
       description: desc,
+      allDay: allDayChecked
     });
     console.log(saveData);
     setNullDateandClose();
@@ -225,7 +241,18 @@ const Modal = ({ isShowing, hide }) => {
                   toggle={datePickerEndOpen}
                 />
               </div>
-              <div className="form-item">
+              <div className="form-item show-status">
+                <label htmlFor="all-day">
+                  <input type="checkbox" id='all-day' checked={allDayChecked} onChange={onHandleChangeAllDay} />
+                  All day
+                </label>
+                <label htmlFor="time-zone">
+                  <input type="checkbox" id='time-zone' checked={timeZoneChecked} onChange={onHandleChangeTimeZone} />
+                  Time-zone
+                </label>
+              </div>
+
+              {timeZoneChecked && <div className="timepicker"><div className="form-item">
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-start">Time start</label>
                 <br />
@@ -238,20 +265,21 @@ const Modal = ({ isShowing, hide }) => {
                 />
                 <TimePicker onChangehandle={handleTimeChangeStart} />
               </div>
-              <div className="form-item">
-                <p className="far fa-clock icon"></p>
-                <label htmlFor="time-end">Time end</label>
-                <br />
-                <input
-                  type="text"
-                  onChange={onChangeTimeEndInput}
-                  value={timeEnd}
-                  name=""
-                  id="time-end"
-                />
+                <div className="form-item">
+                  <p className="far fa-clock icon"></p>
+                  <label htmlFor="time-end">Time end</label>
+                  <br />
+                  <input
+                    type="text"
+                    onChange={onChangeTimeEndInput}
+                    value={timeEnd}
+                    name=""
+                    id="time-end"
+                  />
 
-                <TimePicker onChangehandle={handleTimeChangeEnd} />
-              </div>
+                  <TimePicker onChangehandle={handleTimeChangeEnd} />
+                </div>
+              </div>}
               <div className="form-item w-100">
                 <label htmlFor="desc">Description</label>
                 <br />

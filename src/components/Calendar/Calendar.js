@@ -56,7 +56,7 @@ const Calendar = ({ onCellClick }) => {
                           <div className='event'>
                             <label htmlFor="status">
                               <input type="checkbox" id="status" />
-                              <span className="event__time-start">{el.timeStart}</span>
+                              <span className="event__time-start">{el.allDay ? '' : el.timeStart}</span>
                               <span className='event__title'>{el.title}</span>
                             </label>
                           </div>
