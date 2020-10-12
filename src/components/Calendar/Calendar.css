@@ -5,20 +5,20 @@
     height: 95vh;
 }
 
-.header{
+.calendar .header{
     height:5%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 20px;
     background-color: #e0a6e2;
 }
-.header p{
-    display: inline-block;
+.calendar .header p{
     font-size: 20px;
     font-weight: bold;
 }
 
-.table{
+.calendar .table{
     height:95%;
     width:100%;
     border: 1px solid rgb(173, 172, 172); 
@@ -30,16 +30,17 @@
 	grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
 }
 
-thead,
-tbody,
-tr {
+.calendar thead,
+.calendar tbody,
+.calendar tr {
   display: contents;
 }
 
-th {
+.calendar th {
     background-color: #e253e7;
     text-align: center;
-    height:60px;
+    height:40px;
+    min-width:90px;
     padding-top: 20px;
 }
 
@@ -55,23 +56,21 @@ th {
 } 
 */
 
-.day{
+.calendar .day{
     /* height:80px; */
     border: 1px solid rgb(173, 172, 172); 
     transition: .2s ease-in;
     cursor: pointer;
 }
-.day:hover{
+.calendar .day:hover{
     background-color: rgb(231, 229, 229); 
 }
-td{
+.calendar td{
     border: 1px solid rgb(173, 172, 172); 
     vertical-align: top;
     position: relative;
 }
-th{
-    min-width:90px;
-}
+
 .btn-container{
     margin:0 auto;
     text-align: center;
@@ -101,13 +100,13 @@ th{
 } 
 .in-prev-month,
 .in-next-month {
-    /* opacity: 0.5; */
+    opacity: 0.5;
     background-color: #ccc;
 }
 
 .in-prev-month:hover,
 .in-next-month:hover {
-    /* opacity: 0.5; */
+    opacity: 0.5;
     background-color: #ddd;
 }
 

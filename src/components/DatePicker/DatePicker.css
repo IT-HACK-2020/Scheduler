@@ -16,6 +16,21 @@
   min-width: 25px;
   background-color: transparent;
 }
+
+
+/* .calendar-picker .table {
+  display: grid;
+  grid-template-rows: 25px auto;
+	grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+}
+thead,
+tbody,
+tr {
+  display: contents;
+} */
+
+
+
 .calendar-picker th {
   min-width: 23px !important;
   height: 10px;
