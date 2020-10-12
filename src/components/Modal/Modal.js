@@ -145,6 +145,34 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
     setNullDateandClose();
   };
 
+  const changeDataOnClick = (
+    dateStart,
+    dateEnd,
+    timeStart,
+    timeEnd,
+    currentDateClick
+  ) => {
+    dispatch({
+      type: "CHANGE_DATE",
+      day: currentDateClick.toLocaleDateString(),
+      title: (eventForEdit ? eventForEdit.title : false) || title,
+      location: location,
+      dateStart:
+        inputValueDateStart ||
+        dateStart ||
+        currentDateClick.toLocaleDateString(),
+      dateEnd:
+        inputValueDateEnd || dateEnd || currentDateClick.toLocaleDateString(),
+      timeStart: allDayChecked ? "00:00" : timeStart,
+      timeEnd: allDayChecked ? "23:59" : timeEnd,
+      description: desc,
+      allDay: allDayChecked,
+      changed: true,
+    });
+    console.log(saveData);
+    setNullDateandClose();
+  };
+
   return isShowing
     ? ReactDOM.createPortal(
         <>
@@ -348,7 +376,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
                     <button
                       style={{ display: `${eventForEdit ? "" : "none"}` }}
                       onClick={() => {
-                        saveDataOnClick(
+                        changeDataOnClick(
                           dateStart,
                           dateEnd,
                           timeStart,
