@@ -20,6 +20,7 @@ const App = () => {
         isShowing={isShowing}
         hide={toggleModal}
         eventForEdit={eventToEdit}
+        closeModal={(el) => setEventToEdit(el)}
       />
     </>
   );
