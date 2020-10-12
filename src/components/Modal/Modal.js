@@ -5,6 +5,7 @@ import { useStateValue } from "../../StateProvider";
 import DatePicker from "../DatePicker/DatePicker";
 import { TimePicker } from "../TimePicker/TimePicker";
 import "./Modal.css";
+import InputMask from 'react-input-mask';
 
 const Modal = ({ isShowing, hide }) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
@@ -199,7 +200,7 @@ const Modal = ({ isShowing, hide }) => {
                 ></p>
                 <label htmlFor="start">Date start</label>
                 <br />
-                <input
+                <InputMask
                   type="text"
                   name=""
                   value={
@@ -209,6 +210,7 @@ const Modal = ({ isShowing, hide }) => {
                   }
                   onChange={(e) => InputOnChangeDateStart(e)}
                   id="start"
+                  mask="99.99.9999"
                 />
                 <DatePicker
                   onChangehandle={handleDataChange}
@@ -225,7 +227,7 @@ const Modal = ({ isShowing, hide }) => {
                 ></p>
                 <label htmlFor="end">Date end</label>
                 <br />
-                <input
+                <InputMask
                   type="text"
                   value={
                     inputValueDateEnd ||
@@ -235,6 +237,7 @@ const Modal = ({ isShowing, hide }) => {
                   name=""
                   onChange={(e) => InputOnChangeDateEnd(e)}
                   id="end"
+                  mask="99.99.9999"
                 />
                 <DatePicker
                   onChangehandle={handleDataChangeEnd}
@@ -256,12 +259,13 @@ const Modal = ({ isShowing, hide }) => {
                 <p className="far fa-clock icon"></p>
                 <label htmlFor="time-start">Time start</label>
                 <br />
-                <input
+                <InputMask
                   type="text"
                   onChange={onChangeTimeStartInput}
                   value={timeStart}
                   name=""
                   id="time-start"
+                  mask="99:99"
                 />
                 <TimePicker onChangehandle={handleTimeChangeStart} />
               </div>
@@ -269,12 +273,13 @@ const Modal = ({ isShowing, hide }) => {
                   <p className="far fa-clock icon"></p>
                   <label htmlFor="time-end">Time end</label>
                   <br />
-                  <input
+                  <InputMask
                     type="text"
                     onChange={onChangeTimeEndInput}
                     value={timeEnd}
                     name=""
                     id="time-end"
+                    mask="99:99"
                   />
 
                   <TimePicker onChangehandle={handleTimeChangeEnd} />
