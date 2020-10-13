@@ -122,7 +122,6 @@ tr{
     margin-bottom: 2px;
     position: relative;
     display: flex;
-    z-index: 3000;
 }
 .event__title{
     display: inline-block;
