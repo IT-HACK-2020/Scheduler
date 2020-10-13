@@ -69,7 +69,7 @@ const Calendar = ({ onCellClick, getEventForEdit }) => {
                         : `${col.classes} day`
                     }
                   >
-                    {col.value}
+                    <span className='number'>{col.value}</span>
                     <span
                       className="create-event"
                       onClick={() => {
