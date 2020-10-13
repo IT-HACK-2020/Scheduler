@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import { useStateValue } from "../../StateProvider";
 import DatePicker from "../DatePicker/DatePicker";
 import { TimePicker } from "../TimePicker/TimePicker";
-import "./Modal.css";
+import "../Modal/Modal.css";
 import InputMask from "react-input-mask";
 
-const Modal = ({ isShowing, hide, closeModal }) => {
+const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
+  console.log("TITLE", eventForEdit);
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
   // eventForEdit && console.log(eventForEdit);
   const [dateStart, setDateStart] = useState(currentDateClick);
@@ -48,13 +49,22 @@ const Modal = ({ isShowing, hide, closeModal }) => {
   //save event's data
   // console.log("FOREDIT ---", eventForEdit);
   const [title, setTitle] = useState("");
-
   const [location, setLocation] = useState("");
   const [desc, setDesc] = useState("");
 
   // INPUT
   const [inputValueDateStart, setInputValueDateStart] = useState(null);
   const [inputValueDateEnd, setInputValueDateEnd] = useState(null);
+
+  useEffect(() => {
+    setTitle(eventForEdit ? eventForEdit.title : "");
+    setLocation(eventForEdit ? eventForEdit.location : "");
+    setDateStart(eventForEdit ? eventForEdit.dateStart : "");
+    setDateEnd(eventForEdit ? eventForEdit.dateEnd : "");
+    setTimeStart(eventForEdit ? eventForEdit.timeStart : "");
+    setTimeEnd(eventForEdit ? eventForEdit.timeEnd : "");
+    setDesc(eventForEdit ? eventForEdit.description : "");
+  }, [eventForEdit]);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -118,7 +128,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
     closeModal(false);
   };
 
-  const saveDataOnClick = (
+  const changeDataOnClick = (
     dateStart,
     dateEnd,
     timeStart,
@@ -126,8 +136,8 @@ const Modal = ({ isShowing, hide, closeModal }) => {
     currentDateClick
   ) => {
     dispatch({
-      type: "SAVE_DATE",
-      id: `${dateStart}${title}${timeStart}`,
+      type: "CHANGE_DATE",
+      id: eventForEdit.id,
       day: currentDateClick.toLocaleDateString(),
       title: title,
       location: location,
@@ -141,6 +151,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
       timeEnd: allDayChecked ? "23:59" : timeEnd,
       description: desc,
       allDay: allDayChecked,
+      changed: true,
     });
     console.log(saveData);
     setNullDateandClose();
@@ -158,7 +169,10 @@ const Modal = ({ isShowing, hide, closeModal }) => {
             role="dialog"
           >
             <div className="modal">
-              <div className="modal-intro">
+              <div
+                className="modal-intro"
+                style={{ display: `${eventForEdit ? "none" : ""}` }}
+              >
                 <p>
                   {`Selected date:  ${currentDateClick.toLocaleDateString()}`}
                 </p>
@@ -174,7 +188,12 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
-              <h2>New event</h2>
+              <h2 style={{ display: `${eventForEdit ? "none" : ""}` }}>
+                New event
+              </h2>
+              <h2 style={{ display: `${eventForEdit ? "" : "none"}` }}>
+                Edit event
+              </h2>
 
               <form className="form">
                 <div className="form-item">
@@ -321,7 +340,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                   <div className="btn-wrapper">
                     <button
                       onClick={() => {
-                        saveDataOnClick(
+                        changeDataOnClick(
                           dateStart,
                           dateEnd,
                           timeStart,
@@ -331,7 +350,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                       }}
                       className="btn-save"
                     >
-                      Save
+                      Edit
                     </button>
                     <button
                       className="btn-cancel"

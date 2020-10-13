@@ -3,7 +3,7 @@ import CalendarUse from "./useCalendar";
 import "./Calendar.css";
 import { useStateValue } from "../../StateProvider";
 
-const Calendar = ({ onCellClick, getEventForEdit }) => {
+const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
   const {
     days,
     month,
@@ -28,7 +28,7 @@ const Calendar = ({ onCellClick, getEventForEdit }) => {
 
   const editClick = (el) => {
     getEventForEdit(el);
-    onCellClick();
+    onCellClickEdit();
   };
 
   function compareObjectsByTimeStart(a, b) {
@@ -41,8 +41,9 @@ const Calendar = ({ onCellClick, getEventForEdit }) => {
         <button className="button" onClick={getPrevMonth}>
           Previous
         </button>
-        <p>{`${month[selectedDate.getMonth()]
-          } - ${selectedDate.getFullYear()}`}</p>
+        <p>{`${
+          month[selectedDate.getMonth()]
+        } - ${selectedDate.getFullYear()}`}</p>
         <button className="button" onClick={getNextMonth}>
           Next
         </button>
@@ -64,12 +65,12 @@ const Calendar = ({ onCellClick, getEventForEdit }) => {
                     key={col.date}
                     className={
                       JSON.stringify(col.date) ===
-                        JSON.stringify(todayDateFormatted)
+                      JSON.stringify(todayDateFormatted)
                         ? `${col.classes} day today`
                         : `${col.classes} day`
                     }
                   >
-                    <span className='number'>{col.value}</span>
+                    <span className="number">{col.value}</span>
                     <span
                       className="create-event"
                       onClick={() => {

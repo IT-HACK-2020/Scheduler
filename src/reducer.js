@@ -17,6 +17,7 @@ const reducer = (state = initialState, action) => {
         saveData: [
           ...state.saveData,
           {
+            id: action.id,
             day: action.day,
             title: action.title,
             location: action.location,
@@ -33,9 +34,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         saveData: state.saveData.map((event) => {
-          if (event.title === action.title) {
+          if (event.id === action.id) {
             console.log(event);
             return {
+              id: action.id,
               day: action.day,
               title: action.title,
               location: action.location,
