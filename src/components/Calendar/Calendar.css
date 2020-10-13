@@ -70,6 +70,10 @@
     vertical-align: top;
     position: relative;
 }
+tr{
+    position: relative;
+    width:100%;
+}
 
 .btn-container{
     margin:0 auto;
@@ -100,7 +104,7 @@
 } 
 .in-prev-month,
 .in-next-month {
-    opacity: 0.5;
+    opacity: 0.3;
     background-color: #ccc;
 }
 
@@ -116,6 +120,9 @@
     border: 1px solid black;
     font-size: 14px;
     margin-bottom: 2px;
+    position: relative;
+    display: flex;
+    z-index: 3000;
 }
 .event__title{
     display: inline-block;
@@ -130,4 +137,8 @@
     border:1px solid black;
     color:black;
 }
-
+.edit{
+    position: absolute;
+    top:5px;
+    right:5px;
+}
