@@ -8,7 +8,6 @@ import "../Modal/Modal.css";
 import InputMask from "react-input-mask";
 
 const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
-  console.log("TITLE", eventForEdit);
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
   // eventForEdit && console.log(eventForEdit);
   const [dateStart, setDateStart] = useState(currentDateClick);

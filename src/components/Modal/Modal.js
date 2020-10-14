@@ -6,6 +6,7 @@ import DatePicker from "../DatePicker/DatePicker";
 import { TimePicker } from "../TimePicker/TimePicker";
 import "./Modal.css";
 import InputMask from "react-input-mask";
+import { initialState } from "../../reducer";
 
 const Modal = ({ isShowing, hide, closeModal }) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
@@ -142,7 +143,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
       description: desc,
       allDay: allDayChecked,
     });
-    console.log(saveData);
+    console.log(initialState.saveData);
     setNullDateandClose();
   };
 

@@ -75,32 +75,57 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                       className="create-event"
                       onClick={() => {
                         dateClickHandler(col.date);
-                        console.log(col.date.toLocaleDateString());
-                        console.log(saveData);
                       }}
                     >
                       +
                     </span>
                     {saveData.sort(compareObjectsByTimeStart).map((el) => {
-                      if (el.dateStart === col.date.toLocaleDateString()) {
-                        return (
-                          <div className="event">
-                            <label htmlFor="status">
-                              <input type="checkbox" id="status" />
-                              <span className="event__time-start">
-                                {el.allDay ? "" : el.timeStart}
+                      const arrayStartDate = el.dateStart.split("/");
+                      const arrayEndDate = el.dateEnd.split("/");
+                      // Получаем к-во дней Конечная - Текущая = (миллисекунды) / к-во млс в день
+                      const countDays =
+                        (new Date(
+                          arrayEndDate[2],
+                          arrayEndDate[0],
+                          arrayEndDate[1]
+                        ) -
+                          new Date(
+                            arrayStartDate[2],
+                            arrayStartDate[0],
+                            arrayStartDate[1]
+                          )) /
+                        (60 * 60 * 24 * 1000);
+                      for (let i = 0; i <= countDays; i++) {
+                        if (
+                          new Date(
+                            new Date(
+                              arrayStartDate[2],
+                              arrayStartDate[0] - 1,
+                              arrayStartDate[1]
+                            ).getTime() +
+                              i * (60 * 60 * 24 * 1000)
+                          ).toLocaleDateString() ===
+                          col.date.toLocaleDateString()
+                        ) {
+                          return (
+                            <div className="event">
+                              <label htmlFor="status">
+                                <input type="checkbox" id="status" />
+                                <span className="event__time-start">
+                                  {el.allDay ? "" : el.timeStart}
+                                </span>
+                                <span className="event__title">{el.title}</span>
+                              </label>
+                              <span
+                                onClick={() => {
+                                  editClick(el);
+                                }}
+                              >
+                                <i class="fas fa-edit edit"></i>
                               </span>
-                              <span className="event__title">{el.title}</span>
-                            </label>
-                            <span
-                              onClick={() => {
-                                editClick(el);
-                              }}
-                            >
-                              <i class="fas fa-edit edit"></i>
-                            </span>
-                          </div>
-                        );
+                            </div>
+                          );
+                        }
                       }
                     })}
                   </td>
@@ -115,3 +140,5 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
 };
 
 export default Calendar;
+
+// Получаем массив из текущих дат [day, month, year]
