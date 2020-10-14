@@ -9,7 +9,7 @@ import InputMask from "react-input-mask";
 import { initialState } from "../../reducer";
 
 const Modal = ({ isShowing, hide, closeModal }) => {
-  const [{ currentDateClick, saveData }, dispatch] = useStateValue();
+  const [{ currentDateClick }, dispatch] = useStateValue();
   // eventForEdit && console.log(eventForEdit);
   const [dateStart, setDateStart] = useState(currentDateClick);
 
