@@ -77,13 +77,17 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
 
   const handleDataChange = (date) => {
     setInputValueDateStart(null);
-    setDateStart(date.toLocaleDateString());
+    setDateStart(
+      date.toLocaleDateString("en-US", { timeZone: "America/New_York" })
+    );
     setdatePickerOpen(false);
   };
 
   const handleDataChangeEnd = (date) => {
     setInputValueDateEnd(null);
-    setDateEnd(date.toLocaleDateString());
+    setDateEnd(
+      date.toLocaleDateString("en-US", { timeZone: "America/New_York" })
+    );
     setdatePickerEndOpen(false);
   };
   const handleTimeChangeStart = (time) => {
@@ -137,15 +141,23 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
     dispatch({
       type: "CHANGE_DATE",
       id: eventForEdit.id,
-      day: currentDateClick.toLocaleDateString(),
+      day: currentDateClick.toLocaleDateString("en-US", {
+        timeZone: "America/New_York",
+      }),
       title: title,
       location: location,
       dateStart:
         inputValueDateStart ||
         dateStart ||
-        currentDateClick.toLocaleDateString(),
+        currentDateClick.toLocaleDateString("en-US", {
+          timeZone: "America/New_York",
+        }),
       dateEnd:
-        inputValueDateEnd || dateEnd || currentDateClick.toLocaleDateString(),
+        inputValueDateEnd ||
+        dateEnd ||
+        currentDateClick.toLocaleDateString("en-US", {
+          timeZone: "America/New_York",
+        }),
       timeStart: allDayChecked ? "00:00" : timeStart,
       timeEnd: allDayChecked ? "23:59" : timeEnd,
       description: desc,
@@ -173,7 +185,10 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
                 style={{ display: `${eventForEdit ? "none" : ""}` }}
               >
                 <p>
-                  {`Selected date:  ${currentDateClick.toLocaleDateString()}`}
+                  {`Selected date:  ${currentDateClick.toLocaleDateString(
+                    "en-US",
+                    { timeZone: "America/New_York" }
+                  )}`}
                 </p>
               </div>
               <div className="modal-header">
@@ -233,7 +248,9 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
                     value={
                       inputValueDateStart ||
                       dateStart ||
-                      currentDateClick.toLocaleDateString()
+                      currentDateClick.toLocaleDateString("en-US", {
+                        timeZone: "America/New_York",
+                      })
                     }
                     onChange={(e) => InputOnChangeDateStart(e)}
                     id="start"
@@ -258,7 +275,9 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
                     value={
                       inputValueDateEnd ||
                       dateEnd ||
-                      currentDateClick.toLocaleDateString()
+                      currentDateClick.toLocaleDateString("en-US", {
+                        timeZone: "America/New_York",
+                      })
                     }
                     name=""
                     onChange={(e) => InputOnChangeDateEnd(e)}

@@ -104,8 +104,12 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                               arrayStartDate[1]
                             ).getTime() +
                               i * (60 * 60 * 24 * 1000)
-                          ).toLocaleDateString() ===
-                          col.date.toLocaleDateString()
+                          ).toLocaleDateString("en-US", {
+                            timeZone: "America/New_York",
+                          }) ===
+                          col.date.toLocaleDateString("en-US", {
+                            timeZone: "America/New_York",
+                          })
                         ) {
                           return (
                             <div className="event">
