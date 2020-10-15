@@ -29,6 +29,12 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
   const editClick = (el) => {
     getEventForEdit(el);
     onCellClickEdit();
+    console.log(el);
+    const arrayStartDate = el.dateStart.split("/");
+    dispatch({
+      type: "SET_DATE",
+      date: new Date(arrayStartDate[2], arrayStartDate[0], arrayStartDate[1]),
+    });
   };
 
   function compareObjectsByTimeStart(a, b) {
@@ -41,8 +47,9 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
         <button className="button" onClick={getPrevMonth}>
           Previous
         </button>
-        <p>{`${month[selectedDate.getMonth()]
-          } - ${selectedDate.getFullYear()}`}</p>
+        <p>{`${
+          month[selectedDate.getMonth()]
+        } - ${selectedDate.getFullYear()}`}</p>
         <button className="button" onClick={getNextMonth}>
           Next
         </button>
@@ -61,10 +68,10 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
               <tr key={cols[0].date}>
                 {cols.map((col) => (
                   <td
-                    key={col.date + '10'}
+                    key={col.date}
                     className={
                       JSON.stringify(col.date) ===
-                        JSON.stringify(todayDateFormatted)
+                      JSON.stringify(todayDateFormatted)
                         ? `${col.classes} day today`
                         : `${col.classes} day`
                     }
@@ -78,7 +85,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                     >
                       +
                     </span>
-                    {saveData.sort(compareObjectsByTimeStart).map((el, i) => {
+                    {saveData.sort(compareObjectsByTimeStart).map((el) => {
                       const arrayStartDate = el.dateStart.split("/");
                       const arrayEndDate = el.dateEnd.split("/");
                       // Получаем к-во дней Конечная - Текущая = (миллисекунды) / к-во млс в день
@@ -102,12 +109,12 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                               arrayStartDate[0] - 1,
                               arrayStartDate[1]
                             ).getTime() +
-                            i * (60 * 60 * 24 * 1000)
+                              i * (60 * 60 * 24 * 1000)
                           ).toLocaleDateString("en-EN") ===
                           col.date.toLocaleDateString("en-EN")
                         ) {
                           return (
-                            <div className="event" key={el.id}>
+                            <div className="event">
                               <label htmlFor="status">
                                 <input type="checkbox" id="status" />
                                 <span className="event__time-start">
@@ -120,7 +127,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                                   editClick(el);
                                 }}
                               >
-                                <i className="fas fa-edit edit"></i>
+                                <i class="fas fa-edit edit"></i>
                               </span>
                             </div>
                           );

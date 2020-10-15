@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import Calendar from "./components/Calendar/Calendar";
@@ -9,13 +9,14 @@ import { useStateValue } from "./StateProvider";
 
 const App = () => {
   const { isShowing, toggleModal } = useModal();
-  const [{ saveData }, dispatch] = useStateValue();
   const { isShowingEdit, toggleModalEdit } = useModal();
   const [eventToEdit, setEventToEdit] = useState(null);
+  const [{ saveData }] = useStateValue();
 
   useEffect(() => {
-    localStorage.setItem('events', JSON.stringify(saveData));
-  });
+    console.log("УСТАНОВИЛИ В ЛОКАЛКУ");
+    localStorage.setItem("events", JSON.stringify(saveData));
+  }, [saveData]);
 
   return (
     <>
