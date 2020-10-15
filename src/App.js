@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 import Calendar from "./components/Calendar/Calendar";
 import Modal from "./components/Modal/Modal";
 import ModalEdit from "./components/ModalEdit/ModalEdit";
 import useModal from "./components/Modal/useModal";
+import { useStateValue } from "./StateProvider";
+import { initialState } from "./reducer";
 
 const App = () => {
   const { isShowing, toggleModal } = useModal();
+  const [{ saveData }, dispatch] = useStateValue();
   const { isShowingEdit, toggleModalEdit } = useModal();
   const [eventToEdit, setEventToEdit] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem('events', JSON.stringify(saveData));
+  });
 
   return (
     <>

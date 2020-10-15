@@ -1,15 +1,15 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useStateValue } from "../../StateProvider";
 import DatePicker from "../DatePicker/DatePicker";
 import { TimePicker } from "../TimePicker/TimePicker";
 import "./Modal.css";
 import InputMask from "react-input-mask";
-import { initialState } from "../../reducer";
 
 const Modal = ({ isShowing, hide, closeModal }) => {
-  const [{ currentDateClick }, dispatch] = useStateValue();
+
+  const [{ currentDateClick, saveData }, dispatch] = useStateValue();
   // eventForEdit && console.log(eventForEdit);
   const [dateStart, setDateStart] = useState(currentDateClick);
 
@@ -128,6 +128,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
     timeEnd,
     currentDateClick
   ) => {
+    console.log(saveData)
     dispatch({
       type: "SAVE_DATE",
       id: `${dateStart}${title}${timeStart}`,
@@ -147,7 +148,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
       description: desc,
       allDay: allDayChecked,
     });
-    console.log(initialState.saveData);
+    console.log(saveData);
     setNullDateandClose();
   };
 

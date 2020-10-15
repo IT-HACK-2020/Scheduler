@@ -1,6 +1,6 @@
 export const initialState = {
   currentDateClick: null,
-  saveData: [],
+  saveData: JSON.parse(localStorage.getItem('events')) || []
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +13,6 @@ const reducer = (state = initialState, action) => {
       };
     case "SAVE_DATE":
       return {
-        ...state,
         saveData: [
           ...state.saveData,
           {
