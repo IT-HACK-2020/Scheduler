@@ -33,7 +33,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
     const arrayStartDate = el.dateStart.split("/");
     dispatch({
       type: "SET_DATE",
-      date: new Date(arrayStartDate[2], arrayStartDate[0], arrayStartDate[1]),
+      date: new Date(arrayStartDate[2], arrayStartDate[0] - 1, arrayStartDate[1]),
     });
   };
 
@@ -47,9 +47,8 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
         <button className="button" onClick={getPrevMonth}>
           Previous
         </button>
-        <p>{`${
-          month[selectedDate.getMonth()]
-        } - ${selectedDate.getFullYear()}`}</p>
+        <p>{`${month[selectedDate.getMonth()]
+          } - ${selectedDate.getFullYear()}`}</p>
         <button className="button" onClick={getNextMonth}>
           Next
         </button>
@@ -71,7 +70,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                     key={col.date}
                     className={
                       JSON.stringify(col.date) ===
-                      JSON.stringify(todayDateFormatted)
+                        JSON.stringify(todayDateFormatted)
                         ? `${col.classes} day today`
                         : `${col.classes} day`
                     }
@@ -109,7 +108,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                               arrayStartDate[0] - 1,
                               arrayStartDate[1]
                             ).getTime() +
-                              i * (60 * 60 * 24 * 1000)
+                            i * (60 * 60 * 24 * 1000)
                           ).toLocaleDateString("en-EN") ===
                           col.date.toLocaleDateString("en-EN")
                         ) {
