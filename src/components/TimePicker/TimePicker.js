@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./TimePicker.css";
+import "./TimePicker.scss";
 
 export const TimePicker = ({ onChangehandle }) => {
   // const [{ currentDateClick }] = useStateValue();

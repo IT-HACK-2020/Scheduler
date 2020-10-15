@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import './DatePicker.css'
+import './DatePicker.scss'
 import * as Calendar from './Calendar'
 import classnames from 'classnames'
 import { useStateValue } from '../../StateProvider'

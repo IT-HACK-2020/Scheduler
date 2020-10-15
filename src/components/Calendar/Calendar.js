@@ -1,6 +1,6 @@
 import React from "react";
 import CalendarUse from "./useCalendar";
-import "./Calendar.css";
+import "./Calendar.scss";
 import { useStateValue } from "../../StateProvider";
 
 const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { useStateValue } from "../../StateProvider";
 import DatePicker from "../DatePicker/DatePicker";
 import { TimePicker } from "../TimePicker/TimePicker";
-import "../Modal/Modal.css";
+import "../Modal/Modal.scss";
 import InputMask from "react-input-mask";
 
 const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
