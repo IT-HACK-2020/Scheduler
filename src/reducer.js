@@ -52,6 +52,11 @@ const reducer = (state = initialState, action) => {
           } else return event;
         }),
       };
+    case "DELETE_DATE":
+      return {
+        ...state,
+        saveData: state.saveData.map((event) => event.id === action.id)
+      };
     default:
       return state;
   }

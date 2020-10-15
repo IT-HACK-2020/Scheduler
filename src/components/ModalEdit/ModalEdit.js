@@ -18,15 +18,13 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
 
   const [datePickerEndOpen, setdatePickerEndOpen] = useState(false);
 
-  const currentHoursAndMinutes = `${
-    new Date().getHours().toString().length < 2
-      ? "0" + new Date().getHours().toString()
-      : new Date().getHours()
-  }:${
-    new Date().getMinutes().toString().length < 2
+  const currentHoursAndMinutes = `${new Date().getHours().toString().length < 2
+    ? "0" + new Date().getHours().toString()
+    : new Date().getHours()
+    }:${new Date().getMinutes().toString().length < 2
       ? "0" + new Date().getMinutes().toString()
       : new Date().getMinutes()
-  }`;
+    }`;
 
   //status checkbox
   const [timeZoneChecked, setTimeZoneChecked] = useState(false);
@@ -160,215 +158,215 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
 
   return isShowing
     ? ReactDOM.createPortal(
-        <>
-          <div className="modal-overlay" />
-          <div
-            className="modal-wrapper"
-            aria-modal
-            aria-hidden
-            tabIndex={-1}
-            role="dialog"
-          >
-            <div className="modal">
-              <div
-                className="modal-intro"
-                style={{ display: `${eventForEdit ? "none" : ""}` }}
+      <>
+        <div className="modal-overlay" />
+        <div
+          className="modal-wrapper"
+          aria-modal
+          aria-hidden
+          tabIndex={-1}
+          role="dialog"
+        >
+          <div className="modal">
+            <div
+              className="modal-intro"
+              style={{ display: `${eventForEdit ? "none" : ""}` }}
+            >
+              <p>
+                {`Selected date:  ${currentDateClick.toLocaleDateString(
+                  "en-US"
+                )}`}
+              </p>
+            </div>
+            <div className="modal-header">
+              <button
+                type="button"
+                className="modal-close-button"
+                data-dismiss="modal"
+                aria-label="Close"
+                onClick={setNullDateandClose}
               >
-                <p>
-                  {`Selected date:  ${currentDateClick.toLocaleDateString(
-                    "en-US"
-                  )}`}
-                </p>
-              </div>
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="modal-close-button"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={setNullDateandClose}
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <h2 style={{ display: `${eventForEdit ? "none" : ""}` }}>
-                New event
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <h2 style={{ display: `${eventForEdit ? "none" : ""}` }}>
+              New event
               </h2>
-              <h2 style={{ display: `${eventForEdit ? "" : "none"}` }}>
-                Edit event
+            <h2 style={{ display: `${eventForEdit ? "" : "none"}` }}>
+              Edit event
               </h2>
 
-              <form className="form">
-                <div className="form-item">
-                  <label htmlFor="title">Title</label>
-                  <br />
+            <form className="form">
+              <div className="form-item">
+                <label htmlFor="title">Title</label>
+                <br />
+                <input
+                  type="text"
+                  name=""
+                  id="title"
+                  value={title}
+                  onChange={(e) => onChangeTitle(e)}
+                />
+              </div>
+              <div className="form-item">
+                <label htmlFor="place">Place</label>
+                <br />
+                <input
+                  type="text"
+                  name=""
+                  id="place"
+                  value={location}
+                  onChange={(e) => onChangeLocation(e)}
+                />
+              </div>
+              <div className="form-item">
+                <p
+                  class="far fa-calendar-alt icon"
+                  onClick={() => {
+                    setdatePickerOpen(!datePickerOpen);
+                    setdatePickerEndOpen(false);
+                  }}
+                ></p>
+                <label htmlFor="start">Date start</label>
+                <br />
+                <input
+                  type="text"
+                  name=""
+                  value={
+                    inputValueDateStart ||
+                    dateStart ||
+                    currentDateClick.toLocaleDateString("en-US")
+                  }
+                  onChange={(e) => InputOnChangeDateStart(e)}
+                  id="start"
+                />
+                <DatePicker
+                  onChangehandle={handleDataChange}
+                  toggle={datePickerOpen}
+                />
+              </div>
+              <div className="form-item">
+                <p
+                  onClick={() => {
+                    setdatePickerEndOpen(!datePickerEndOpen);
+                    setdatePickerOpen(false);
+                  }}
+                  class="far fa-calendar-alt icon"
+                ></p>
+                <label htmlFor="end">Date end</label>
+                <br />
+                <input
+                  type="text"
+                  value={
+                    inputValueDateEnd ||
+                    dateEnd ||
+                    currentDateClick.toLocaleDateString("en-US")
+                  }
+                  name=""
+                  onChange={(e) => InputOnChangeDateEnd(e)}
+                  id="end"
+                />
+                <DatePicker
+                  onChangehandle={handleDataChangeEnd}
+                  toggle={datePickerEndOpen}
+                />
+              </div>
+              <div className="form-item show-status">
+                <label htmlFor="all-day">
                   <input
-                    type="text"
-                    name=""
-                    id="title"
-                    value={title}
-                    onChange={(e) => onChangeTitle(e)}
+                    type="checkbox"
+                    id="all-day"
+                    checked={allDayChecked}
+                    onChange={onHandleChangeAllDay}
                   />
-                </div>
-                <div className="form-item">
-                  <label htmlFor="place">Place</label>
-                  <br />
-                  <input
-                    type="text"
-                    name=""
-                    id="place"
-                    value={location}
-                    onChange={(e) => onChangeLocation(e)}
-                  />
-                </div>
-                <div className="form-item">
-                  <p
-                    class="far fa-calendar-alt icon"
-                    onClick={() => {
-                      setdatePickerOpen(!datePickerOpen);
-                      setdatePickerEndOpen(false);
-                    }}
-                  ></p>
-                  <label htmlFor="start">Date start</label>
-                  <br />
-                  <input
-                    type="text"
-                    name=""
-                    value={
-                      inputValueDateStart ||
-                      dateStart ||
-                      currentDateClick.toLocaleDateString("en-US")
-                    }
-                    onChange={(e) => InputOnChangeDateStart(e)}
-                    id="start"
-                  />
-                  <DatePicker
-                    onChangehandle={handleDataChange}
-                    toggle={datePickerOpen}
-                  />
-                </div>
-                <div className="form-item">
-                  <p
-                    onClick={() => {
-                      setdatePickerEndOpen(!datePickerEndOpen);
-                      setdatePickerOpen(false);
-                    }}
-                    class="far fa-calendar-alt icon"
-                  ></p>
-                  <label htmlFor="end">Date end</label>
-                  <br />
-                  <input
-                    type="text"
-                    value={
-                      inputValueDateEnd ||
-                      dateEnd ||
-                      currentDateClick.toLocaleDateString("en-US")
-                    }
-                    name=""
-                    onChange={(e) => InputOnChangeDateEnd(e)}
-                    id="end"
-                  />
-                  <DatePicker
-                    onChangehandle={handleDataChangeEnd}
-                    toggle={datePickerEndOpen}
-                  />
-                </div>
-                <div className="form-item show-status">
-                  <label htmlFor="all-day">
-                    <input
-                      type="checkbox"
-                      id="all-day"
-                      checked={allDayChecked}
-                      onChange={onHandleChangeAllDay}
-                    />
                     All day
                   </label>
-                  <label htmlFor="time-zone">
-                    <input
-                      type="checkbox"
-                      id="time-zone"
-                      checked={timeZoneChecked}
-                      onChange={onHandleChangeTimeZone}
-                    />
+                <label htmlFor="time-zone">
+                  <input
+                    type="checkbox"
+                    id="time-zone"
+                    checked={timeZoneChecked}
+                    onChange={onHandleChangeTimeZone}
+                  />
                     Time-zone
                   </label>
-                </div>
+              </div>
 
-                {timeZoneChecked && (
-                  <div className="timepicker">
-                    <div className="form-item">
-                      <p className="far fa-clock icon"></p>
-                      <label htmlFor="time-start">Time start</label>
-                      <br />
-                      <InputMask
-                        type="text"
-                        onChange={onChangeTimeStartInput}
-                        value={timeStart}
-                        name=""
-                        id="time-start"
-                        mask="99:99"
-                      />
-                      <TimePicker onChangehandle={handleTimeChangeStart} />
-                    </div>
-                    <div className="form-item">
-                      <p className="far fa-clock icon"></p>
-                      <label htmlFor="time-end">Time end</label>
-                      <br />
-                      <InputMask
-                        type="text"
-                        onChange={onChangeTimeEndInput}
-                        value={timeEnd}
-                        name=""
-                        id="time-end"
-                        mask="99:99"
-                      />
-
-                      <TimePicker onChangehandle={handleTimeChangeEnd} />
-                    </div>
+              {timeZoneChecked && (
+                <div className="timepicker">
+                  <div className="form-item">
+                    <p className="far fa-clock icon"></p>
+                    <label htmlFor="time-start">Time start</label>
+                    <br />
+                    <InputMask
+                      type="text"
+                      onChange={onChangeTimeStartInput}
+                      value={timeStart}
+                      name=""
+                      id="time-start"
+                      mask="99:99"
+                    />
+                    <TimePicker onChangehandle={handleTimeChangeStart} />
                   </div>
-                )}
-                <div className="form-item w-100">
-                  <label htmlFor="desc">Description</label>
-                  <br />
-                  <textarea
-                    type="text"
-                    name=""
-                    id="desc"
-                    value={desc}
-                    onChange={(e) => onChangeDesc(e)}
-                  />
-                </div>
-                <div className="btn-container">
-                  <button className="btn-delete">Delete</button>
-                  <div className="btn-wrapper">
-                    <button
-                      onClick={() => {
-                        changeDataOnClick(
-                          dateStart,
-                          dateEnd,
-                          timeStart,
-                          timeEnd,
-                          currentDateClick
-                        );
-                      }}
-                      className="btn-save"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn-cancel"
-                      onClick={setNullDateandClose}
-                    >
-                      Cancel
-                    </button>
+                  <div className="form-item">
+                    <p className="far fa-clock icon"></p>
+                    <label htmlFor="time-end">Time end</label>
+                    <br />
+                    <InputMask
+                      type="text"
+                      onChange={onChangeTimeEndInput}
+                      value={timeEnd}
+                      name=""
+                      id="time-end"
+                      mask="99:99"
+                    />
+
+                    <TimePicker onChangehandle={handleTimeChangeEnd} />
                   </div>
                 </div>
-              </form>
-            </div>
+              )}
+              <div className="form-item w-100">
+                <label htmlFor="desc">Description</label>
+                <br />
+                <textarea
+                  type="text"
+                  name=""
+                  id="desc"
+                  value={desc}
+                  onChange={(e) => onChangeDesc(e)}
+                />
+              </div>
+              <div className="btn-container">
+                <button className="btn-delete">Delete</button>
+                <div className="btn-wrapper">
+                  <button
+                    onClick={() => {
+                      changeDataOnClick(
+                        dateStart,
+                        dateEnd,
+                        timeStart,
+                        timeEnd,
+                        currentDateClick
+                      );
+                    }}
+                    className="btn-save"
+                  >
+                    Edit
+                    </button>
+                  <button
+                    className="btn-cancel"
+                    onClick={setNullDateandClose}
+                  >
+                    Cancel
+                    </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </>,
-        document.body
-      )
+        </div>
+      </>,
+      document.body
+    )
     : null;
 };
 
