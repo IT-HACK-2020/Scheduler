@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
       };
     case "SAVE_DATE":
       return {
+        ...state,
         saveData: [
           ...state.saveData,
           {

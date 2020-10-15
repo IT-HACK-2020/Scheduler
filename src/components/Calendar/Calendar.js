@@ -61,7 +61,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
               <tr key={cols[0].date}>
                 {cols.map((col) => (
                   <td
-                    key={col.date}
+                    key={col.date + '10'}
                     className={
                       JSON.stringify(col.date) ===
                         JSON.stringify(todayDateFormatted)
@@ -78,7 +78,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                     >
                       +
                     </span>
-                    {saveData.sort(compareObjectsByTimeStart).map((el) => {
+                    {saveData.sort(compareObjectsByTimeStart).map((el, i) => {
                       const arrayStartDate = el.dateStart.split("/");
                       const arrayEndDate = el.dateEnd.split("/");
                       // Получаем к-во дней Конечная - Текущая = (миллисекунды) / к-во млс в день
@@ -107,7 +107,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                           col.date.toLocaleDateString("en-EN")
                         ) {
                           return (
-                            <div className="event">
+                            <div className="event" key={el.id}>
                               <label htmlFor="status">
                                 <input type="checkbox" id="status" />
                                 <span className="event__time-start">
@@ -120,7 +120,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                                   editClick(el);
                                 }}
                               >
-                                <i class="fas fa-edit edit"></i>
+                                <i className="fas fa-edit edit"></i>
                               </span>
                             </div>
                           );
