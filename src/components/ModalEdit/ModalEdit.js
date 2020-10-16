@@ -7,7 +7,7 @@ import { TimePicker } from "../TimePicker/TimePicker";
 import "../Modal/Modal.scss";
 import InputMask from "react-input-mask";
 
-const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month }) => {
+const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selectedDate }) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
   // eventForEdit && console.log(eventForEdit);
   const [dateStart, setDateStart] = useState(currentDateClick);
@@ -203,7 +203,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month }) => {
               />
               <div className="modal__date">
                 <span>
-                  {`${days[currentDateClick.getDay() - 1]}, ${currentDateClick.getMonth()} ${month[currentDateClick.getMonth()]
+                  {`${days[currentDateClick.getDay() - 1]}, ${selectedDate.getDate()} ${month[currentDateClick.getMonth()]
                     }`}
                 </span>
               </div>

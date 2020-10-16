@@ -195,7 +195,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month }) => {
               />
               <div className="modal__date">
                 <span>
-                  {`${days[currentDateClick.getDay() - 1]}, ${currentDateClick.getMonth()} ${month[currentDateClick.getMonth()]
+                  {`${days[currentDateClick.getDay() - 1]}, ${currentDateClick.getDate()} ${month[currentDateClick.getMonth()]
                     }`}
                 </span>
               </div>
