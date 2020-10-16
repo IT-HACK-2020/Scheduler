@@ -98,6 +98,7 @@ button {
   width: 50%;
 }
 .form-item input {
+  width: 100%;
   border: none;
 }
 /*.form-item textarea{
@@ -199,4 +200,7 @@ input:focus{
 }
 .modal__date{
   margin-left: 35px;
+}
+.modal__date * {
+  font-size: 18px;
 }
