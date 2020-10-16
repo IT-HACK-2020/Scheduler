@@ -153,12 +153,13 @@ input:focus{
   top:8px;
 }
 .timepicker{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
   width:100%;
-  justify-content: space-between;
   -webkit-animation: swing-in-top-bck 0.6s
   cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 .show-status label{
   margin-right: 10px;
@@ -195,4 +196,7 @@ animation: swing-in-top-bck 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 .layout-btn-save{
   justify-self: end;
   margin-right: 30px;
+}
+.modal__date{
+  margin-left: 35px;
 }

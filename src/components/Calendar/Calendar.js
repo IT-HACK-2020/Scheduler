@@ -63,14 +63,15 @@ const Calendar = ({ days,
                     }
                   >
                     <span className="number">{col.value}</span>
-                    <span
+                    <div
                       className="create-event"
                       onClick={() => {
                         dateClickHandler(col.date);
                       }}
                     >
-                      +
-                    </span>
+                      <img src="/plus.png" srcSet="/plus@2x.png 2x, /plus@3x.png 3x"
+                           className="Plus" alt=""/>
+                    </div>
                     {saveData.sort(compareObjectsByTimeStart).map((el) => {
                       const arrayStartDate = el.dateStart.split("/");
                       const arrayEndDate = el.dateEnd.split("/");

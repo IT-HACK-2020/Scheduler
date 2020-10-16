@@ -194,10 +194,10 @@ const Modal = ({ isShowing, hide, closeModal, days, month }) => {
                 onChange={(e) => onChangeDesc(e)}
               />
               <div className="modal__date">
-                <span>
+                <div>
                   {`${(days[currentDateClick.getDay() - 1] || days[6])}, ${currentDateClick.getDate()} ${month[currentDateClick.getMonth()]
                     }`}
-                </span>
+                </div>
               </div>
               {/* <div className="form-item">
                 <label htmlFor="place">Place</label>
