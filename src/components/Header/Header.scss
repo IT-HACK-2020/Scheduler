@@ -1,0 +1,133 @@
+.header{
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 2px 40px 0 rgba(0, 0, 0, 0.07);
+    z-index: 20000;
+    height: 60px;
+    width:95%;
+    margin:0 auto;
+    padding:10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 30px;
+    position: relative;
+    height: 58px;
+    color:#6c757d;
+    font-size: 14px;
+    margin: 22px 0 0;
+    &__item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__item:first-child{
+        width:35%;
+    }
+    &__today{
+        margin-right: 35px;
+        cursor: pointer;
+    }
+    &__link{
+        min-width: 240px;
+        padding:35px;
+        border-radius: 6px;
+        border: solid 1px #007bff;
+        color: #007bff;
+        padding: 10px 20px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .month{
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 30px;
+    }
+    .btns{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width:150px;
+        .circle{
+            display: inline-block;
+            margin-right: 10px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+        .done{
+            background-color: #007bff;
+        }
+        .current{
+            background-color: #58cb7d;
+        }
+        .last{
+            background-color:#d0021b;
+        }
+    }
+    &__header{
+        .button-sign{
+            margin: 0 15px;
+        }
+    }
+    &__text{
+        margin-right: 15px;
+    }
+    .user-photo{
+        width:35px;
+        border-radius: 50%;
+    }
+    .header__nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width:50px;
+    }
+    .nav{
+        border: solid #333;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        cursor: pointer;
+    }
+    .dropdown{
+        position: absolute;
+        top:100%;
+        right:0;
+        width:200px;
+        padding:15px;
+        background-color: #fff;
+        border: 1px solid  grey;
+        text-align: left;
+        font-size: 14px;
+        .button-signOut{
+            display: block;
+            margin: 10px 0;
+            background-color: rgb(202, 199, 199);
+            text-align: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+    .arrow{
+        border: solid #333;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        cursor: pointer;
+    }
+    .arrow-next{
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+    .arrow-prev{
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+}

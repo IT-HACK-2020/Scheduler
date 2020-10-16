@@ -6,7 +6,7 @@ import Modal from "./components/Modal/Modal";
 import ModalEdit from "./components/ModalEdit/ModalEdit";
 import useModal from "./components/Modal/useModal";
 import Login from "./components/Login/Login";
-import Menu from "./components/Menu/Menu";
+import Header from "./components/Header/Header";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./components/Login/firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     <Router>
-      <Menu hide={toggleLogin}></Menu>
+      <Header hide={toggleLogin}></Header>
       {isLogin && <Login hide={toggleLogin}></Login>}
       { user && <>
         <div className="section calendar">

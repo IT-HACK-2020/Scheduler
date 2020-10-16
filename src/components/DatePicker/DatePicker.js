@@ -13,10 +13,12 @@ export default function DatePicker({ onChangehandle, toggle }) {
     years: Array(100).fill().map((el, index) => (
       new Date().getFullYear() - 50 + index
     )),
-    month: ['January', 'February', 'March', 'April',
-      'May', 'June', 'July', 'August',
-      'September', 'October', 'November', 'December'],
-    weekDays: ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'],
+    month: [
+      'Январь', 'Февраль', 'Март ', 'Апрель',
+      'Май', 'Июнь', 'Июль', 'Август',
+      'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+    ],
+    weekDays: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
     onChange: Function.prototype
   }
 

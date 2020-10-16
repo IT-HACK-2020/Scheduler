@@ -45,7 +45,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
   return (
     <>
 
-      <div className="header">
+      {/* <div className="header">
         <button className="button" onClick={getPrevMonth}>
           Previous
         </button>
@@ -54,7 +54,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
         <button className="button" onClick={getNextMonth}>
           Next
         </button>
-      </div>
+      </div> */}
       <table className="table">
         <thead className="week">
           <tr className="week-day">
