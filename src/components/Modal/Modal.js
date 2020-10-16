@@ -164,7 +164,9 @@ const Modal = ({ isShowing, hide, closeModal }) => {
               aria-label="Close"
               onClick={setNullDateandClose}
             >
-              <span aria-hidden="true">×</span>
+              <span aria-hidden="true">
+                <img src="/group.png" srcSet="/group@2x.png 2x, /group@3x.png 3x"
+                     className="Group" alt="" /></span>
             </button>
             <div className="modal__title">
 
@@ -175,6 +177,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                 type="text"
                 name=""
                 id="title"
+                className="modal-first-input"
                 value={title}
                 placeholder='Добавьте название'
                 onChange={(e) => onChangeTitle(e)}
@@ -183,6 +186,8 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                 type="text"
                 name=""
                 id="desc"
+                className="modal-text-area"
+                rows="1"
                 value={desc}
                 placeholder='Добавьте описание'
                 onChange={(e) => onChangeDesc(e)}
@@ -205,59 +210,62 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                   onChange={(e) => onChangeLocation(e)}
                 />
               </div> */}
-              <div className="form-item">
-                <p
-                  class="far fa-calendar-alt icon"
-                  onClick={() => {
-                    setdatePickerOpen(!datePickerOpen);
-                    setdatePickerEndOpen(false);
-                  }}
-                ></p>
-                <label htmlFor="start">Дата начала</label>
-                <br />
-                <input
-                  type="text"
-                  name=""
-                  value={
-                    inputValueDateStart ||
-                    dateStart ||
-                    currentDateClick.toLocaleDateString("en-En")
-                  }
-                  onChange={(e) => InputOnChangeDateStart(e)}
-                  id="start"
-                />
-                <DatePicker
-                  onChangehandle={handleDataChange}
-                  toggle={datePickerOpen}
-                />
+              <div className="form-items-grid">
+                <div className="form-item">
+                  <p
+                    className="far fa-calendar-alt icon"
+                    onClick={() => {
+                      setdatePickerOpen(!datePickerOpen);
+                      setdatePickerEndOpen(false);
+                    }}
+                  ></p>
+                  <label htmlFor="start">Дата начала</label>
+                  <br/>
+                  <input
+                    type="text"
+                    name=""
+                    value={
+                      inputValueDateStart ||
+                      dateStart ||
+                      currentDateClick.toLocaleDateString("en-En")
+                    }
+                    onChange={(e) => InputOnChangeDateStart(e)}
+                    id="start"
+                  />
+                  <DatePicker
+                    onChangehandle={handleDataChange}
+                    toggle={datePickerOpen}
+                  />
+                </div>
+                <div className="form-item">
+                  <p
+                    onClick={() => {
+                      setdatePickerEndOpen(!datePickerEndOpen);
+                      setdatePickerOpen(false);
+                    }}
+                    className="far fa-calendar-alt icon"
+                  ></p>
+                  <label htmlFor="end">Дата окончания</label>
+                  <br/>
+                  <input
+                    type="text"
+                    value={
+                      inputValueDateEnd ||
+                      dateEnd ||
+                      currentDateClick.toLocaleDateString("en-En")
+                    }
+                    name=""
+                    onChange={(e) => InputOnChangeDateEnd(e)}
+                    id="end"
+                  />
+                  <DatePicker
+                    onChangehandle={handleDataChangeEnd}
+                    toggle={datePickerEndOpen}
+                  />
+                </div>
               </div>
-              <div className="form-item">
-                <p
-                  onClick={() => {
-                    setdatePickerEndOpen(!datePickerEndOpen);
-                    setdatePickerOpen(false);
-                  }}
-                  class="far fa-calendar-alt icon"
-                ></p>
-                <label htmlFor="end">Дата окончания</label>
-                <br />
-                <input
-                  type="text"
-                  value={
-                    inputValueDateEnd ||
-                    dateEnd ||
-                    currentDateClick.toLocaleDateString("en-En")
-                  }
-                  name=""
-                  onChange={(e) => InputOnChangeDateEnd(e)}
-                  id="end"
-                />
-                <DatePicker
-                  onChangehandle={handleDataChangeEnd}
-                  toggle={datePickerEndOpen}
-                />
-              </div>
-              <div className="form-item show-status">
+
+              <div className="show-status">
                 <label htmlFor="all-day">
                   <input
                     type="checkbox"
@@ -313,8 +321,10 @@ const Modal = ({ isShowing, hide, closeModal }) => {
               )}
 
               <div className="btn-container">
-                <button className="btn-delete">Удалить</button>
-                <div className="btn-wrapper">
+                <div className="layout-btn-delete">
+                  <button className="btn-delete">Удалить</button>
+                </div>
+                <div className="layout-btn-save">
                   <button
                     onClick={() => {
                       saveDataOnClick(
