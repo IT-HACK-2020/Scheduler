@@ -9,10 +9,21 @@ import Login from "./components/Login/Login";
 import Header from "./components/Header/Header";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./components/Login/firebase";
+import CalendarUse from "./components/Calendar/useCalendar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 const App = () => {
+
+  const {
+    days,
+    month,
+    todayDateFormatted,
+    calendarRows,
+    selectedDate,
+    getNextMonth,
+    getPrevMonth,
+  } = CalendarUse();
 
   const { isShowing, toggleModal } = useModal();
   const { isShowingEdit, toggleModalEdit } = useModal();
@@ -55,11 +66,25 @@ const App = () => {
 
   return (
     <Router>
-      <Header hide={toggleLogin}></Header>
+      <Header
+        hide={toggleLogin}
+        month={month}
+        selectedDate={selectedDate}
+        getNextMonth={getNextMonth}
+        getPrevMonth={getPrevMonth}
+        hide={toggleLogin}
+      ></Header>
       {isLogin && <Login hide={toggleLogin}></Login>}
       { user && <>
         <div className="section calendar">
           <Calendar
+            days={days}
+            month={month}
+            todayDateFormatted={todayDateFormatted}
+            calendarRows={calendarRows}
+            selectedDate={selectedDate}
+            getNextMonth={getNextMonth}
+            getPrevMonth={getPrevMonth}
             getEventForEdit={(event) => setEventToEdit(event)}
             onCellClick={toggleModal}
             onCellClickEdit={toggleModalEdit}

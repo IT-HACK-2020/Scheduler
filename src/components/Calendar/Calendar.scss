@@ -1,135 +1,213 @@
+$primaryColor: #007bff;
+$secondaryColor: #fff;
+$thirdColor: red;
+$fontColor: #6c757d;
+$colorBlack: #000;
+$borderColor: #efefef;
+
+@mixin font($size, $lineHeight, $color:$fontColor, $fontWeight: normal) {
+    font: {
+        size: $size;
+        weight: $fontWeight;
+        family: Arial, Helvetica, sans-serif;
+    }
+    color: $color;
+    line-height: $lineHeight;
+  }
+
 .calendar{
     text-align: center;
-    width:95%;
+    width: 80%;
     margin: 0 auto;
     height: 90vh;
+
+    .header{
+        height:5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 20px;
+        background-color: $primaryColor ;
+
+        p{
+            @include font(20px, 1, bold);
+            // font-size: 20px;
+            // font-weight: bold;
+        }
+    }
+
+    .table{
+        height:95%;
+        width:100%;
+        margin-top: 20px;
+        border: 1px solid $borderColor;
+        border-collapse: collapse;
+        text-align: left;
+        border-radius: 30px;
+        overflow: hidden;
+
+        .week{
+            background-color: $secondaryColor;
+            width: 100%;
+            @include font(12px, 1);
+        }
+        .week-day{
+            width: 100%;
+            height:60px;
+            text-align: center;
+        } 
+    }
+
+    th {
+        background-color: $secondaryColor;
+        text-align: center;
+        height:40px;
+        min-width:90px;
+        padding-top: 20px;
+    }
+    .day{
+        /* height:80px; */
+        border: 1px solid $borderColor; 
+        transition: .2s ease-in;
+
+        &:hover{
+            background-color: #efefef; 
+        }
+    }
+    td{
+        border: 1px solid $borderColor; 
+        vertical-align: top;
+        position: relative;
+        padding: 3px;
+        background-color: $secondaryColor;
+
+        .number{
+            @include font(14px, 1);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 28px;
+            width: 28px;
+            padding: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .today .number{
+        border: 2px solid $primaryColor;
+        border-radius: 5px;
+    }
+    .today:hover .number{
+        border: none;
+    }
+
+    .in-prev-month,
+    .in-next-month {
+        // opacity: 0.3;
+        background-color: #f8f7f8;
+
+        &:hover,
+        &:hover {
+            // opacity: 0.5;
+            background-color: #999;
+        }
+    }
 }
 
-.calendar .header{
-    height:5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px;
-    background-color: #e0a6e2;
-}
-.calendar .header p{
-    font-size: 20px;
-    font-weight: bold;
-}
 
-.calendar .table{
-    height:95%;
-    width:100%;
-    border: 1px solid rgb(173, 172, 172); 
-    border-collapse: collapse;
-    text-align: left;
-
-    display: grid;
-    grid-template-rows: 60px auto;
-	grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
-}
-
-.calendar thead,
-.calendar tbody,
-.calendar tr {
-  display: contents;
-}
-
-.calendar th {
-    background-color: #e253e7;
-    text-align: center;
-    height:40px;
-    min-width:90px;
-    padding-top: 20px;
-}
-
-/* 
-.week{
-    background-color: #e253e7;
-    width: 100%;
-}
-.week-day{
-    width: 100%;
-    height:60px;
-    text-align: center;
-} 
-*/
-
-.calendar .day{
-    /* height:80px; */
-    border: 1px solid rgb(173, 172, 172); 
-    transition: .2s ease-in;
-}
-.calendar .day:hover{
-    background-color: rgb(231, 229, 229); 
-}
-.calendar td{
-    border: 1px solid rgb(173, 172, 172); 
-    vertical-align: top;
-    position: relative;
-    padding: 3px;
-}
-.btn-container{
-    margin:0 auto;
-    text-align: center;
-}
-.button{
-    min-width:120px;
-    padding: 5px 20px;
-    cursor: pointer;
-    border: 1px solid #e253e7;
-    font-size: 16px;
-    font-family: inherit;
-    border-radius: 15px;
-}
-.button:focus,
-.button:active{
-    outline: ivory;
-}
-.button:hover{
-    background-color: #e253e7;
-}
-
-.number{
-    font-size: 14px;
-}
-.today .number{
-    background-color: #e253e7;
-    padding:3px 5px;
-    border-radius: 50%;
-    color:white;
-}
-
-.in-prev-month,
-.in-next-month {
-    opacity: 0.3;
-    background-color: #ccc;
-}
-
-.in-prev-month:hover,
-.in-next-month:hover {
-    opacity: 0.5;
-    background-color: #ddd;
-}
 
 /*event*/
 .event{
     background-color: #e8d3e9;
     border: 1px solid black;
     font-size: 13px;
-    margin: 4px 0;
-    position: relative;
+    
+    // position: relative;
+    position: absolute;
+    top: 50px;
     display: flex;
-    width:100%;
+    // justify-content: center;
+    // align-items: center;
+    width:90%;
+    height: 30px;
+    margin-left: 2px;
 }
 .event__title{
     display: inline-block;
     margin-left: 5px;
 }
+
 .create-event{
-    width: 30px;
+    // display: block;
     height: 30px;
+    width: 30px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    
+    // padding: 6px 10px;
+    background-color: $primaryColor;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    //color: $secondaryColor;
+    @include font(20px, 1, $secondaryColor, bold);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s linear;
+    //display: none;
+    // z-index: 100;
+}
+/*event*/
+.event{
+    box-sizing: border-box;
+    width:100%;
+    background-color: rgba(0, 123, 255, 0.1);
+    position: relative;
+    height:30px;
+    padding-left:10px;
+    margin-bottom: 4px;
+    &:after{
+        display: inline-block;
+        content:'';
+        background-color: #007bff;
+        position: absolute;
+        top:0;
+        left:0;
+        width:5px;
+        height: 100%;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    &__title{
+        font-size: 12px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.19px;
+        color: #007bff;
+    }
+    &__btns{
+        position: absolute;
+        top:50%;
+        right:0;
+        display: flex;
+        transform: translateY(-50%);
+        justify-content: center;
+        align-items: center;
+    }
+    &__edit{
+        font-size: 14px;
+    }
+
+}
+
+.create-event{
+    width: 15px;
+    height: 15px;
     background-color: #007bff;
     position: absolute;
     top:3px;
@@ -149,9 +227,4 @@
     justify-content: center;
 
 }
-.edit{
-    position: absolute;
-    top:5px;
-    right:5px;
-    cursor: pointer;
-}
+

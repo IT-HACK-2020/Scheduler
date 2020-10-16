@@ -150,6 +150,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
       timeEnd: allDayChecked ? "23:59" : timeEnd,
       description: desc,
       allDay: allDayChecked,
+      done: false,
       changed: true,
     });
     console.log(saveData);
@@ -168,7 +169,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
         >
 
           <div className="modal">
-          <button
+            <button
               type="button"
               className="modal-close-button"
               data-dismiss="modal"
@@ -178,7 +179,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
               <span aria-hidden="true">×</span>
             </button>
             <form className="form">
-            <input
+              <input
                 type="text"
                 name=""
                 id="title"
@@ -307,7 +308,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
                   </div>
                 </div>
               )}
-             
+
               <div className="btn-container">
                 <button className="btn-delete">Удалить</button>
                 <div className="btn-wrapper">

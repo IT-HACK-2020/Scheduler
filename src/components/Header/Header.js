@@ -3,7 +3,13 @@ import './Header.scss';
 import { auth } from "../Login/firebase";
 import { useStateValue } from "../../StateProvider";
 
-const Header = ({ hide }) => {
+const Header = ({
+  hide,
+  month,
+  selectedDate,
+  getNextMonth,
+  getPrevMonth,
+}) => {
 
   const [{ user, saveData }, dispatch] = useStateValue();
 
@@ -26,9 +32,10 @@ const Header = ({ hide }) => {
         <a className='header__link'>Синхронизировать с Google Календарем</a>
       </div>
       <div className="header__item">
-        <span className='arrow arrow-prev'></span>
-        <p className='month'>Октябрь 2020</p>
-        <span className='arrow arrow-next'></span>
+        <span className='arrow arrow-prev' onClick={getPrevMonth}></span>
+        <p className='month'>{`${month[selectedDate.getMonth()]
+          } - ${selectedDate.getFullYear()}`}</p>
+        <span className='arrow arrow-next' onClick={getNextMonth}></span>
       </div>
       <div className="btns">
         <div className="btns__item">

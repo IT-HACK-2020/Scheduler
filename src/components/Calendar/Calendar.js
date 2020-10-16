@@ -1,19 +1,15 @@
 import React from "react";
 import CalendarUse from "./useCalendar";
 import "./Calendar.scss";
-import { auth } from "../Login/firebase";
 import { useStateValue } from "../../StateProvider";
 
-const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
-  const {
-    days,
-    month,
-    todayDateFormatted,
-    calendarRows,
-    selectedDate,
-    getNextMonth,
-    getPrevMonth,
-  } = CalendarUse();
+const Calendar = ({ days,
+  month,
+  todayDateFormatted,
+  calendarRows,
+  selectedDate,
+  getNextMonth,
+  getPrevMonth, onCellClick, onCellClickEdit, getEventForEdit }) => {
 
   const [{ user, saveData }, dispatch] = useStateValue();
 
@@ -44,17 +40,6 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
 
   return (
     <>
-
-      {/* <div className="header">
-        <button className="button" onClick={getPrevMonth}>
-          Previous
-        </button>
-        <p>{`${month[selectedDate.getMonth()]
-          } - ${selectedDate.getFullYear()}`}</p>
-        <button className="button" onClick={getNextMonth}>
-          Next
-        </button>
-      </div> */}
       <table className="table">
         <thead className="week">
           <tr className="week-day">
@@ -116,20 +101,19 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
                         ) {
                           return (
                             <div className="event">
-                              <label htmlFor="status">
-                                <input type="checkbox" id="status" />
-                                <span className="event__time-start">
-                                  {el.allDay ? "" : el.timeStart}
-                                </span>
-                                <span className="event__title">{el.title}</span>
-                              </label>
-                              <span
-                                onClick={() => {
-                                  editClick(el);
-                                }}
-                              >
-                                <i class="fas fa-edit edit"></i>
+                              <span className="event__time-start">
+                                {el.allDay ? "" : el.timeStart}
                               </span>
+                              <span className="event__title">{el.title}</span>
+                              <div className="event__btns">
+                                <input type="checkbox" id="event__status" />
+                                <span className=' fas fa-edit event__edit'
+                                  onClick={() => {
+                                    editClick(el);
+                                  }}
+                                >
+                                </span>
+                              </div>
                             </div>
                           );
                         }

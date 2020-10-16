@@ -42,6 +42,7 @@
         font-size: 16px;
         font-weight: bold;
         margin: 0 30px;
+        min-width:120px;
     }
     .btns{
         display: flex;
@@ -113,7 +114,7 @@
         }
     }
     .arrow{
-        border: solid #333;
+        border: solid #cfd5da;
         border-width: 0 2px 2px 0;
         display: inline-block;
         padding: 3px;

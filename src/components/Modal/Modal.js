@@ -141,6 +141,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
       timeEnd: allDayChecked ? "23:59" : timeEnd,
       description: desc,
       allDay: allDayChecked,
+      done: false
     });
     // console.log(initialState.saveData);
     setNullDateandClose();

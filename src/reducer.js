@@ -28,6 +28,7 @@ const reducer = (state = initialState, action) => {
             timeEnd: action.timeEnd,
             allDay: action.allDay,
             description: action.description,
+            done: action.done
           },
         ],
       };
@@ -48,6 +49,7 @@ const reducer = (state = initialState, action) => {
               timeEnd: action.timeEnd,
               allDay: action.allDay,
               description: action.description,
+              done: action.done,
               changed: action.changed,
             };
           } else return event;
