@@ -149,7 +149,6 @@ const Modal = ({ isShowing, hide, closeModal }) => {
   return isShowing
     ? ReactDOM.createPortal(
       <>
-        <div className="modal-overlay" />
         <div
           className="modal-wrapper"
           aria-modal
@@ -158,39 +157,44 @@ const Modal = ({ isShowing, hide, closeModal }) => {
           role="dialog"
         >
           <div className="modal">
-            <div className="modal-intro">
-              <p>
-                {`Selected date:  ${currentDateClick.toLocaleDateString(
-                  "en-En"
-                )}`}
-              </p>
-            </div>
-            <div className="modal-header">
-              <button
-                type="button"
-                className="modal-close-button"
-                data-dismiss="modal"
-                aria-label="Close"
-                onClick={setNullDateandClose}
-              >
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <h2>New event</h2>
+            <button
+              type="button"
+              className="modal-close-button"
+              data-dismiss="modal"
+              aria-label="Close"
+              onClick={setNullDateandClose}
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+            <div className="modal__title">
 
+            </div>
             <form className="form">
-              <div className="form-item">
-                <label htmlFor="title">Title</label>
-                <br />
-                <input
-                  type="text"
-                  name=""
-                  id="title"
-                  value={title}
-                  onChange={(e) => onChangeTitle(e)}
-                />
+
+              <input
+                type="text"
+                name=""
+                id="title"
+                value={title}
+                placeholder='Добавьте название'
+                onChange={(e) => onChangeTitle(e)}
+              />
+              <textarea
+                type="text"
+                name=""
+                id="desc"
+                value={desc}
+                placeholder='Добавьте описание'
+                onChange={(e) => onChangeDesc(e)}
+              />
+              <div className="modal__date">
+                <span>
+                  {`${currentDateClick.toLocaleDateString(
+                    "en-En"
+                  )}`}
+                </span>
               </div>
-              <div className="form-item">
+              {/* <div className="form-item">
                 <label htmlFor="place">Place</label>
                 <br />
                 <input
@@ -200,7 +204,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                   value={location}
                   onChange={(e) => onChangeLocation(e)}
                 />
-              </div>
+              </div> */}
               <div className="form-item">
                 <p
                   class="far fa-calendar-alt icon"
@@ -209,7 +213,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                     setdatePickerEndOpen(false);
                   }}
                 ></p>
-                <label htmlFor="start">Date start</label>
+                <label htmlFor="start">Дата начала</label>
                 <br />
                 <input
                   type="text"
@@ -235,7 +239,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                   }}
                   class="far fa-calendar-alt icon"
                 ></p>
-                <label htmlFor="end">Date end</label>
+                <label htmlFor="end">Дата окончания</label>
                 <br />
                 <input
                   type="text"
@@ -261,7 +265,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                     checked={allDayChecked}
                     onChange={onHandleChangeAllDay}
                   />
-                    All day
+                    Весь день
                   </label>
                 <label htmlFor="time-zone">
                   <input
@@ -270,7 +274,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                     checked={timeZoneChecked}
                     onChange={onHandleChangeTimeZone}
                   />
-                    Time-zone
+                    Выбрать время
                   </label>
               </div>
 
@@ -278,7 +282,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                 <div className="timepicker">
                   <div className="form-item">
                     <p className="far fa-clock icon"></p>
-                    <label htmlFor="time-start">Time start</label>
+                    <label htmlFor="time-start">Время начала</label>
                     <br />
                     <InputMask
                       type="text"
@@ -292,7 +296,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                   </div>
                   <div className="form-item">
                     <p className="far fa-clock icon"></p>
-                    <label htmlFor="time-end">Time end</label>
+                    <label htmlFor="time-end">Время окончания</label>
                     <br />
                     <InputMask
                       type="text"
@@ -307,19 +311,9 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                   </div>
                 </div>
               )}
-              <div className="form-item w-100">
-                <label htmlFor="desc">Description</label>
-                <br />
-                <textarea
-                  type="text"
-                  name=""
-                  id="desc"
-                  value={desc}
-                  onChange={(e) => onChangeDesc(e)}
-                />
-              </div>
+
               <div className="btn-container">
-                <button className="btn-delete">Delete</button>
+                <button className="btn-delete">Удалить</button>
                 <div className="btn-wrapper">
                   <button
                     onClick={() => {
@@ -333,14 +327,14 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                     }}
                     className="btn-save"
                   >
-                    Save
+                    Сохранить
                     </button>
-                  <button
+                  {/* <button
                     className="btn-cancel"
                     onClick={setNullDateandClose}
                   >
                     Cancel
-                    </button>
+                    </button> */}
                 </div>
               </div>
             </form>

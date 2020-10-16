@@ -128,8 +128,9 @@
     margin-left: 5px;
 }
 .create-event{
-    padding: 1px 6px;
-    background-color: #dce1ec;
+    width: 30px;
+    height: 30px;
+    background-color: #007bff;
     position: absolute;
     top:3px;
     right:5px;
@@ -137,10 +138,16 @@
     border-radius: 50%;
     cursor: pointer;
     transition: 0.3s linear;
+    display: none;
+    color:white;
+    font-weight: bold;
+    transition: .3s ease-in-out;
 }
 .calendar .day:hover .create-event{
-    background-color:black;
-    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 .edit{
     position: absolute;
