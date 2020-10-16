@@ -94,12 +94,18 @@ const App = () => {
           isShowing={isShowing}
           hide={toggleModal}
           closeModal={(el) => setEventToEdit(el)}
+          days={days}
+          month={month}
+          selectedDate={selectedDate}
         />
         <ModalEdit
           isShowing={isShowingEdit}
           hide={toggleModalEdit}
           eventForEdit={eventToEdit}
           closeModal={(el) => setEventToEdit(el)}
+          days={days}
+          month={month}
+          selectedDate={selectedDate}
         />
       </>
       }

@@ -7,7 +7,7 @@ import { TimePicker } from "../TimePicker/TimePicker";
 import "../Modal/Modal.scss";
 import InputMask from "react-input-mask";
 
-const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
+const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month }) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
   // eventForEdit && console.log(eventForEdit);
   const [dateStart, setDateStart] = useState(currentDateClick);
@@ -178,7 +178,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
             >
               <span aria-hidden="true">
                 <img src="/group.png" srcSet="/group@2x.png 2x, /group@3x.png 3x"
-                     className="Group" alt="" />
+                  className="Group" alt="" />
               </span>
             </button>
             <form className="form">
@@ -203,9 +203,8 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
               />
               <div className="modal__date">
                 <span>
-                  {`${currentDateClick.toLocaleDateString(
-                    "en-En"
-                  )}`}
+                  {`${days[currentDateClick.getDay() - 1]}, ${currentDateClick.getMonth()} ${month[currentDateClick.getMonth()]
+                    }`}
                 </span>
               </div>
               <div className="form-items-grid">
@@ -218,7 +217,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
                     }}
                   ></p>
                   <label htmlFor="start">Дата начала</label>
-                  <br/>
+                  <br />
                   <input
                     type="text"
                     name=""
@@ -244,7 +243,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal }) => {
                     className="far fa-calendar-alt icon"
                   ></p>
                   <label htmlFor="end">Дата окончания</label>
-                  <br/>
+                  <br />
                   <input
                     type="text"
                     value={

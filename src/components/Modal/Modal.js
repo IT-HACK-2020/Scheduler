@@ -7,7 +7,7 @@ import { TimePicker } from "../TimePicker/TimePicker";
 import "./Modal.scss";
 import InputMask from "react-input-mask";
 
-const Modal = ({ isShowing, hide, closeModal }) => {
+const Modal = ({ isShowing, hide, closeModal, days, month }) => {
   const [{ currentDateClick }, dispatch] = useStateValue();
   // eventForEdit && console.log(eventForEdit);
   const [dateStart, setDateStart] = useState(currentDateClick);
@@ -167,7 +167,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
             >
               <span aria-hidden="true">
                 <img src="/group.png" srcSet="/group@2x.png 2x, /group@3x.png 3x"
-                     className="Group" alt="" /></span>
+                  className="Group" alt="" /></span>
             </button>
             <div className="modal__title">
 
@@ -195,9 +195,8 @@ const Modal = ({ isShowing, hide, closeModal }) => {
               />
               <div className="modal__date">
                 <span>
-                  {`${currentDateClick.toLocaleDateString(
-                    "en-En"
-                  )}`}
+                  {`${days[currentDateClick.getDay() - 1]}, ${currentDateClick.getMonth()} ${month[currentDateClick.getMonth()]
+                    }`}
                 </span>
               </div>
               {/* <div className="form-item">
@@ -221,7 +220,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                     }}
                   ></p>
                   <label htmlFor="start">Дата начала</label>
-                  <br/>
+                  <br />
                   <input
                     type="text"
                     name=""
@@ -247,7 +246,7 @@ const Modal = ({ isShowing, hide, closeModal }) => {
                     className="far fa-calendar-alt icon"
                   ></p>
                   <label htmlFor="end">Дата окончания</label>
-                  <br/>
+                  <br />
                   <input
                     type="text"
                     value={
