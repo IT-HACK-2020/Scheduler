@@ -1,6 +1,7 @@
 export const initialState = {
   currentDateClick: null,
   saveData: JSON.parse(localStorage.getItem("events")) || [],
+  user: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -57,6 +58,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         saveData: state.saveData.map((event) => event.id === action.id)
       };
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user
+      }
     default:
       return state;
   }
