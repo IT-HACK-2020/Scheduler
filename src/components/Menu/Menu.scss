@@ -1,0 +1,62 @@
+.menu{
+    box-sizing: border-box;
+    background-color: #bd8cbe;
+    z-index: 20000;
+    height: 60px;
+    width:95%;
+    padding:5px;
+    margin:0 auto;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+    position: relative;
+    &__header{
+        .button-sign{
+            margin: 0 15px;
+        }
+    }
+    &__text{
+        margin-right: 15px;
+    }
+    .user-photo{
+        width:35px;
+        border-radius: 50%;
+    }
+    .header__nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width:50px;
+    }
+    .nav{
+        border: solid #333;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        cursor: pointer;
+    }
+    .dropdown{
+        position: absolute;
+        top:100%;
+        right:0;
+        width:200px;
+        padding:15px;
+        background-color: #fff;
+        border: 1px solid  grey;
+        text-align: left;
+        font-size: 14px;
+        .button-signOut{
+            display: block;
+            margin: 10px 0;
+            background-color: rgb(202, 199, 199);
+            text-align: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+}

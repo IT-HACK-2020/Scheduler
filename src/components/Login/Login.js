@@ -3,38 +3,55 @@ import './Login.scss';
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 import { signInWithGoogle } from './firebase';
-
+import { useStateValue } from "../../StateProvider";
 
 const Login = ({ hide }) => {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setErrors] = useState("");
+    const [{ user }, dispatch] = useStateValue();
+
+    const hideModalLogin = () => {
+        setTimeout(hide, 1000);
+    }
 
     const signIn = e => {
         e.preventDefault();
-        setTimeout(hide, 2000);
 
         auth
             .signInWithEmailAndPassword(email, password)
             .then(auth => {
-                if (auth.user) history.push('/');
+                if (auth.user) {
+                    history.push('/');
+                    hideModalLogin();
+                }
             })
             .catch(error => setErrors(e.message))
+
     }
 
     const register = e => {
         e.preventDefault();
-        setTimeout(hide, 2000);
+        // setTimeout(hide, 2000);
 
         auth
             .createUserWithEmailAndPassword(email, password)
             .then(auth => {
-                if (auth.user) history.push('/');
+                if (auth.user) {
+                    history.push('/');
+                    hideModalLogin();
+                }
             })
             .catch(error => setErrors(e.message))
 
     }
+
+    const signWithGoogle = () => {
+        signInWithGoogle();
+        hideModalLogin();
+    };
+
 
     return (
         <div className="login-wrapper">
@@ -62,14 +79,14 @@ const Login = ({ hide }) => {
                     </form>
 
 
-                    <button className='login__registerButton' onClick={register}>Create your Account</button>
-                    <button onClick={signInWithGoogle} class="googleBtn" type="button">
-                        <img style={{ width: '20px' }}
+                    <button className='login__registerButton' onClick={register}>Create new Account</button>
+                    <button onClick={signWithGoogle} className='login__registerButton' type="button">
+                        <img style={{ width: '15px', margin: '5px 5px 0 0' }}
                             src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                             alt="logo"
                         />
-          Login With Google
-        </button>
+                    Login With Google
+                    </button>
                 </div>
             </div>
         </div>

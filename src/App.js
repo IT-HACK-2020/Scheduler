@@ -6,6 +6,7 @@ import Modal from "./components/Modal/Modal";
 import ModalEdit from "./components/ModalEdit/ModalEdit";
 import useModal from "./components/Modal/useModal";
 import Login from "./components/Login/Login";
+import Menu from "./components/Menu/Menu";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./components/Login/firebase";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -28,7 +29,8 @@ const App = () => {
     localStorage.setItem("events", JSON.stringify(saveData));
   }, [saveData]);
 
-  const [{ }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
+
   useEffect(() => {
     // will only run once when the app component loads...
 
@@ -51,32 +53,32 @@ const App = () => {
     });
   }, []);
 
-
   return (
-    <>
-      <div className="menu">
-        <button className="button-sign" onClick={toggleLogin}>Sign-in</button>
-        {isLogin && <Login hide={toggleLogin}></Login>}
-      </div>
-      <div className="section calendar">
-        <Calendar
-          getEventForEdit={(event) => setEventToEdit(event)}
-          onCellClick={toggleModal}
-          onCellClickEdit={toggleModalEdit}
+    <Router>
+      <Menu hide={toggleLogin}></Menu>
+      {isLogin && <Login hide={toggleLogin}></Login>}
+      { user && <>
+        <div className="section calendar">
+          <Calendar
+            getEventForEdit={(event) => setEventToEdit(event)}
+            onCellClick={toggleModal}
+            onCellClickEdit={toggleModalEdit}
+          />
+        </div>
+        <Modal
+          isShowing={isShowing}
+          hide={toggleModal}
+          closeModal={(el) => setEventToEdit(el)}
         />
-      </div>
-      <Modal
-        isShowing={isShowing}
-        hide={toggleModal}
-        closeModal={(el) => setEventToEdit(el)}
-      />
-      <ModalEdit
-        isShowing={isShowingEdit}
-        hide={toggleModalEdit}
-        eventForEdit={eventToEdit}
-        closeModal={(el) => setEventToEdit(el)}
-      />
-    </>
+        <ModalEdit
+          isShowing={isShowingEdit}
+          hide={toggleModalEdit}
+          eventForEdit={eventToEdit}
+          closeModal={(el) => setEventToEdit(el)}
+        />
+      </>
+      }
+    </Router>
   );
 };
 

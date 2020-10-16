@@ -17,12 +17,6 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
 
   const [{ user, saveData }, dispatch] = useStateValue();
 
-  const handleAuthenticaton = () => {
-    if (user) {
-      auth.signOut();
-    }
-  }
-
   const dateClickHandler = (date) => {
     console.log(date);
     onCellClick();
@@ -50,17 +44,7 @@ const Calendar = ({ onCellClick, onCellClickEdit, getEventForEdit }) => {
 
   return (
     <>
-      <div className="header__nav">
-        <div onClick={handleAuthenticaton} className="header__option">
-          <div>
-            <img style={{ display: `${!user ? "none" : "block"}` }} src={!user ? 'Guest' : user.photoURL} />
-          </div>
-          <div style={{ display: `${!user ? "none" : "block"}` }}>Name: {!user ? '' : user.displayName}</div>
-          <span className="header__optionLineOne">Hello {!user ? 'Guest' : user.email}
-          </span>
-          <span className="header__optionLineTwo" style={{ marginLeft: '20px' }}>{user ? 'Sign Out' : 'Sign In'}</span>
-        </div>
-      </div>
+
       <div className="header">
         <button className="button" onClick={getPrevMonth}>
           Previous
