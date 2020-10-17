@@ -7,12 +7,20 @@ import "../Modal/Modal.scss";
 import InputMask from "react-input-mask";
 import Popup from "../Popup/Popup";
 
-const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selectedDate }) => {
+const Modal = ({
+  isShowing,
+  hide,
+  eventForEdit,
+  closeModal,
+  days,
+  month,
+  selectedDate,
+}) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
 
   const currentHoursAndMinutes = `${new Date().getHours().toString().length < 2
-    ? "0" + new Date().getHours().toString()
-    : new Date().getHours()
+      ? "0" + new Date().getHours().toString()
+      : new Date().getHours()
     }:${new Date().getMinutes().toString().length < 2
       ? "0" + new Date().getMinutes().toString()
       : new Date().getMinutes()
@@ -21,10 +29,6 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
   const [popupDelete, setPopupDelete] = useState(false);
   //status checkbox
   const [allDayChecked, setAllDayChecked] = useState(false);
-
-  const onHandleChangeAllDay = () => {
-    setAllDayChecked(!allDayChecked);
-  };
 
   const [timeStart, setTimeStart] = useState(currentHoursAndMinutes);
 
@@ -42,7 +46,23 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
     setTimeStart(eventForEdit ? eventForEdit.timeStart : "");
     setTimeEnd(eventForEdit ? eventForEdit.timeEnd : "");
     setDesc(eventForEdit ? eventForEdit.description : "");
+    setAllDayChecked(eventForEdit ? eventForEdit.allDay : false);
   }, [eventForEdit]);
+
+  const onHandleChangeAllDay = (el) => {
+    console.log(el);
+    if (!el) {
+      setTimeStart("00:00");
+      setTimeEnd("23:59");
+
+      setAllDayChecked(true);
+    } else {
+      setTimeStart(currentHoursAndMinutes);
+      setTimeEnd(currentHoursAndMinutes);
+
+      setAllDayChecked(false);
+    }
+  };
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -75,11 +95,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
     closeModal(false);
   };
 
-  const changeDataOnClick = (
-    timeStart,
-    timeEnd,
-    currentDateClick
-  ) => {
+  const changeDataOnClick = (timeStart, timeEnd, currentDateClick) => {
     dispatch({
       type: "CHANGE_DATE",
       id: eventForEdit.id,
@@ -106,7 +122,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
   };
   const deleteItemInPopup = () => {
     removeDataOnClick(eventForEdit);
-    setPopupDelete(false)
+    setPopupDelete(false);
   };
 
   return isShowing
@@ -120,7 +136,6 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
           role="dialog"
           style={{ visibility: `${popupDelete ? "hidden" : "visible"}` }}
         >
-
           <div className="modal">
             <button
               type="button"
@@ -130,8 +145,12 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
               onClick={setNullDateandClose}
             >
               <span aria-hidden="true">
-                <img src="/group.png" srcSet="/group@2x.png 2x, /group@3x.png 3x"
-                  className="Group" alt="" />
+                <img
+                  src="/group.png"
+                  srcSet="/group@2x.png 2x, /group@3x.png 3x"
+                  className="Group"
+                  alt=""
+                />
               </span>
             </button>
             <form className="form">
@@ -141,7 +160,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                 id="title"
                 className="modal-first-input"
                 value={title}
-                placeholder='Добавьте название'
+                placeholder="Добавьте название"
                 onChange={(e) => onChangeTitle(e)}
               />
               <textarea
@@ -151,12 +170,13 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                 className="modal-text-area"
                 rows="1"
                 value={desc}
-                placeholder='Добавьте описание'
+                placeholder="Добавьте описание"
                 onChange={(e) => onChangeDesc(e)}
               />
               <div className="modal__date">
                 <span>
-                  {`${(days[currentDateClick.getDay() - 1] || days[6])}, ${currentDateClick.getDate()} ${month[currentDateClick.getMonth()]
+                  {`${days[currentDateClick.getDay() - 1] || days[6]
+                    }, ${currentDateClick.getDate()} ${month[currentDateClick.getMonth()]
                     }`}
                 </span>
               </div>
@@ -166,14 +186,14 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                     type="checkbox"
                     id="all-day"
                     checked={allDayChecked}
-                    onChange={onHandleChangeAllDay}
+                    onChange={() => onHandleChangeAllDay(allDayChecked)}
                   />
                     Весь день
                   </label>
               </div>
               <div className="timepicker">
                 <div className="form-item">
-                  <p className="far fa-clock icon"></p>
+                  {/* <p className="far fa-clock icon"></p> */}
                   <br />
                   <InputMask
                     type="text"
@@ -183,10 +203,10 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                     id="time-start"
                     mask="99:99"
                   />
-                  <TimePicker onChangehandle={handleTimeChangeStart} />
+                  {/* <TimePicker onChangehandle={handleTimeChangeStart} /> */}
                 </div>
                 <div className="form-item">
-                  <p className="far fa-clock icon"></p>
+                  {/* <p className="far fa-clock icon"></p> */}
                   <br />
                   <InputMask
                     type="text"
@@ -197,28 +217,28 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                     mask="99:99"
                   />
 
-                  <TimePicker onChangehandle={handleTimeChangeEnd} />
+                  {/* <TimePicker onChangehandle={handleTimeChangeEnd} /> */}
                 </div>
               </div>
 
               <div className="btn-container">
                 <div className="layout-btn-delete">
-                  <button className="btn-delete_edit"
+                  <button
+                    className="btn-delete_edit"
                     onClick={(e) => {
-                      e.preventDefault()
+                      e.preventDefault();
                       setPopupDelete(true);
-                    }}>Удалить</button>
+                    }}
+                  >
+                    Удалить
+                    </button>
                 </div>
                 <div className="layout-btn-save">
                   <button
                     onClick={() => {
-                      changeDataOnClick(
-                        timeStart,
-                        timeEnd,
-                        currentDateClick
-                      );
+                      changeDataOnClick(timeStart, timeEnd, currentDateClick);
                     }}
-                    className='btn-save'
+                    className="btn-save"
                   >
                     Редактировать
                     </button>
@@ -227,8 +247,12 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
             </form>
           </div>
         </div>
-        {popupDelete && <Popup hide={() => setPopupDelete(false)}
-          remove={() => deleteItemInPopup()}></Popup>}
+        {popupDelete && (
+          <Popup
+            hide={() => setPopupDelete(false)}
+            remove={() => deleteItemInPopup()}
+          ></Popup>
+        )}
       </>,
       document.body
     )

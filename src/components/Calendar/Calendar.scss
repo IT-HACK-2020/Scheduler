@@ -80,6 +80,7 @@ $borderColor: #efefef;
         // height:40px;
         // min-width:90px;
         padding-top: 20px;
+        text-transform: uppercase;
     }
     .day{
         // height: 80px;
@@ -128,13 +129,13 @@ $borderColor: #efefef;
         // opacity: 0.3;
         background-color: #f8f7f8;
         .number {
-                @include font(14px, 1, #bbb);
+                @include font(14px, 1, #dfdfdf);
             }
 
         &:hover,
         &:hover {
             // opacity: 0.5;
-            background-color: #999;
+            background-color: #e2dede;
         }
     }
 }

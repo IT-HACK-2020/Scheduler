@@ -225,6 +225,7 @@ const Header = ({
     });
   }, []);
 
+
   return (
     <div className="header">
       <div className="layout-header-today">
@@ -244,9 +245,9 @@ const Header = ({
             alt=""
           />
         </span>
-        <p className="month">{`${
-          month[selectedDate.getMonth()]
-        } - ${selectedDate.getFullYear()}`}</p>
+        <p className="month" id={`${month[selectedDate.getMonth()]
+          }.${selectedDate.getFullYear()}`}>{`${month[selectedDate.getMonth()]
+            } - ${selectedDate.getFullYear()}`}</p>
         <span onClick={getNextMonth}>
           <img
             src="/arrow.png"
@@ -259,12 +260,13 @@ const Header = ({
       <div className="layout-header-btns">
         <div className="layout-header-btns__item">
           <span className="circle done"></span>
-          <span className="done-event">1</span>
+          <span className="done-event"></span>
         </div>
         <div className="layout-header-btns__item">
           <span className="circle current"></span>
-          <span className="current-event">5</span>
+          <span className="done-current"></span>
         </div>
+
         <div className="layout-header-btns__item">
           <span className="circle last"></span>
           <span className="last-event">1</span>
