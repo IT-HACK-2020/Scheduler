@@ -46,14 +46,30 @@ $borderColor: #efefef;
         border-radius: 30px;
         overflow: hidden;
 
+        display: grid;
+        grid-template-rows: 60px auto;
+        // grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+
+        grid-template-areas: "wd wd wd wd wd wd wd" "dd dd dd dd dd dd dd" "iv iv iv iv iv iv iv";
+
+
+    thead,
+    tbody,
+    tr {
+        display: contents;
+    }
+
+
+
         .week{
             background-color: $secondaryColor;
             width: 100%;
             @include font(12px, 1);
         }
         .week-day{
+            grid-area: wd;
             width: 100%;
-            height:60px;
+            // height:60px;
             text-align: center;
         } 
     }
@@ -61,12 +77,12 @@ $borderColor: #efefef;
     th {
         background-color: $secondaryColor;
         text-align: center;
-        height:40px;
+        // height:40px;
         min-width:90px;
         padding-top: 20px;
     }
     .day{
-        height:80px;
+        // height:80px;
         border: 1px solid $borderColor; 
         transition: .2s ease-in;
 
@@ -75,12 +91,14 @@ $borderColor: #efefef;
         }
     }
     td{
+        //grid-area: dd;
+
         border: 1px solid $borderColor; 
         vertical-align: top;
         position: relative;
         padding: 3px;
         background-color: $secondaryColor;
-        padding-top: 40px;
+        padding-top:40px;
 
         .number{
             @include font(14px, 1);
@@ -103,6 +121,57 @@ $borderColor: #efefef;
     .today:hover .number{
         border: none;
     }
+    .in-prev-month,
+    .in-next-month {
+        background-color: #f8f7f8;
+    }
+
+   
+
+    .in-prev-month .number,
+    .in-next-month .number {
+        // opacity: 0.3;
+        color: #c4c4c4;
+
+        &:hover,
+        &:hover {
+            // opacity: 0.5;
+            background-color: #999;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1199px) {
+    .calendar{
+        width: 100%;
+        margin: 0 auto;
+        height: 100vw;
+
+        // th {
+        //     font-size: 0;
+        //   }
+        //   th::first-letter {
+        //     font-size: 1rem;
+        //   }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .calendar{
+        width: 100%;
+        margin: 0 auto;
+        height: 100vw;
+
+        th {
+            font-size: 0;
+            }
+            th::first-letter {
+            font-size: 1rem;
+        }
+    }
+}
+
 
     .in-prev-month .number,
     .in-next-month .number {
@@ -116,53 +185,7 @@ $borderColor: #efefef;
             background-color: #999;
         }
     }
-}
 
-
-
-/*event*/
-/*.event{
-    background-color: #e8d3e9;
-    border: 1px solid black;
-    font-size: 13px;
-    
-    // position: relative;
-    position: absolute;
-    top: 50px;
-    display: flex;
-    // justify-content: center;
-    // align-items: center;
-    width:90%;
-    height: 30px;
-    margin-left: 2px;
-}*/
-/*.event__title{
-    display: inline-block;
-    margin-left: 5px;
-}*/
-
-/*.create-event{
-    // display: block;
-    height: 30px;
-    width: 30px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    
-    // padding: 6px 10px;
-    background-color: $primaryColor;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    //color: $secondaryColor;
-    @include font(20px, 1, $secondaryColor, bold);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s linear;
-    //display: none;
-    // z-index: 100;
-}*/
-/*event*/
 .event{
     box-sizing: border-box;
     width:100%;

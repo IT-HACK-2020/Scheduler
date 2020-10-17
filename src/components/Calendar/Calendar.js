@@ -1,5 +1,4 @@
-import React from "react";
-import CalendarUse from "./useCalendar";
+import React, { useState } from "react";
 import "./Calendar.scss";
 import { useStateValue } from "../../StateProvider";
 

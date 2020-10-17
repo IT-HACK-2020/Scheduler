@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import { useStateValue } from "../../StateProvider";
-import DatePicker from "../DatePicker/DatePicker";
 import { TimePicker } from "../TimePicker/TimePicker";
 import "../Modal/Modal.scss";
 import InputMask from "react-input-mask";
+import Popup from "../Popup/Popup";
 
 const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selectedDate }) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
@@ -18,14 +18,11 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
       : new Date().getMinutes()
     }`;
 
+  const [popupDelete, setPopupDelete] = useState(false);
   //status checkbox
   const [timeZoneChecked, setTimeZoneChecked] = useState(false);
   const [allDayChecked, setAllDayChecked] = useState(true);
 
-  const onHandleChangeTimeZone = () => {
-    setTimeZoneChecked(!timeZoneChecked);
-    setAllDayChecked(false);
-  };
   const onHandleChangeAllDay = () => {
     setAllDayChecked(!allDayChecked);
     setTimeZoneChecked(false);
@@ -110,6 +107,10 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
     console.log(saveData);
     setNullDateandClose();
   };
+  const deleteItemInPopup = () => {
+    removeDataOnClick(eventForEdit.id);
+    setPopupDelete(false)
+  };
 
   return isShowing
     ? ReactDOM.createPortal(
@@ -120,6 +121,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
           aria-hidden
           tabIndex={-1}
           role="dialog"
+          style={{ visibility: `${!popupDelete ? "visible" : "hidden"}` }}
         >
 
           <div className="modal">
@@ -205,8 +207,10 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
               <div className="btn-container">
                 <div className="layout-btn-delete">
                   <button className="btn-delete"
-                    onClick={() => {
-                      removeDataOnClick(eventForEdit.id);
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setPopupDelete(true);
+
                     }}>Удалить</button>
                 </div>
                 <div className="layout-btn-save">
@@ -227,6 +231,8 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
             </form>
           </div>
         </div>
+        {popupDelete && <Popup hide={() => setPopupDelete(false)}
+          remove={() => deleteItemInPopup()}></Popup>}
       </>,
       document.body
     )
