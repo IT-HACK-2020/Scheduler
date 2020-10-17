@@ -87,10 +87,7 @@ const Calendar = ({ days,
                             className={`event ${el.done ? "done" : ""}`}
                             id={`${el.day}.${el.timeStart}`}
                           >
-                            <span className="event__time-start">
-                              {el.allDay ? "" : el.timeStart}
-                            </span>
-                            <span className="event__title">{el.title}</span>
+                            <span className="event__title">{`${el.title.split('').length <= 14 ? el.title : `${el.title.substr(0, 14)}...`}`}</span>
                             <div className="event__btns">
                               <input
                                 type="checkbox"

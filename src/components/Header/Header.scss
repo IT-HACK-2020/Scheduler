@@ -150,6 +150,9 @@ $borderColor: #efefef;
         border: 1px solid  grey;
         text-align: left;
         font-size: 14px;
+        z-index:100;
+        overflow: hidden;
+        text-overflow: ellipsis;
         .button-signOut{
             display: block;
             margin: 10px 0;
@@ -195,6 +198,8 @@ $borderColor: #efefef;
     grid-template-columns: 1fr 3fr 1fr;
     justify-items: center;
     align-items: center;
+    min-width:200px;
+    text-align: center;
     span {
         display: block;
         width: 34px;

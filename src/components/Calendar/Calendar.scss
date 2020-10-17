@@ -292,6 +292,12 @@ $borderColor: #efefef;
         font-size: 14px;
         color: #007bff;
     }
+    &:hover{
+        background-color: #007bff;
+        .event__edit{
+            color: #fff;
+        }
+    }
     &.done{
         background-color: rgba(88, 203, 125, 0.2);
         .event__title{
@@ -301,7 +307,7 @@ $borderColor: #efefef;
             background-color:#58cb7d;
         }
         .event__edit{
-            color: #58cb7d;;
+            color: #58cb7d;
         }
     }
     &.done:hover{
@@ -329,6 +335,9 @@ $borderColor: #efefef;
     }
     &__status{
         display: none;
+    }
+    &:hover{
+        background-color:  #d0021b;
     }
 }
 
