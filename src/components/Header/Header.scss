@@ -29,7 +29,7 @@ $borderColor: #efefef;
 .header{
     background-color: $secondaryColor;
     box-shadow: 0 2px 40px 0 rgba(0, 0, 0, 0.07);
-    z-index: 20000;
+    // z-index: 20000;
     width: 90%;
     height: auto;
     margin: 10px auto;
@@ -194,6 +194,18 @@ $borderColor: #efefef;
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     justify-items: center;
+    align-items: center;
+    span {
+        display: block;
+        width: 34px;
+        height: 34px;
+        text-align: center;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    
+
 }
 .layout-header-register {
     grid-area: header-register;
@@ -213,6 +225,7 @@ $borderColor: #efefef;
 
 @media (max-width: 991px) {
     .header {
+        margin-top: 10px;
         grid-template-areas:
             "header-today  header-btns"
             "header-month header-register";
@@ -221,6 +234,11 @@ $borderColor: #efefef;
     }
     .layout-header-register {
         justify-self: end;
+    }
+    .layout-header-month {
+        span {
+            background-color: $primaryColor;
+        }
     }
 }
 
