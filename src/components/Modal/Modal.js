@@ -179,6 +179,10 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
               </div>
 
               <div className="btn-container">
+                <div className="layout-btn-delete">
+                  <button className="btn-delete"
+                  >Удалить</button>
+                </div>
                 <div className="layout-btn-save">
                   <button
                     onClick={() => {

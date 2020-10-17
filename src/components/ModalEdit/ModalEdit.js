@@ -203,7 +203,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
 
               <div className="btn-container">
                 <div className="layout-btn-delete">
-                  <button className="btn-delete"
+                  <button className="btn-delete_edit"
                     onClick={(e) => {
                       e.preventDefault()
                       setPopupDelete(true);
@@ -218,6 +218,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                         currentDateClick
                       );
                     }}
+                    className='btn-save'
                   >
                     Редактировать
                     </button>

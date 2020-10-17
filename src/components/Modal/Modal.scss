@@ -59,8 +59,18 @@ button {
   font-size: 16px;
   border-radius: 4px;
   background-color: #007bff;
+  color:white;
 }
 .btn-delete{
+  width: 53px;
+  height: 16px;
+  font-size: 14px;
+  letter-spacing: -0.22px;
+  color: #d0021b;
+  background: transparent;
+  visibility: hidden;
+}
+.btn-delete_edit{
   width: 53px;
   height: 16px;
   font-size: 14px;
