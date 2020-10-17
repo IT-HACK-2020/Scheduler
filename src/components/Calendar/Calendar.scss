@@ -255,6 +255,8 @@ $borderColor: #efefef;
     height:30px;
     padding-left:10px;
     margin-bottom: 4px;
+    display: flex;
+    align-items: center;
     &:after{
         display: inline-block;
         content:'';
@@ -287,6 +289,19 @@ $borderColor: #efefef;
     }
     &__edit{
         font-size: 14px;
+        color: #007bff;
+    }
+    &.done{
+        background-color: rgba(88, 203, 125, 0.2);
+        .event__title{
+            color:#58cb7d;
+        }
+        &:after{
+            background-color:#58cb7d;
+        }
+        .event__edit{
+            color: #58cb7d;;
+        }
     }
 }
 .prev-today .event{
@@ -296,6 +311,9 @@ $borderColor: #efefef;
         background-color:  #d0021b;
     }
     &__title{
+        color: #d0021b;
+    }
+    &__edit{
         color: #d0021b;
     }
     &__status{

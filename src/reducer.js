@@ -59,6 +59,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         user: action.user
       }
+    case "SET_STATUS_DONE":
+      return {
+        ...state,
+        saveData: state.saveData.map((event) => {
+          if (event.id === action.id) {
+            // console.log(event);
+            return {
+              ...event,
+              done: action.done,
+            };
+          } else return event;
+        }),
+      };
     default:
       return state;
   }

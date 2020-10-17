@@ -20,6 +20,15 @@ const Calendar = ({ days,
     });
   };
 
+  const SetStatusDone = (el) => {
+    console.log(el);
+    dispatch({
+      type: "SET_STATUS_DONE",
+      done: !el.done,
+      id: el.id,
+    });
+  };
+
   const editClick = (el, day) => {
     getEventForEdit(el);
     onCellClickEdit();
@@ -74,19 +83,29 @@ const Calendar = ({ days,
                     {saveData.sort(compareObjectsByTimeStart).map((el) => {
                       if (el.day === col.date.toLocaleDateString("en-EN")) {
                         return (
-                          <div className='event' id={`${el.day}.${el.timeStart}`}>
+                          <div
+                            className={`event ${el.done ? "done" : ""}`}
+                            id={`${el.day}.${el.timeStart}`}
+                          >
                             <span className="event__time-start">
                               {el.allDay ? "" : el.timeStart}
                             </span>
                             <span className="event__title">{el.title}</span>
                             <div className="event__btns">
-                              <input type="checkbox" id="event__status" />
-                              <span className=' fas fa-edit event__edit'
+                              <input
+                                type="checkbox"
+                                id="event__status"
+                                checked={el.done}
+                                onChange={() => {
+                                  SetStatusDone(el);
+                                }}
+                              />
+                              <span
+                                className=" fas fa-edit event__edit"
                                 onClick={() => {
                                   editClick(el, col.date);
                                 }}
-                              >
-                              </span>
+                              ></span>
                             </div>
                           </div>
                         );

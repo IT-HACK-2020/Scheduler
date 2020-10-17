@@ -85,7 +85,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
     });
     // console.log(initialState.saveData);
     setNullDateandClose();
-    console.log(saveData);
+    console.log(dispatch.title);
   };
 
   return isShowing
