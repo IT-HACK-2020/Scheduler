@@ -203,7 +203,9 @@ $borderColor: #efefef;
 @media screen and (max-width: 650px) {
     .calendar{
         height: 450px;
-        .table{grid-template-rows: 50px auto;}
+        .table{
+            grid-template-rows: 50px auto;
+        }
 
         td .number {
             @include font(16px, 1, bold);
@@ -214,7 +216,10 @@ $borderColor: #efefef;
 @media screen and (max-width: 479px) {
     .calendar{
         height: 350px;
-        .table{grid-template-rows: 40px auto;}
+        .table{
+            grid-template-rows: 40px auto;
+            border-radius: 20px;
+        }
         th {
             padding-top: 12px;
         }
@@ -229,8 +234,10 @@ $borderColor: #efefef;
 
 @media screen and (max-width: 359px) {
     .calendar{
-        height: 250px;
-        .table{grid-template-rows: 30px auto;}
+        height: 280px;
+        .table{
+            grid-template-rows: 30px auto;
+        }
         th {
             padding-top: 8px;
         }
