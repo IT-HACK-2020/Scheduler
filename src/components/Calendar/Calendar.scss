@@ -304,6 +304,16 @@ $borderColor: #efefef;
             color: #58cb7d;;
         }
     }
+    &.done:hover{
+        background-color: #58cb7d;
+    }
+    &.done:hover .event__title{
+        color: white;
+    }
+    &.done:hover .event__edit{
+        color: white;
+    }
+
 }
 .prev-today .event{
     background-color: rgba(208, 2, 27, 0.1);

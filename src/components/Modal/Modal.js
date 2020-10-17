@@ -150,20 +150,8 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                     }`}
                 </div>
               </div>
-              <div className="show-status">
-                <label htmlFor="all-day">
-                  <input
-                    type="checkbox"
-                    id="all-day"
-                    checked={allDayChecked}
-                    onChange={() => onHandleChangeAllDay(allDayChecked)}
-                  />
-                    Весь день
-                  </label>
-              </div>
               <div className="timepicker">
                 <div className="form-item">
-                  <br />
                   <InputMask
                     type="text"
                     onChange={onChangeTimeStartInput}
@@ -175,7 +163,6 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                   {/* <TimePicker onChangehandle={handleTimeChangeStart} /> */}
                 </div>
                 <div className="form-item">
-                  <br />
                   <InputMask
                     type="text"
                     onChange={onChangeTimeEndInput}
@@ -185,6 +172,17 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                     mask="99:99"
                   />
                   {/* <TimePicker onChangehandle={handleTimeChangeEnd} /> */}
+                </div>
+                <div className="show-status">
+                  <label htmlFor="all-day">
+                    <input
+                      type="checkbox"
+                      id="all-day"
+                      checked={allDayChecked}
+                      onChange={() => onHandleChangeAllDay(allDayChecked)}
+                    />
+                    Весь день
+                  </label>
                 </div>
               </div>
 
