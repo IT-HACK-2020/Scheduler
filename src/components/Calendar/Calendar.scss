@@ -80,6 +80,7 @@ $borderColor: #efefef;
         position: relative;
         padding: 3px;
         background-color: $secondaryColor;
+        padding-top: 40px;
 
         .number{
             @include font(14px, 1);
@@ -103,10 +104,11 @@ $borderColor: #efefef;
         border: none;
     }
 
-    .in-prev-month,
-    .in-next-month {
+    .in-prev-month .number,
+    .in-next-month .number {
         // opacity: 0.3;
         background-color: #f8f7f8;
+        color: #c4c4c4;
 
         &:hover,
         &:hover {

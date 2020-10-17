@@ -21,9 +21,6 @@ const reducer = (state = initialState, action) => {
             id: action.id,
             day: action.day,
             title: action.title,
-            location: action.location,
-            dateStart: action.dateStart,
-            dateEnd: action.dateEnd,
             timeStart: action.timeStart,
             timeEnd: action.timeEnd,
             allDay: action.allDay,
@@ -42,9 +39,6 @@ const reducer = (state = initialState, action) => {
               id: action.id,
               day: action.day,
               title: action.title,
-              location: action.location,
-              dateStart: action.dateStart,
-              dateEnd: action.dateEnd,
               timeStart: action.timeStart,
               timeEnd: action.timeEnd,
               allDay: action.allDay,
@@ -58,7 +52,7 @@ const reducer = (state = initialState, action) => {
     case "DELETE_DATE":
       return {
         ...state,
-        saveData: state.saveData.map((event) => event.id === action.id)
+        saveData: state.saveData.filter((event) => event.id !== action.id)
       };
     case "SET_USER":
       return {

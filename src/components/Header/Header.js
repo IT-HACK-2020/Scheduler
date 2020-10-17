@@ -54,7 +54,7 @@ const Header = ({
       <div className="register">
         <button className="button-sign" style={{ display: `${!user ? "" : "none"}` }} onClick={hide}>Войти</button>
         <div className="header__nav">
-          <img class='user-photo' style={{ display: `${!user ? "none" : ""}` }} src={!user ? '' : user.photoURL} />
+          <img className='user-photo' style={{ display: `${!user ? "none" : ""}` }} src={!user ? '' : user.photoURL} />
           <span className='nav' style={{ display: `${!user ? "none" : ""}` }} onClick={toggleStatus}></span>
         </div>
         {status && user &&
