@@ -18,7 +18,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
     }`;
 
   //status checkbox
-  const [allDayChecked, setAllDayChecked] = useState(true);
+  const [allDayChecked, setAllDayChecked] = useState(false);
 
   const onHandleChangeAllDay = () => {
     setAllDayChecked(!allDayChecked);
@@ -32,7 +32,6 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
   // console.log("FOREDIT ---", eventForEdit);
   const [title, setTitle] = useState("");
 
-  const [location, setLocation] = useState("");
   const [desc, setDesc] = useState("");
 
   const onChangeTitle = (e) => {
@@ -78,7 +77,6 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
       id: `${title}${timeStart}`,
       day: currentDateClick.toLocaleDateString("en-EN"),
       title: title,
-      location: location,
       timeStart: allDayChecked ? "00:00" : timeStart,
       timeEnd: allDayChecked ? "23:59" : timeEnd,
       description: desc,

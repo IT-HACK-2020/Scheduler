@@ -50,6 +50,7 @@ const Calendar = ({ days,
               <tr key={cols[0].date}>
                 {cols.map((col) => (
                   <td
+                    id={col.date}
                     key={col.date}
                     className={
                       col.date.getTime() < todayDateFormatted.getTime() ? 'day prev-today' : 'day' &&
@@ -73,7 +74,7 @@ const Calendar = ({ days,
                     {saveData.sort(compareObjectsByTimeStart).map((el) => {
                       if (el.day === col.date.toLocaleDateString("en-EN")) {
                         return (
-                          <div className='event'>
+                          <div className='event' id={`${el.day}.${el.timeStart}`}>
                             <span className="event__time-start">
                               {el.allDay ? "" : el.timeStart}
                             </span>

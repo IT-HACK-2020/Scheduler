@@ -20,12 +20,10 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
 
   const [popupDelete, setPopupDelete] = useState(false);
   //status checkbox
-  const [timeZoneChecked, setTimeZoneChecked] = useState(false);
-  const [allDayChecked, setAllDayChecked] = useState(true);
+  const [allDayChecked, setAllDayChecked] = useState(false);
 
   const onHandleChangeAllDay = () => {
     setAllDayChecked(!allDayChecked);
-    setTimeZoneChecked(false);
   };
 
   const [timeStart, setTimeStart] = useState(currentHoursAndMinutes);
@@ -73,8 +71,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
     setTimeStart(currentHoursAndMinutes);
     setTitle("");
     setDesc("");
-    setTimeZoneChecked(false);
-    setAllDayChecked(true);
+    setAllDayChecked(false);
     closeModal(false);
   };
 
