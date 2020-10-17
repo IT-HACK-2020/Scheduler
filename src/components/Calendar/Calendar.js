@@ -52,10 +52,12 @@ const Calendar = ({ days,
                   <td
                     key={col.date}
                     className={
-                      JSON.stringify(col.date) ===
+                      col.date.getTime() < todayDateFormatted.getTime() ? 'day prev-today' : 'day' &&
+                        JSON.stringify(col.date) ===
                         JSON.stringify(todayDateFormatted)
                         ? `${col.classes} day today`
                         : `${col.classes} day`
+
                     }
                   >
                     <span className="number">{col.value}</span>
@@ -71,7 +73,7 @@ const Calendar = ({ days,
                     {saveData.sort(compareObjectsByTimeStart).map((el) => {
                       if (el.day === col.date.toLocaleDateString("en-EN")) {
                         return (
-                          <div className="event">
+                          <div className='event'>
                             <span className="event__time-start">
                               {el.allDay ? "" : el.timeStart}
                             </span>

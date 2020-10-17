@@ -9,6 +9,7 @@ const Header = ({
   selectedDate,
   getNextMonth,
   getPrevMonth,
+  getToday
 }) => {
 
   const [{ user, saveData }, dispatch] = useStateValue();
@@ -28,7 +29,7 @@ const Header = ({
   return (
     <div className="header">
       <div className="header__item">
-        <span className="header__today">Сегодня</span>
+        <span className="header__today" onClick={getToday} >Сегодня</span>
         <a className='header__link'>Синхронизировать с Google Календарем</a>
       </div>
       <div className="header__item">

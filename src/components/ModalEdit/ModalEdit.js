@@ -86,7 +86,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
     dispatch({
       type: "CHANGE_DATE",
       id: eventForEdit.id,
-      day: currentDateClick.toLocaleDateString("en-US"),
+      day: currentDateClick.toLocaleDateString("en-EN"),
       title: title,
       timeStart: allDayChecked ? "00:00" : timeStart,
       timeEnd: allDayChecked ? "23:59" : timeEnd,
@@ -99,7 +99,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
     setNullDateandClose();
   };
 
-  const removeDataOnClick = (id) => {
+  const removeDataOnClick = (eventForEdit) => {
     dispatch({
       type: "DELETE_DATE",
       id: eventForEdit.id,
@@ -108,7 +108,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
     setNullDateandClose();
   };
   const deleteItemInPopup = () => {
-    removeDataOnClick(eventForEdit.id);
+    removeDataOnClick(eventForEdit);
     setPopupDelete(false)
   };
 
@@ -210,20 +210,17 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                     onClick={(e) => {
                       e.preventDefault()
                       setPopupDelete(true);
-
                     }}>Удалить</button>
                 </div>
                 <div className="layout-btn-save">
                   <button
-                    onClick={(e) => {
-                      e.preventDefault();
+                    onClick={() => {
                       changeDataOnClick(
                         timeStart,
                         timeEnd,
                         currentDateClick
                       );
                     }}
-                    className="btn-save"
                   >
                     Редактировать
                     </button>

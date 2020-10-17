@@ -108,6 +108,9 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
     setSelectedDate(prevValue => new Date(prevValue.getFullYear(), prevValue.getMonth() + 1, 1));
   };
 
+  const getToday = () => {
+    setSelectedDate(new Date());
+  }
   return {
     days,
     month,
@@ -115,7 +118,8 @@ const CalendarUse = (days = daysNames, month = monthNames) => {
     calendarRows,
     selectedDate,
     getPrevMonth,
-    getNextMonth
+    getNextMonth,
+    getToday
   };
 };
 

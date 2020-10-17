@@ -24,6 +24,7 @@ const App = () => {
     selectedDate,
     getNextMonth,
     getPrevMonth,
+    getToday
   } = CalendarUse();
 
   const { isShowing, toggleModal } = useModal();
@@ -246,6 +247,7 @@ const App = () => {
         getNextMonth={getNextMonth}
         getPrevMonth={getPrevMonth}
         hide={toggleLogin}
+        getToday={getToday}
       ></Header>
       {isLogin && <Login hide={toggleLogin}></Login>}
       { user && <>

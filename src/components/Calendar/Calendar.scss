@@ -228,6 +228,16 @@ $borderColor: #efefef;
         font-size: 14px;
     }
 }
+.prev-today .event{
+    background-color: rgba(208, 2, 27, 0.1);
+    
+    &:after{
+        background-color:  #d0021b;
+    }
+    &__title{
+        color: #d0021b;
+    }
+}
 
 .create-event{
     width: 30px;
@@ -249,10 +259,12 @@ $borderColor: #efefef;
     display: block;
     text-align: center;
     line-height: 30px;
-
 }
 .Plus {
     width: 11px;
     height: 11px;
     object-fit: contain;
+}
+.calendar .prev-today:hover .create-event{
+    display: none;
 }
