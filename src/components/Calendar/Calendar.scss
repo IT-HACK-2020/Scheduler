@@ -17,7 +17,7 @@ $borderColor: #efefef;
 
 .calendar{
     text-align: center;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     height: 820px;
 
@@ -194,6 +194,9 @@ $borderColor: #efefef;
     .calendar{
         height: 600px;
     }
+    .calendar .table {
+        border-radius: 20px;
+    }
 }
 
 
@@ -219,6 +222,9 @@ $borderColor: #efefef;
             @include font(14px, 1, bold);
         }
     }
+    .calendar .table {
+        border-radius: 15px;
+    }
 }
 
 @media screen and (max-width: 359px) {
@@ -228,6 +234,9 @@ $borderColor: #efefef;
         th {
             padding-top: 8px;
         }
+    }
+    .calendar .table {
+        border-radius: 10px;
     }
 }
 
