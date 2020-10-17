@@ -9,6 +9,7 @@ let browser;
 let context;
 let page;
 
+
 beforeAll(async () => {
     browser = await playwright.firefox.launch({headless: false, slowMo: 1000});
 })
