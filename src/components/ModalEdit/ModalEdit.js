@@ -121,7 +121,7 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
           aria-hidden
           tabIndex={-1}
           role="dialog"
-          style={{ visibility: `${!popupDelete ? "visible" : "hidden"}` }}
+          style={{ visibility: `${popupDelete ? "hidden" : "visible"}` }}
         >
 
           <div className="modal">
@@ -215,7 +215,8 @@ const Modal = ({ isShowing, hide, eventForEdit, closeModal, days, month, selecte
                 </div>
                 <div className="layout-btn-save">
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
                       changeDataOnClick(
                         timeStart,
                         timeEnd,

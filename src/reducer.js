@@ -1,7 +1,7 @@
 export const initialState = {
   currentDateClick: null,
   saveData: JSON.parse(localStorage.getItem("events")) || [],
-  user: null
+  user: JSON.parse(localStorage.getItem("user")) || null,
 };
 
 const reducer = (state = initialState, action) => {
