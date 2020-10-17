@@ -24,7 +24,54 @@ const Header = ({
   const toggleStatus = () => {
     setStatus(!status);
   };
+  const [counterCurrent, setcounterCurrent] = useState(0);
+  const [counterDone, setcounterDone] = useState(0);
+  const [counterClosed, setcounterClosed] = useState(0);
 
+  useEffect(() => {
+    const currentMonth = selectedDate.getMonth();
+    const currentYear = selectedDate.getFullYear();
+    let counterCurrent_sub = 0;
+    let counterDone_sub = 0;
+    let counterClosed_sub = 0;
+    saveData.map((el) => {
+      const arrayDate = el.day.split("/");
+      // console.log(arrayDate);
+
+      if (
+        arrayDate[0] - 1 == currentMonth &&
+        arrayDate[2] == currentYear &&
+        el.done == false &&
+        new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
+          new Date()
+      ) {
+        counterCurrent_sub++;
+      }
+      if (
+        arrayDate[0] - 1 == currentMonth &&
+        arrayDate[2] == currentYear &&
+        el.done == true &&
+        new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
+          new Date()
+      ) {
+        counterDone_sub++;
+      }
+      if (
+        arrayDate[0] - 1 == currentMonth &&
+        arrayDate[2] == currentYear &&
+        arrayDate[1] < new Date().getDate
+      ) {
+        counterClosed_sub++;
+      } else {
+        counterClosed_sub = 0;
+      }
+    });
+    setcounterCurrent(counterCurrent_sub);
+    setcounterDone(counterDone_sub);
+    setcounterClosed(counterClosed_sub);
+
+    // console.log(currentMonth, currentYear);
+  }, [saveData, selectedDate]);
   var gapi = window.gapi;
   var CLIENT_ID =
     "1069261108921-c8nbhmon6sleslvn4kafcfebmcvthb17.apps.googleusercontent.com";
@@ -225,56 +272,6 @@ const Header = ({
     });
   }, []);
 
-  const [counterCurrent, setcounterCurrent] = useState(0);
-  const [counterDone, setcounterDone] = useState(0);
-  const [counterClosed, setcounterClosed] = useState(0);
-
-  useEffect(() => {
-    const currentMonth = selectedDate.getMonth();
-    const currentYear = selectedDate.getFullYear();
-    let counterCurrent_sub = 0;
-    let counterDone_sub = 0;
-    let counterClosed_sub = 0;
-    saveData.map((el) => {
-      const arrayDate = el.day.split("/");
-      // console.log(arrayDate);
-
-      if (
-        arrayDate[0] - 1 == currentMonth &&
-        arrayDate[2] == currentYear &&
-        el.done == false &&
-        new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
-        new Date()
-      ) {
-        counterCurrent_sub++;
-      }
-      if (
-        arrayDate[0] - 1 == currentMonth &&
-        arrayDate[2] == currentYear &&
-        el.done == true &&
-        new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
-        new Date()
-      ) {
-        counterDone_sub++;
-      }
-      if (
-        arrayDate[0] - 1 == currentMonth &&
-        arrayDate[2] == currentYear &&
-        arrayDate[1] < new Date().getDate
-      ) {
-        counterClosed_sub++;
-      } else {
-        counterClosed_sub = 0;
-      }
-    });
-    setcounterCurrent(counterCurrent_sub);
-    setcounterDone(counterDone_sub);
-    setcounterClosed(counterClosed_sub);
-
-    // console.log(currentMonth, currentYear);
-  }, [saveData, selectedDate]);
-
-
   return (
     <div className="header">
       <div className="layout-header-today">
@@ -294,9 +291,12 @@ const Header = ({
             alt=""
           />
         </span>
-        <p className="month" id={`${month[selectedDate.getMonth()]
-          }.${selectedDate.getFullYear()}`}>{`${month[selectedDate.getMonth()]
-            } - ${selectedDate.getFullYear()}`}</p>
+        <p
+          className="month"
+          id={`${month[selectedDate.getMonth()]}.${selectedDate.getFullYear()}`}
+        >{`${
+          month[selectedDate.getMonth()]
+        } - ${selectedDate.getFullYear()}`}</p>
         <span onClick={getNextMonth}>
           <img
             src="/arrow.png"
