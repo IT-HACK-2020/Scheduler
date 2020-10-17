@@ -10,8 +10,8 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
 
   const currentHoursAndMinutes = `${new Date().getHours().toString().length < 2
-    ? "0" + new Date().getHours().toString()
-    : new Date().getHours()
+      ? "0" + new Date().getHours().toString()
+      : new Date().getHours()
     }:${new Date().getMinutes().toString().length < 2
       ? "0" + new Date().getMinutes().toString()
       : new Date().getMinutes()
@@ -20,13 +20,24 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
   //status checkbox
   const [allDayChecked, setAllDayChecked] = useState(false);
 
-  const onHandleChangeAllDay = () => {
-    setAllDayChecked(!allDayChecked);
-  };
-
   const [timeStart, setTimeStart] = useState(currentHoursAndMinutes);
 
   const [timeEnd, setTimeEnd] = useState(currentHoursAndMinutes);
+
+  const onHandleChangeAllDay = (el) => {
+    console.log(el);
+    if (!el) {
+      setTimeStart("00:00");
+      setTimeEnd("23:59");
+
+      setAllDayChecked(true);
+    } else {
+      setTimeStart(currentHoursAndMinutes);
+      setTimeEnd(currentHoursAndMinutes);
+
+      setAllDayChecked(false);
+    }
+  };
 
   //save event's data
   // console.log("FOREDIT ---", eventForEdit);
@@ -63,15 +74,11 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
     setTimeStart(currentHoursAndMinutes);
     setTitle("");
     setDesc("");
-    setAllDayChecked(true);
+    setAllDayChecked(false);
     closeModal(false);
   };
 
-  const saveDataOnClick = (
-    timeStart,
-    timeEnd,
-    currentDateClick
-  ) => {
+  const saveDataOnClick = (timeStart, timeEnd, currentDateClick) => {
     dispatch({
       type: "SAVE_DATE",
       id: `${title}${timeStart}`,
@@ -81,11 +88,11 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
       timeEnd: allDayChecked ? "23:59" : timeEnd,
       description: desc,
       allDay: allDayChecked,
-      done: false
+      done: false,
     });
     // console.log(initialState.saveData);
     setNullDateandClose();
-    console.log(saveData);
+    console.log(dispatch.title);
   };
 
   return isShowing
@@ -107,21 +114,23 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
               onClick={setNullDateandClose}
             >
               <span aria-hidden="true">
-                <img src="/group.png" srcSet="/group@2x.png 2x, /group@3x.png 3x"
-                  className="Group" alt="" /></span>
+                <img
+                  src="/group.png"
+                  srcSet="/group@2x.png 2x, /group@3x.png 3x"
+                  className="Group"
+                  alt=""
+                />
+              </span>
             </button>
-            <div className="modal__title">
-
-            </div>
+            <div className="modal__title"></div>
             <form className="form">
-
               <input
                 type="text"
                 name=""
                 id="title"
                 className="modal-first-input"
                 value={title}
-                placeholder='Добавьте название'
+                placeholder="Добавьте название"
                 onChange={(e) => onChangeTitle(e)}
               />
               <textarea
@@ -131,12 +140,13 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                 className="modal-text-area"
                 rows="1"
                 value={desc}
-                placeholder='Добавьте описание'
+                placeholder="Добавьте описание"
                 onChange={(e) => onChangeDesc(e)}
               />
               <div className="modal__date">
                 <div>
-                  {`${(days[currentDateClick.getDay() - 1] || days[6])}, ${currentDateClick.getDate()} ${month[currentDateClick.getMonth()]
+                  {`${days[currentDateClick.getDay() - 1] || days[6]
+                    }, ${currentDateClick.getDate()} ${month[currentDateClick.getMonth()]
                     }`}
                 </div>
               </div>
@@ -146,7 +156,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                     type="checkbox"
                     id="all-day"
                     checked={allDayChecked}
-                    onChange={onHandleChangeAllDay}
+                    onChange={() => onHandleChangeAllDay(allDayChecked)}
                   />
                     Весь день
                   </label>
@@ -162,7 +172,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                     id="time-start"
                     mask="99:99"
                   />
-                  <TimePicker onChangehandle={handleTimeChangeStart} />
+                  {/* <TimePicker onChangehandle={handleTimeChangeStart} /> */}
                 </div>
                 <div className="form-item">
                   <br />
@@ -174,23 +184,18 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                     id="time-end"
                     mask="99:99"
                   />
-                  <TimePicker onChangehandle={handleTimeChangeEnd} />
+                  {/* <TimePicker onChangehandle={handleTimeChangeEnd} /> */}
                 </div>
               </div>
 
               <div className="btn-container">
                 <div className="layout-btn-delete">
-                  <button className="btn-delete"
-                  >Удалить</button>
+                  <button className="btn-delete">Удалить</button>
                 </div>
                 <div className="layout-btn-save">
                   <button
                     onClick={() => {
-                      saveDataOnClick(
-                        timeStart,
-                        timeEnd,
-                        currentDateClick
-                      );
+                      saveDataOnClick(timeStart, timeEnd, currentDateClick);
                     }}
                     className="btn-save"
                   >

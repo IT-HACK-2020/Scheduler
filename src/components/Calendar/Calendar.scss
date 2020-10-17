@@ -80,6 +80,7 @@ $borderColor: #efefef;
         // height:40px;
         // min-width:90px;
         padding-top: 20px;
+        text-transform: uppercase;
     }
     .day{
         // height: 80px;
@@ -128,13 +129,13 @@ $borderColor: #efefef;
         // opacity: 0.3;
         background-color: #f8f7f8;
         .number {
-                @include font(14px, 1, #bbb);
+                @include font(14px, 1, #dfdfdf);
             }
 
         &:hover,
         &:hover {
             // opacity: 0.5;
-            background-color: #999;
+            background-color: #e2dede;
         }
     }
 }
@@ -255,6 +256,8 @@ $borderColor: #efefef;
     height:30px;
     padding-left:10px;
     margin-bottom: 4px;
+    display: flex;
+    align-items: center;
     &:after{
         display: inline-block;
         content:'';
@@ -287,6 +290,19 @@ $borderColor: #efefef;
     }
     &__edit{
         font-size: 14px;
+        color: #007bff;
+    }
+    &.done{
+        background-color: rgba(88, 203, 125, 0.2);
+        .event__title{
+            color:#58cb7d;
+        }
+        &:after{
+            background-color:#58cb7d;
+        }
+        .event__edit{
+            color: #58cb7d;;
+        }
     }
 }
 .prev-today .event{
@@ -296,6 +312,9 @@ $borderColor: #efefef;
         background-color:  #d0021b;
     }
     &__title{
+        color: #d0021b;
+    }
+    &__edit{
         color: #d0021b;
     }
     &__status{
