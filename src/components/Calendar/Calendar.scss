@@ -19,7 +19,7 @@ $borderColor: #efefef;
     text-align: center;
     width: 80%;
     margin: 0 auto;
-    height: 90vh;
+    height: 820px;
 
     .header{
         height:5%;
@@ -48,10 +48,10 @@ $borderColor: #efefef;
 
         display: grid;
         grid-template-rows: 60px auto;
-        // grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+        grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
 
         grid-template-areas: "wd wd wd wd wd wd wd" "dd dd dd dd dd dd dd" "iv iv iv iv iv iv iv";
-
+        
 
     thead,
     tbody,
@@ -78,13 +78,14 @@ $borderColor: #efefef;
         background-color: $secondaryColor;
         text-align: center;
         // height:40px;
-        min-width:90px;
+        // min-width:90px;
         padding-top: 20px;
     }
     .day{
-        // height:80px;
+        // height: 80px;
         border: 1px solid $borderColor; 
         transition: .2s ease-in;
+        overflow: auto;
 
         &:hover{
             background-color: #efefef; 
@@ -97,8 +98,8 @@ $borderColor: #efefef;
         vertical-align: top;
         position: relative;
         padding: 3px;
+        padding-top: 40px;
         background-color: $secondaryColor;
-        padding-top:40px;
 
         .number{
             @include font(14px, 1);
@@ -121,17 +122,14 @@ $borderColor: #efefef;
     .today:hover .number{
         border: none;
     }
+
     .in-prev-month,
     .in-next-month {
-        background-color: #f8f7f8;
-    }
-
-   
-
-    .in-prev-month .number,
-    .in-next-month .number {
         // opacity: 0.3;
-        color: #c4c4c4;
+        background-color: #f8f7f8;
+        .number {
+                @include font(14px, 1, #bbb);
+            }
 
         &:hover,
         &:hover {
@@ -140,13 +138,13 @@ $borderColor: #efefef;
         }
     }
 }
+// ==================================  media-queries =======================
 
-
-@media only screen and (max-width: 1199px) {
+@media screen and (max-width: 1199px) {
     .calendar{
         width: 100%;
         margin: 0 auto;
-        height: 100vw;
+        height: 820px;
 
         // th {
         //     font-size: 0;
@@ -157,34 +155,81 @@ $borderColor: #efefef;
     }
 }
 
-@media only screen and (max-width: 991px) {
+@media screen and (max-width: 991px) {
     .calendar{
         width: 100%;
         margin: 0 auto;
-        height: 100vw;
+        height: 800px;
 
         th {
             font-size: 0;
-            }
-            th::first-letter {
+            background-color: $primaryColor;
+            color: $secondaryColor;
+        }
+        th::first-letter {
             font-size: 1rem;
         }
+
+        td .number {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            // font-weight: bold;
+            @include font(18px, 1, bold);
+        }
+
+
+        .today {
+            // opacity: 0.08;
+            background-color: #d2e5fafa;
+            .number{
+                border: none;
+                color: $primaryColor;
+            } 
+        }          
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .calendar{
+        height: 600px;
     }
 }
 
 
-    .in-prev-month .number,
-    .in-next-month .number {
-        // opacity: 0.3;
-        background-color: #f8f7f8;
-        color: #c4c4c4;
+@media screen and (max-width: 650px) {
+    .calendar{
+        height: 450px;
+        .table{grid-template-rows: 50px auto;}
 
-        &:hover,
-        &:hover {
-            // opacity: 0.5;
-            background-color: #999;
+        td .number {
+            @include font(16px, 1, bold);
         }
     }
+}
+
+@media screen and (max-width: 479px) {
+    .calendar{
+        height: 350px;
+        .table{grid-template-rows: 40px auto;}
+        th {
+            padding-top: 12px;
+        }
+        td .number {
+            @include font(14px, 1, bold);
+        }
+    }
+}
+
+@media screen and (max-width: 359px) {
+    .calendar{
+        height: 250px;
+        .table{grid-template-rows: 30px auto;}
+        th {
+            padding-top: 8px;
+        }
+    }
+}
 
 .event{
     box-sizing: border-box;
@@ -236,6 +281,9 @@ $borderColor: #efefef;
     }
     &__title{
         color: #d0021b;
+    }
+    &__status{
+        display: none;
     }
 }
 
