@@ -19,8 +19,8 @@ const Modal = ({
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
 
   const currentHoursAndMinutes = `${new Date().getHours().toString().length < 2
-      ? "0" + new Date().getHours().toString()
-      : new Date().getHours()
+    ? "0" + new Date().getHours().toString()
+    : new Date().getHours()
     }:${new Date().getMinutes().toString().length < 2
       ? "0" + new Date().getMinutes().toString()
       : new Date().getMinutes()
@@ -236,7 +236,7 @@ const Modal = ({
                     onClick={() => {
                       changeDataOnClick(timeStart, timeEnd, currentDateClick);
                     }}
-                    className="btn-save"
+                    className={`btn-save `}
                   >
                     Редактировать
                     </button>

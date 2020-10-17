@@ -336,7 +336,7 @@ $borderColor: #efefef;
     &__edit{
         color: #d0021b;
     }
-    &__status{
+    .event__btns input{
         display: none;
     }
     &:hover{

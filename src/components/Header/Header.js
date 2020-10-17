@@ -225,6 +225,55 @@ const Header = ({
     });
   }, []);
 
+  const [counterCurrent, setcounterCurrent] = useState(0);
+  const [counterDone, setcounterDone] = useState(0);
+  const [counterClosed, setcounterClosed] = useState(0);
+
+  useEffect(() => {
+    const currentMonth = selectedDate.getMonth();
+    const currentYear = selectedDate.getFullYear();
+    let counterCurrent_sub = 0;
+    let counterDone_sub = 0;
+    let counterClosed_sub = 0;
+    saveData.map((el) => {
+      const arrayDate = el.day.split("/");
+      // console.log(arrayDate);
+
+      if (
+        arrayDate[0] - 1 == currentMonth &&
+        arrayDate[2] == currentYear &&
+        el.done == false &&
+        new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
+        new Date()
+      ) {
+        counterCurrent_sub++;
+      }
+      if (
+        arrayDate[0] - 1 == currentMonth &&
+        arrayDate[2] == currentYear &&
+        el.done == true &&
+        new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
+        new Date()
+      ) {
+        counterDone_sub++;
+      }
+      if (
+        arrayDate[0] - 1 == currentMonth &&
+        arrayDate[2] == currentYear &&
+        arrayDate[1] < new Date().getDate
+      ) {
+        counterClosed_sub++;
+      } else {
+        counterClosed_sub = 0;
+      }
+    });
+    setcounterCurrent(counterCurrent_sub);
+    setcounterDone(counterDone_sub);
+    setcounterClosed(counterClosed_sub);
+
+    // console.log(currentMonth, currentYear);
+  }, [saveData, selectedDate]);
+
 
   return (
     <div className="header">
@@ -260,16 +309,16 @@ const Header = ({
       <div className="layout-header-btns">
         <div className="layout-header-btns__item">
           <span className="circle done"></span>
-          <span className="done-event"></span>
+          <span className="done-event">{counterCurrent}</span>
         </div>
         <div className="layout-header-btns__item">
           <span className="circle current"></span>
-          <span className="done-current"></span>
+          <span className="done-current">{counterDone}</span>
         </div>
 
         <div className="layout-header-btns__item">
           <span className="circle last"></span>
-          <span className="last-event">1</span>
+          <span className="last-event">{counterClosed}</span>
         </div>
       </div>
       <div className="layout-header-register">
