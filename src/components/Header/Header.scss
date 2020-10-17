@@ -17,39 +17,48 @@ $borderColor: #efefef;
     line-height: $lineHeight;
   }
 
+* {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    box-sizing: border-box!important;
+}
 
 .header{
-    box-sizing: border-box;
     background-color: $secondaryColor;
     box-shadow: 0 2px 40px 0 rgba(0, 0, 0, 0.07);
     z-index: 20000;
-    height: 60px;
-    width: 80%;
+    width: 90%;
+    height: auto;
     margin: 10px auto;
     padding: 10px;
-    display: flex;
+    display: grid;
+    grid-template-areas:
+        "header-today header-month header-btns header-register";
+    grid-template-columns: 3fr 4fr 2fr 1fr;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
+    justify-items: center;
     position: relative;
-    height: 58px;
     border-radius: 12px;
     @include font(16px, 1);
     // color: $fontColor;
     // font-size: 14px;
 
     &__item{
-        display: flex;
+        /*display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-between;*/
     }
     &__item:first-child{
-        min-width: 410px;
+        width: max-content;
 // outline: 1px dotted red;
     }
     &__today{
         // margin-left: 35px;
         padding: 10px 15px;
+        margin: 0 10px;
         cursor: pointer;
         border: 1px solid $borderColor;
         border-radius: 6px;
@@ -60,7 +69,7 @@ $borderColor: #efefef;
         }
     }
     &__link{
-        min-width: 310px;
+        width: auto;
         padding:35px;
         border-radius: 6px;
         border: solid 1px $primaryColor;
@@ -80,11 +89,12 @@ $borderColor: #efefef;
         margin: 0 30px;
         min-width:120px;
     }
-    .btns{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 140px;
+    .layout-header-btns{
+        grid-area: header-btns;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        justify-self: end;
         .circle{
             display: inline-block;
             margin-right: 10px;
@@ -149,7 +159,7 @@ $borderColor: #efefef;
             cursor: pointer;
         }
     }
-    .arrow{
+    /*.arrow{
         border: solid #cfd5da;
         border-width: 0 2px 2px 0;
         display: inline-block;
@@ -162,13 +172,98 @@ $borderColor: #efefef;
         &:hover {
             border-color: $fontColor;    
         }
-    }
+    }*/
     .arrow-next{
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
     }
-    .arrow-prev{
+    /*.arrow-prev{
         transform: rotate(135deg);
         -webkit-transform: rotate(135deg);
+    }*/
+}
+.layout-header-today {
+    grid-area: header-today;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-items: center;
+    align-items: center;
+}
+.layout-header-month {
+    grid-area: header-month;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-items: center;
+}
+.layout-header-register {
+    grid-area: header-register;
+}
+
+/* @media */
+@media (min-width: 1400px) {
+
+}
+
+@media (max-width: 1199px) {
+    .header {
+        width: auto;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 991px) {
+    .header {
+        grid-template-areas:
+            "header-today  header-btns"
+            "header-month header-register";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 45px 45px;
+    }
+    .layout-header-register {
+        justify-self: end;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        grid-template-areas:
+                "header-today header-btns"
+                "header-month header-register";
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 60px 40px;
+    }
+    .header .layout-header-btns {
+        justify-self: center;
+    }
+    .layout-header-register {
+        margin-right: 25px;
+    }
+}
+
+@media (max-width: 650px) {
+
+}
+
+@media (max-width: 479px) {
+    .header {
+        grid-template-areas:
+                "header-today header-today"
+                "header-btns header-register"
+                "header-month header-month";
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 40px 50px 35px;
+    }
+    .layout-header-register {
+        justify-self: center;
+        margin: auto;
+    }
+}
+
+@media (max-width: 359px) {
+    .header {
+        grid-template-rows: 50px 50px 35px;
+    }
+    .header__link {
+        text-align: center;
     }
 }
