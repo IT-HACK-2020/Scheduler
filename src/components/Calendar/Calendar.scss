@@ -294,6 +294,9 @@ $borderColor: #efefef;
     }
     &:hover{
         background-color: #007bff;
+        .event__title{
+            color: #fff;
+        }
         .event__edit{
             color: #fff;
         }
