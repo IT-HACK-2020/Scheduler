@@ -80,58 +80,54 @@ const Header = ({
     script.src = "https://apis.google.com/js/api.js";
 
     script.onload = () => {
-      gapi.load("client:auth2", () => {
-        gapi.client
-          .init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES,
-          })
-          .then(
-            function () {
-              // const googleAuth = window.gapi.auth2.getAuthInstance();
-              // const googleUser = await googleAuth.signIn();
-              // await googleUser;
-              // const token = googleUser.getAuthResponse().id_token;
-              // console.log(googleUser);
-              if (user) {
-                listUpcomingEvents();
-              } else {
-                var provider = new firebase.auth.GoogleAuthProvider();
-                provider.addScope("profile");
-                provider.addScope("email");
-                firebase
-                  .auth()
-                  .signInWithPopup(provider)
-                  .then(function (result) {
-                    // This gives you a Google Access Token.
-                    // var token = result.credential.accessToken;
-                    // The signed-in user info.
-                    gapi.auth2
-                      .getAuthInstance()
-                      .isSignedIn.listen(updateSigninStatus);
-
-                    // Handle the initial sign-in state.
-                    updateSigninStatus(
-                      gapi.auth2.getAuthInstance().isSignedIn.get()
-                    );
-
-                    var user = result.user;
-                    localStorage.setItem("user", JSON.stringify(user));
-                    // console.log(user);
-                    // dispatch({
-                    //   type: "SET_USER",
-                    //   user: user,
-                    // });
-                  });
-              }
-            },
-            function (error) {
-              // appendPre(JSON.stringify(error, null, 2));
-            }
-          );
-      });
+      // gapi.load("client:auth2", () => {
+      //   gapi.client.init({
+      //     apiKey: API_KEY,
+      //     clientId: CLIENT_ID,
+      //     discoveryDocs: DISCOVERY_DOCS,
+      //     scope: SCOPES,
+      //   });
+      // .then(
+      //   function () {
+      //     // const googleAuth = window.gapi.auth2.getAuthInstance();
+      //     // const googleUser = await googleAuth.signIn();
+      //     // await googleUser;
+      //     // const token = googleUser.getAuthResponse().id_token;
+      //     // console.log(googleUser);
+      //     // if (user) {
+      //     //   listUpcomingEvents();
+      //     // } else {
+      //     var provider = new firebase.auth.GoogleAuthProvider();
+      //     provider.addScope("profile");
+      //     provider.addScope("email");
+      //     firebase
+      //       .auth()
+      //       .signInWithPopup(provider)
+      //       .then(function (result) {
+      //         // This gives you a Google Access Token.
+      //         // var token = result.credential.accessToken;
+      //         // The signed-in user info.
+      //         gapi.auth2
+      //           .getAuthInstance()
+      //           .isSignedIn.listen(updateSigninStatus);
+      //         // Handle the initial sign-in state.
+      //         updateSigninStatus(
+      //           gapi.auth2.getAuthInstance().isSignedIn.get()
+      //         );
+      //         var user = result.user;
+      //         localStorage.setItem("user", JSON.stringify(user));
+      //         console.log(user);
+      //         dispatch({
+      //           type: "SET_USER",
+      //           user: user,
+      //         });
+      //       });
+      //   },
+      // function (error) {
+      //   // appendPre(JSON.stringify(error, null, 2));
+      // }
+      // );
+      // });
     };
 
     document.head.appendChild(script);
@@ -152,58 +148,62 @@ const Header = ({
    *  listeners.
    */
   function initClient() {
-    gapi.load("client:auth2", () => {
-      gapi.client
-        .init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES,
-        })
-        .then(
-          async function () {
-            // const googleAuth = window.gapi.auth2.getAuthInstance();
-            // const googleUser = await googleAuth.signIn();
-            // await googleUser;
-            // const token = googleUser.getAuthResponse().id_token;
-            // console.log(googleUser);
-            if (user) {
-              listUpcomingEvents();
-            } else {
-              var provider = new firebase.auth.GoogleAuthProvider();
-              provider.addScope("profile");
-              provider.addScope("email");
-              firebase
-                .auth()
-                .signInWithPopup(provider)
-                .then(function (result) {
-                  // This gives you a Google Access Token.
-                  // var token = result.credential.accessToken;
-                  // The signed-in user info.
-                  gapi.auth2
-                    .getAuthInstance()
-                    .isSignedIn.listen(updateSigninStatus);
+    gapi.client
+      .init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES,
+      })
+      .then(
+        function () {
+          // const googleAuth = window.gapi.auth2.getAuthInstance();
+          // const googleUser = await googleAuth.signIn();
+          // await googleUser;
+          // const token = googleUser.getAuthResponse().id_token;
+          // console.log(googleUser);
+          if (user) {
+            listUpcomingEvents();
+            AddEventTest();
+          } else {
+            // gapi.auth2
+            //   .getAuthInstance()
+            //   .signIn()
+            //   .then((result) => console.log(result.user));
 
-                  // Handle the initial sign-in state.
-                  updateSigninStatus(
-                    gapi.auth2.getAuthInstance().isSignedIn.get()
-                  );
+            var provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope("profile");
+            provider.addScope("email");
+            firebase
+              .auth()
+              .signInWithPopup(provider)
+              .then(function (result) {
+                // This gives you a Google Access Token.
+                // var token = result.credential.accessToken;
+                // The signed-in user info.
+                // gapi.auth2
+                //   .getAuthInstance()
+                //   .isSignedIn.listen(updateSigninStatus);
 
-                  var user = result.user;
-                  localStorage.setItem("user", JSON.stringify(user));
-                  // console.log(user);
-                  // dispatch({
-                  //   type: "SET_USER",
-                  //   user: user,
-                  // });
+                // // Handle the initial sign-in state.
+                // updateSigninStatus(
+                //   gapi.auth2.getAuthInstance().isSignedIn.get()
+                // );
+
+                var user = result.user;
+                localStorage.setItem("user", JSON.stringify(user));
+                console.log(user);
+                dispatch({
+                  type: "SET_USER",
+                  user: user,
                 });
-            }
-          },
-          function (error) {
-            // appendPre(JSON.stringify(error, null, 2));
+              });
           }
-        );
-    });
+        },
+        function (error) {
+          // appendPre(JSON.stringify(error, null, 2));
+        }
+      );
   }
 
   /**
@@ -308,51 +308,53 @@ const Header = ({
         resource: event,
       });
     });
+    if (request) {
+      request.execute((event) => {
+        console.log(event);
+        window.open(event.htmlLink);
+      });
+    }
 
-    request.execute((event) => {
-      console.log(event);
-      window.open(event.htmlLink);
+    localStorage.removeItem("events");
+    dispatch({
+      type: "DROP_SAVEDATA",
+      saveData: [],
     });
-    // localStorage.removeItem("events");
-    // dispatch({
-    //   type: "DROP_SAVEDATA",
-    //   saveData: [],
-    // });
-    // gapi.client.calendar.events
-    //   .list({
-    //     calendarId: "primary",
-    //     timeMin: new Date(2020, 9).toISOString(),
-    //     showDeleted: false,
-    //     singleEvents: true,
-    //     maxResults: 10,
-    //     orderBy: "startTime",
-    //   })
-    //   .then(function (response) {
-    //     var events = response.result.items;
-    //     // appendPre("Upcoming events:");
-    //     dispatch({
-    //       type: "GET_DATA_GOOGLE",
-    //       saveData: events.map((el) => {
-    //         return {
-    //           id: `${el.summary}${el.start.dateTime}`,
-    //           day: `${new Date(el.start.dateTime).getMonth() + 1}/${new Date(
-    //             el.start.dateTime
-    //           ).getDate()}/${new Date(el.start.dateTime).getFullYear()}`,
-    //           title: el.summary,
-    //           timeStart: `${new Date(el.start.dateTime).getHours()}:${new Date(
-    //             el.start.dateTime
-    //           ).getMinutes()}`,
-    //           timeEnd: `${new Date(el.end.dateTime).getMonth() + 1}/${new Date(
-    //             el.end.dateTime
-    //           ).getDate()}/${new Date(el.end.dateTime).getFullYear()}`,
-    //           allDay: false,
-    //           description: el.description,
-    //           done: false,
-    //           changed: false,
-    //         };
-    //       }),
-    //     });
-    // });
+    gapi.client.calendar.events
+      .list({
+        calendarId: "primary",
+        timeMin: new Date(2020, 9).toISOString(),
+        showDeleted: false,
+        singleEvents: true,
+        maxResults: 10,
+        orderBy: "startTime",
+      })
+      .then(function (response) {
+        var events = response.result.items;
+        // appendPre("Upcoming events:");
+        dispatch({
+          type: "GET_DATA_GOOGLE",
+          saveData: events.map((el) => {
+            return {
+              id: `${el.summary}${el.start.dateTime}`,
+              day: `${new Date(el.start.dateTime).getMonth() + 1}/${new Date(
+                el.start.dateTime
+              ).getDate()}/${new Date(el.start.dateTime).getFullYear()}`,
+              title: el.summary,
+              timeStart: `${new Date(el.start.dateTime).getHours()}:${new Date(
+                el.start.dateTime
+              ).getMinutes()}`,
+              timeEnd: `${new Date(el.end.dateTime).getMonth() + 1}/${new Date(
+                el.end.dateTime
+              ).getDate()}/${new Date(el.end.dateTime).getFullYear()}`,
+              allDay: false,
+              description: el.description,
+              done: false,
+              changed: false,
+            };
+          }),
+        });
+      });
   }
 
   useEffect(() => {
@@ -366,7 +368,7 @@ const Header = ({
     // will only run once when the app component loads...
 
     auth.onAuthStateChanged((authUser) => {
-      console.log("THE USER IS >>> ", authUser);
+      // console.log("THE USER IS >>> ", authUser);
 
       if (authUser) {
         // the user just logged in / the user was logged in
@@ -393,7 +395,6 @@ const Header = ({
         <a onClick={handleClientLoad} className="header__link">
           Синхронизировать с Google
         </a>
-        <button onClick={AddEventTest}>ADDD EVENTS</button>
       </div>
       <div className="layout-header-month">
         <span onClick={getPrevMonth}>

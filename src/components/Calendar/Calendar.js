@@ -153,6 +153,13 @@ const Calendar = ({
                 }`}
               </p>
               <div className="mobile_events_buttons">
+                <button
+                  onClick={() => {
+                    dateClickHandler(ShowMobileEvents);
+                  }}
+                >
+                  +
+                </button>
                 <span
                   onClick={() =>
                     setShowMobileEvents(
@@ -165,12 +172,14 @@ const Calendar = ({
                     )
                   }
                 >
-                  {<img
-                    src="/arrow.png"
-                    srcSet="/arrow@2x.png 2x, /arrow@3x.png 3x"
-                    className="Arrow"
-                    alt=""
-                  />}
+                  {
+                    <img
+                      src="/arrow.png"
+                      srcSet="/arrow@2x.png 2x, /arrow@3x.png 3x"
+                      className="Arrow"
+                      alt=""
+                    />
+                  }
                 </span>
                 <span
                   onClick={() =>
@@ -184,12 +193,14 @@ const Calendar = ({
                     )
                   }
                 >
-                  {<img
-                    src="/arrow.png"
-                    srcSet="/arrow@2x.png 2x, /arrow@3x.png 3x"
-                    className="Arrow arrow-next"
-                    alt=""
-                  />}
+                  {
+                    <img
+                      src="/arrow.png"
+                      srcSet="/arrow@2x.png 2x, /arrow@3x.png 3x"
+                      className="Arrow arrow-next"
+                      alt=""
+                    />
+                  }
                 </span>
               </div>
             </div>
