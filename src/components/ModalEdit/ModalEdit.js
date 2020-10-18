@@ -100,11 +100,12 @@ const Modal = ({
       title.length == 0 ||
       timeStart.includes("_") ||
       timeEnd.includes("_") ||
-      timeStart[0] > 2 ||
-      timeStart[3] > 5 ||
-      timeEnd[0] > 2 ||
-      timeEnd[3] > 5 ||
-      timeStart[0] > timeEnd[0]
+      timeStart.substr(0, 2) > 23 ||
+      timeStart.substr(3, 5) > 59 ||
+      timeEnd.substr(0, 2) > 23 ||
+      timeEnd.substr(3, 5) > 59 ||
+      timeStart.substr(0, 2) > timeEnd.substr(0, 2) ||
+      parseInt(timeStart.substr(0, 2) * 60 + timeStart.substr(3, 5)) > parseInt(timeEnd.substr(0, 2) * 60) + timeStart.substr(3, 5)
     ) {
       return false;
     }
@@ -149,7 +150,7 @@ const Modal = ({
         setValidError(".....Проверка");
       }, 200);
       setTimeout(() => {
-        setValidError("* Введите обязательное поле");
+        setValidError("* Введите название и верное значение начала и окончания события");
       }, 300);
     }
   };

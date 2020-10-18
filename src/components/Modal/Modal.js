@@ -87,7 +87,8 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
       timeStart.substr(3, 5) > 59 ||
       timeEnd.substr(0, 2) > 23 ||
       timeEnd.substr(3, 5) > 59 ||
-      timeStart.substr(0, 2) > timeEnd.substr(0, 2)
+      timeStart.substr(0, 2) > timeEnd.substr(0, 2) ||
+      parseInt(timeStart.substr(0, 2) * 60 + timeStart.substr(3, 5)) > parseInt(timeEnd.substr(0, 2) * 60) + timeStart.substr(3, 5)
     ) {
       return false;
     }
