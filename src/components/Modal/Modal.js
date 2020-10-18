@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import { useStateValue } from "../../StateProvider";
-import { TimePicker } from "../TimePicker/TimePicker";
 import "./Modal.scss";
 import InputMask from "react-input-mask";
 
@@ -79,12 +78,12 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
   };
 
   const validationOK = () => {
-    console.log(timeEnd.length);
+    console.log(timeEnd);
     if (
       title.length == 0 ||
       timeStart.includes("_") ||
       timeEnd.includes("_") ||
-      timeStart[0] > 2 ||
+      timeStart[0][1] > 23 ||
       timeStart[3] > 5 ||
       timeEnd[0] > 2 ||
       timeEnd[3] > 5
@@ -115,7 +114,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
         description: desc,
         allDay: allDayChecked,
         done: false,
-      });
+      })
       // console.log(initialState.saveData);
       setNullDateandClose();
       // console.log(dispatch.title);
@@ -136,7 +135,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
     }
 
     // setValidError("ERROR");
-  };
+  }
 
   return isShowing
     ? ReactDOM.createPortal(

@@ -78,7 +78,6 @@ const App = () => {
           selectedDate={selectedDate}
         />
       </>
-      )}
     </Router>
   );
 };
