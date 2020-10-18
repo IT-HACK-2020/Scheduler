@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
             timeEnd: action.timeEnd,
             allDay: action.allDay,
             description: action.description,
-            done: action.done
+            done: action.done,
           },
         ],
       };
@@ -52,13 +52,13 @@ const reducer = (state = initialState, action) => {
     case "DELETE_DATE":
       return {
         ...state,
-        saveData: state.saveData.filter((event) => event.id !== action.id)
+        saveData: state.saveData.filter((event) => event.id !== action.id),
       };
     case "SET_USER":
       return {
         ...state,
-        user: action.user
-      }
+        user: action.user,
+      };
     case "SET_STATUS_DONE":
       return {
         ...state,
@@ -71,6 +71,16 @@ const reducer = (state = initialState, action) => {
             };
           } else return event;
         }),
+      };
+    case "DROP_SAVEDATA":
+      return {
+        ...state,
+        saveData: action.saveData,
+      };
+    case "GET_DATA_GOOGLE":
+      return {
+        ...state,
+        saveData: action.saveData,
       };
     default:
       return state;
