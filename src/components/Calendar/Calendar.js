@@ -42,6 +42,16 @@ const Calendar = ({
     });
   };
 
+  const editClickMob = (el, day) => {
+    getEventForEdit(el);
+    onCellClickEdit();
+    console.log(el);
+    dispatch({
+      type: "SET_DATE",
+      date: day,
+    });
+  };
+
   function compareObjectsByTimeStart(a, b) {
     return a.timeStart.localeCompare(b.timeStart);
   }
@@ -72,9 +82,9 @@ const Calendar = ({
                         ? "day prev-today"
                         : "day" &&
                           JSON.stringify(col.date) ===
-                            JSON.stringify(todayDateFormatted)
-                        ? `${col.classes} day today`
-                        : `${col.classes} day`
+                          JSON.stringify(todayDateFormatted)
+                          ? `${col.classes} day today`
+                          : `${col.classes} day`
                     }
                   >
                     <span className="number">{col.value}</span>
@@ -98,11 +108,10 @@ const Calendar = ({
                             className={`event ${el.done ? "done" : ""}`}
                             id={`${el.day}.${el.timeStart}`}
                           >
-                            <span className="event__title">{`${
-                              el.title.split("").length <= 14
-                                ? el.title
-                                : `${el.title.substr(0, 14)}...`
-                            }`}</span>
+                            <span className="event__title">{`${el.title.split("").length <= 14
+                              ? el.title
+                              : `${el.title.substr(0, 14)}...`
+                              }`}</span>
                             <div className="event__btns">
                               <input
                                 type="checkbox"
@@ -135,11 +144,9 @@ const Calendar = ({
           <>
             {" "}
             <p className="mobile_events_date">
-              {`${
-                days[ShowMobileEvents.getDay() - 1] || days[6]
-              }, ${ShowMobileEvents.getDate()} ${
-                month[ShowMobileEvents.getMonth()]
-              }`}
+              {`${days[ShowMobileEvents.getDay() - 1] || days[6]
+                }, ${ShowMobileEvents.getDate()} ${month[ShowMobileEvents.getMonth()]
+                }`}
             </p>
             <div className="mobile_events_buttons">
               <button
@@ -180,15 +187,14 @@ const Calendar = ({
                 return (
                   <>
                     <div
-                      className={`event ${el.done ? "done" : ""}`}
+                      className={` event mobile_event__item ${el.done ? "done" : ""}`}
                       id={`${el.day}.${el.timeStart}`}
                     >
-                      <span className="event__title">{`${
-                        el.title.split("").length <= 14
-                          ? el.title
-                          : `${el.title.substr(0, 14)}...`
-                      }`}</span>
-                      <div className="event__btns">
+                      <span className="event__title mobile_event__title">{`${el.title.split("").length <= 14
+                        ? el.title
+                        : `${el.title.substr(0, 14)}...`
+                        }`}</span>
+                      <div className="event__btns mobile_event__btns">
                         <input
                           type="checkbox"
                           id="event__status"
@@ -200,7 +206,7 @@ const Calendar = ({
                         <span
                           className=" fas fa-edit event__edit"
                           onClick={() => {
-                            editClick(el, setShowMobileEvents.date);
+                            editClick(el, setShowMobileEvents);
                           }}
                         ></span>
                       </div>

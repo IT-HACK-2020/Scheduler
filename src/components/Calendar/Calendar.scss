@@ -89,7 +89,7 @@ $borderColor: #efefef;
         overflow: auto;
 
         &:hover{
-            background-color: #efefef; 
+            background-color: #f5f5f5; 
         }
     }
     td{
@@ -101,6 +101,7 @@ $borderColor: #efefef;
         padding: 3px;
         padding-top: 40px;
         background-color: $secondaryColor;
+        overflow: auto;
 
         .number{
             @include font(14px, 1);
@@ -258,6 +259,7 @@ $borderColor: #efefef;
     margin-bottom: 4px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     &:after{
         display: inline-block;
         content:'';
@@ -288,7 +290,7 @@ $borderColor: #efefef;
         justify-content: center;
         align-items: center;
     }
-    &__edit{
+     &__edit{
         font-size: 14px;
         color: #007bff;
     }
@@ -322,7 +324,18 @@ $borderColor: #efefef;
     &.done:hover .event__edit{
         color: white;
     }
-
+    &__btns input{
+        display: none;
+    }
+    &:hover input{
+        display: block;
+    }
+    @media screen and (max-width: 991px){
+        &__btns input{
+            display: block;
+        }
+ 
+    }
 }
 .prev-today .event{
     background-color: rgba(208, 2, 27, 0.1);
@@ -372,4 +385,40 @@ $borderColor: #efefef;
 }
 .calendar .prev-today:hover .create-event{
     display: none;
+}
+.event{
+    @media screen and (max-width: 991px){
+        display: none;
+    }
+}
+
+.mobile_events{
+    @media screen and (min-width: 991px){
+        display: none;
+    }
+    &_date{
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.1px;
+        color: #6c757d;
+    }
+    &_list{
+        margin-top: 20px;
+        .mobile_event__item{
+            display: block;
+            width:95%;
+            margin-left:  auto;
+            margin-right:  auto;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+        .mobile_event__btns{
+            right:10px;
+        }
+    }
+    
 }

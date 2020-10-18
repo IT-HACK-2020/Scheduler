@@ -94,22 +94,55 @@ const Modal = ({
     setAllDayChecked(false);
     closeModal(false);
   };
+  const validationOK = () => {
+    console.log(timeEnd.length);
+    if (
+      title.length == 0 ||
+      timeStart.includes("_") ||
+      timeEnd.includes("_") ||
+      timeStart[0] > 2 ||
+      timeStart[3] > 5 ||
+      timeEnd[0] > 2 ||
+      timeEnd[3] > 5
+    ) {
+      return false;
+    }
+    return true;
+  };
+  const [validError, setValidError] = useState("");
 
   const changeDataOnClick = (timeStart, timeEnd, currentDateClick) => {
-    dispatch({
-      type: "CHANGE_DATE",
-      id: eventForEdit.id,
-      day: currentDateClick.toLocaleDateString("en-EN"),
-      title: title,
-      timeStart: allDayChecked ? "00:00" : timeStart,
-      timeEnd: allDayChecked ? "23:59" : timeEnd,
-      description: desc,
-      allDay: allDayChecked,
-      done: false,
-      changed: true,
-    });
-    console.log(saveData);
-    setNullDateandClose();
+    if (validationOK()) {
+      setValidError("");
+      dispatch({
+        type: "CHANGE_DATE",
+        id: eventForEdit.id,
+        day: currentDateClick.toLocaleDateString("en-EN"),
+        title: title,
+        timeStart: allDayChecked ? "00:00" : timeStart,
+        timeEnd: allDayChecked ? "23:59" : timeEnd,
+        description: desc,
+        allDay: allDayChecked,
+        done: false,
+        changed: true,
+      });
+      console.log(saveData);
+      setNullDateandClose();
+    } else {
+      setTimeout(() => {
+        setValidError("..Checking ");
+      }, 0);
+      setTimeout(() => {
+        setValidError("....Checking ");
+      }, 100);
+
+      setTimeout(() => {
+        setValidError(".....Checking ");
+      }, 200);
+      setTimeout(() => {
+        setValidError("ERROR");
+      }, 300);
+    }
   };
 
   const removeDataOnClick = (eventForEdit) => {
@@ -153,7 +186,7 @@ const Modal = ({
                 />
               </span>
             </button>
-            <form className="form">
+            <div className="form">
               <input
                 type="text"
                 name=""
@@ -214,11 +247,11 @@ const Modal = ({
                       checked={allDayChecked}
                       onChange={() => onHandleChangeAllDay(allDayChecked)}
                     />
-                    Весь день
-                  </label>
+                      Весь день
+                    </label>
                 </div>
               </div>
-
+              <p className="error">{validError}</p>
               <div className="btn-container">
                 <div className="layout-btn-delete">
                   <button
@@ -242,7 +275,7 @@ const Modal = ({
                     </button>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
         {popupDelete && (

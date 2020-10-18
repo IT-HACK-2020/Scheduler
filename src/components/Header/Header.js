@@ -33,7 +33,7 @@ const Header = ({
     const currentYear = selectedDate.getFullYear();
     let counterCurrent_sub = 0;
     let counterDone_sub = 0;
-    let counterClosed_sub = 0;
+
     saveData.map((el) => {
       const arrayDate = el.day.split("/");
       // console.log(arrayDate);
@@ -43,7 +43,7 @@ const Header = ({
         arrayDate[2] == currentYear &&
         el.done == false &&
         new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
-          new Date()
+        new Date()
       ) {
         counterCurrent_sub++;
       }
@@ -52,23 +52,14 @@ const Header = ({
         arrayDate[2] == currentYear &&
         el.done == true &&
         new Date(arrayDate[2], arrayDate[0] - 1, arrayDate[1], 23, 59) >
-          new Date()
+        new Date()
       ) {
         counterDone_sub++;
       }
-      if (
-        arrayDate[0] - 1 == currentMonth &&
-        arrayDate[2] == currentYear &&
-        arrayDate[1] < new Date().getDate
-      ) {
-        counterClosed_sub++;
-      } else {
-        counterClosed_sub = 0;
-      }
+
     });
     setcounterCurrent(counterCurrent_sub);
     setcounterDone(counterDone_sub);
-    setcounterClosed(counterClosed_sub);
 
     // console.log(currentMonth, currentYear);
   }, [saveData, selectedDate]);
@@ -294,9 +285,8 @@ const Header = ({
         <p
           className="month"
           id={`${month[selectedDate.getMonth()]}.${selectedDate.getFullYear()}`}
-        >{`${
-          month[selectedDate.getMonth()]
-        } - ${selectedDate.getFullYear()}`}</p>
+        >{`${month[selectedDate.getMonth()]
+          } - ${selectedDate.getFullYear()}`}</p>
         <span onClick={getNextMonth}>
           <img
             src="/arrow.png"
@@ -316,10 +306,6 @@ const Header = ({
           <span className="done-current">{counterDone}</span>
         </div>
 
-        <div className="layout-header-btns__item">
-          <span className="circle last"></span>
-          <span className="last-event">{counterClosed}</span>
-        </div>
       </div>
       <div className="layout-header-register">
         <button

@@ -78,21 +78,56 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
     closeModal(false);
   };
 
+  const validationOK = () => {
+    console.log(timeEnd.length);
+    if (
+      title.length == 0 ||
+      timeStart.includes("_") ||
+      timeEnd.includes("_") ||
+      timeStart[0] > 2 ||
+      timeStart[3] > 5 ||
+      timeEnd[0] > 2 ||
+      timeEnd[3] > 5
+    ) {
+      return false;
+    }
+    return true;
+  };
+  const [validError, setValidError] = useState("");
   const saveDataOnClick = (timeStart, timeEnd, currentDateClick) => {
-    dispatch({
-      type: "SAVE_DATE",
-      id: `${title}${timeStart}`,
-      day: currentDateClick.toLocaleDateString("en-EN"),
-      title: title,
-      timeStart: allDayChecked ? "00:00" : timeStart,
-      timeEnd: allDayChecked ? "23:59" : timeEnd,
-      description: desc,
-      allDay: allDayChecked,
-      done: false,
-    });
-    // console.log(initialState.saveData);
-    setNullDateandClose();
-    console.log(dispatch.title);
+    if (validationOK()) {
+      setValidError("");
+      dispatch({
+        type: "SAVE_DATE",
+        id: `${title}${timeStart}`,
+        day: currentDateClick.toLocaleDateString("en-EN"),
+        title: title,
+        timeStart: allDayChecked ? "00:00" : timeStart,
+        timeEnd: allDayChecked ? "23:59" : timeEnd,
+        description: desc,
+        allDay: allDayChecked,
+        done: false,
+      });
+      // console.log(initialState.saveData);
+      setNullDateandClose();
+      // console.log(dispatch.title);
+    } else {
+      setTimeout(() => {
+        setValidError("..Checking ");
+      }, 0);
+      setTimeout(() => {
+        setValidError("....Checking ");
+      }, 100);
+
+      setTimeout(() => {
+        setValidError(".....Checking ");
+      }, 200);
+      setTimeout(() => {
+        setValidError("ERROR");
+      }, 300);
+    }
+
+    // setValidError("ERROR");
   };
 
   return isShowing
@@ -123,7 +158,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
               </span>
             </button>
             <div className="modal__title"></div>
-            <form className="form">
+            <div className="form">
               <input
                 type="text"
                 name=""
@@ -181,11 +216,11 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                       checked={allDayChecked}
                       onChange={() => onHandleChangeAllDay(allDayChecked)}
                     />
-                    Весь день
-                  </label>
+                      Весь день
+                    </label>
                 </div>
               </div>
-
+              <p className="error">{validError}</p>
               <div className="btn-container">
                 <div className="layout-btn-delete">
                   <button className="btn-delete">Удалить</button>
@@ -207,7 +242,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                     </button> */}
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </>,
