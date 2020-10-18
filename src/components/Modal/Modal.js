@@ -10,8 +10,8 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
   const [{ currentDateClick, saveData }, dispatch] = useStateValue();
 
   const currentHoursAndMinutes = `${new Date().getHours().toString().length < 2
-      ? "0" + new Date().getHours().toString()
-      : new Date().getHours()
+    ? "0" + new Date().getHours().toString()
+    : new Date().getHours()
     }:${new Date().getMinutes().toString().length < 2
       ? "0" + new Date().getMinutes().toString()
       : new Date().getMinutes()
@@ -93,9 +93,17 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
     }
     return true;
   };
+  const validationTitle = () => {
+    if (
+      title.length == 0
+    ) {
+      return false;
+    }
+    return true;
+  };
   const [validError, setValidError] = useState("");
   const saveDataOnClick = (timeStart, timeEnd, currentDateClick) => {
-    if (validationOK()) {
+    if (validationTitle()) {
       setValidError("");
       dispatch({
         type: "SAVE_DATE",
@@ -113,17 +121,17 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
       // console.log(dispatch.title);
     } else {
       setTimeout(() => {
-        setValidError("..Checking ");
+        setValidError("..Проверка ");
       }, 0);
       setTimeout(() => {
-        setValidError("....Checking ");
+        setValidError("....Проверка");
       }, 100);
 
       setTimeout(() => {
-        setValidError(".....Checking ");
+        setValidError(".....Проверка");
       }, 200);
       setTimeout(() => {
-        setValidError("ERROR");
+        setValidError("* Введите обязательное поле");
       }, 300);
     }
 
@@ -163,7 +171,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                 type="text"
                 name=""
                 id="title"
-                className="modal-first-input"
+                className={!validError ? 'modal-first-input' : 'modal-first-input errored'}
                 value={title}
                 placeholder="Добавьте название"
                 onChange={(e) => onChangeTitle(e)}

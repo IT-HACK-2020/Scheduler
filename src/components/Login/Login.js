@@ -66,26 +66,26 @@ const Login = ({ hide }) => {
             </Link> */}
 
                 <div className='login__container'>
-                    <h1>Sign-in</h1>
+                    <h1>Вход</h1>
 
                     <form>
                         <h5>E-mail</h5>
                         <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
 
-                        <h5>Password</h5>
+                        <h5>Пароль</h5>
                         <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
 
-                        <button type='submit' onClick={signIn} className='login__signInButton'>Sign In</button>
+                        <button type='submit' onClick={signIn} className='login__signInButton'>Войти</button>
                     </form>
 
 
-                    <button className='login__registerButton' onClick={register}>Create new Account</button>
+                    <button className='login__registerButton' onClick={register}>Создать аккаунт</button>
                     <button onClick={signWithGoogle} className='login__registerButton' type="button">
                         <img style={{ width: '15px', margin: '5px 5px 0 0' }}
                             src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
                             alt="logo"
                         />
-                    Login With Google
+                    Войдите через Google
                     </button>
                 </div>
             </div>

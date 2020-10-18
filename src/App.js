@@ -45,40 +45,39 @@ const App = () => {
         getToday={getToday}
       ></Header>
       {isLogin && <Login hide={toggleLogin}></Login>}
-      {user && (
-        <>
-          <div className="section calendar">
-            <Calendar
-              days={days}
-              month={month}
-              todayDateFormatted={todayDateFormatted}
-              calendarRows={calendarRows}
-              selectedDate={selectedDate}
-              getNextMonth={getNextMonth}
-              getPrevMonth={getPrevMonth}
-              getEventForEdit={(event) => setEventToEdit(event)}
-              onCellClick={toggleModal}
-              onCellClickEdit={toggleModalEdit}
-            />
-          </div>
-          <Modal
-            isShowing={isShowing}
-            hide={toggleModal}
-            closeModal={(el) => setEventToEdit(el)}
+      <>
+        <div className="section calendar">
+          <Calendar
             days={days}
             month={month}
+            todayDateFormatted={todayDateFormatted}
+            calendarRows={calendarRows}
             selectedDate={selectedDate}
+            getNextMonth={getNextMonth}
+            getPrevMonth={getPrevMonth}
+            getEventForEdit={(event) => setEventToEdit(event)}
+            onCellClick={toggleModal}
+            onCellClickEdit={toggleModalEdit}
           />
-          <ModalEdit
-            isShowing={isShowingEdit}
-            hide={toggleModalEdit}
-            eventForEdit={eventToEdit}
-            closeModal={(el) => setEventToEdit(el)}
-            days={days}
-            month={month}
-            selectedDate={selectedDate}
-          />
-        </>
+        </div>
+        <Modal
+          isShowing={isShowing}
+          hide={toggleModal}
+          closeModal={(el) => setEventToEdit(el)}
+          days={days}
+          month={month}
+          selectedDate={selectedDate}
+        />
+        <ModalEdit
+          isShowing={isShowingEdit}
+          hide={toggleModalEdit}
+          eventForEdit={eventToEdit}
+          closeModal={(el) => setEventToEdit(el)}
+          days={days}
+          month={month}
+          selectedDate={selectedDate}
+        />
+      </>
       )}
     </Router>
   );

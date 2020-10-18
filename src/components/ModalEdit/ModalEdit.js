@@ -103,7 +103,16 @@ const Modal = ({
       timeStart[0] > 2 ||
       timeStart[3] > 5 ||
       timeEnd[0] > 2 ||
-      timeEnd[3] > 5
+      timeEnd[3] > 5 ||
+      timeStart[0] > timeEnd[0]
+    ) {
+      return false;
+    }
+    return true;
+  };
+  const validationTitle = () => {
+    if (
+      title.length == 0
     ) {
       return false;
     }
@@ -112,7 +121,7 @@ const Modal = ({
   const [validError, setValidError] = useState("");
 
   const changeDataOnClick = (timeStart, timeEnd, currentDateClick) => {
-    if (validationOK()) {
+    if (validationTitle()) {
       setValidError("");
       dispatch({
         type: "CHANGE_DATE",
@@ -130,17 +139,17 @@ const Modal = ({
       setNullDateandClose();
     } else {
       setTimeout(() => {
-        setValidError("..Checking ");
+        setValidError("..Проверка ");
       }, 0);
       setTimeout(() => {
-        setValidError("....Checking ");
+        setValidError("....Проверка");
       }, 100);
 
       setTimeout(() => {
-        setValidError(".....Checking ");
+        setValidError(".....Проверка");
       }, 200);
       setTimeout(() => {
-        setValidError("ERROR");
+        setValidError("* Введите обязательное поле");
       }, 300);
     }
   };
@@ -191,7 +200,7 @@ const Modal = ({
                 type="text"
                 name=""
                 id="title"
-                className="modal-first-input"
+                className={!validError ? 'modal-first-input' : 'modal-first-input errored'}
                 value={title}
                 placeholder="Добавьте название"
                 onChange={(e) => onChangeTitle(e)}
