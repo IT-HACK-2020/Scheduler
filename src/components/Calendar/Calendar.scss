@@ -425,3 +425,28 @@ $borderColor: #efefef;
     }
     
 }
+
+.arrow-next{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.layout-mobile-month {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.mobile_events_buttons span {
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #007bff;
+}
+
+@media (max-width: 359px) {
+    .layout-mobile-month {
+        grid-template-columns: 1fr;
+    }
+}
