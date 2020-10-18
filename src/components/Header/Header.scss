@@ -15,7 +15,7 @@ $borderColor: #efefef;
     }
     color: $color;
     line-height: $lineHeight;
-  }
+}
 
 * {
     font-size: 14px;
@@ -36,7 +36,7 @@ $borderColor: #efefef;
     padding: 10px;
     display: grid;
     grid-template-areas:
-        "header-today header-month header-btns header-register";
+            "header-today header-month header-btns header-register";
     grid-template-columns: 3fr 4fr 2fr 1fr;
     align-items: center;
     justify-items: center;
@@ -53,7 +53,7 @@ $borderColor: #efefef;
     }
     &__item:first-child{
         width: max-content;
-// outline: 1px dotted red;
+        // outline: 1px dotted red;
     }
     &__today{
         // margin-left: 35px;
@@ -155,8 +155,11 @@ $borderColor: #efefef;
         text-overflow: ellipsis;
         .button-signOut{
             display: block;
-            margin: 10px 0;
-            background-color: rgb(202, 199, 199);
+            margin-top: 10px;
+            background-color: $secondaryColor;
+            border: 1px solid $primaryColor;
+            border-radius: 5px;
+            color: $primaryColor;
             text-align: center;
             padding: 5px;
             cursor: pointer;
@@ -173,7 +176,7 @@ $borderColor: #efefef;
         cursor: pointer;
         transition: .2s ease-in;
         &:hover {
-            border-color: $fontColor;    
+            border-color: $fontColor;
         }
     }*/
     .arrow-next{
@@ -191,6 +194,8 @@ $borderColor: #efefef;
     grid-template-columns: 1fr 3fr;
     justify-items: center;
     align-items: center;
+
+    button {display: none;}
 }
 .layout-header-month {
     grid-area: header-month;
@@ -209,11 +214,18 @@ $borderColor: #efefef;
         cursor: pointer;
         border-radius: 10px;
     }
-    
+
 
 }
 .layout-header-register {
     grid-area: header-register;
+    .button-sign {
+        width: 100px;
+        height: 36px;
+        background-color: $primaryColor;
+        border-radius: 5px;
+        @include font(14px,1,$secondaryColor);
+    }
 }
 
 /* @media */
@@ -232,8 +244,8 @@ $borderColor: #efefef;
     .header {
         margin-top: 10px;
         grid-template-areas:
-            "header-today  header-btns"
-            "header-month header-register";
+                "header-today  header-btns"
+                "header-month header-register";
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 45px 45px;
     }
