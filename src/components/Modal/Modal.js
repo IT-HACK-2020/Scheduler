@@ -83,26 +83,20 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
       title.length == 0 ||
       timeStart.includes("_") ||
       timeEnd.includes("_") ||
-      timeStart[0][1] > 23 ||
-      timeStart[3] > 5 ||
-      timeEnd[0] > 2 ||
-      timeEnd[3] > 5
+      timeStart.substr(0, 2) > 23 ||
+      timeStart.substr(3, 5) > 59 ||
+      timeEnd.substr(0, 2) > 23 ||
+      timeEnd.substr(3, 5) > 59 ||
+      timeStart.substr(0, 2) > timeEnd.substr(0, 2)
     ) {
       return false;
     }
     return true;
   };
-  const validationTitle = () => {
-    if (
-      title.length == 0
-    ) {
-      return false;
-    }
-    return true;
-  };
+
   const [validError, setValidError] = useState("");
   const saveDataOnClick = (timeStart, timeEnd, currentDateClick) => {
-    if (validationTitle()) {
+    if (validationOK()) {
       setValidError("");
       dispatch({
         type: "SAVE_DATE",
@@ -130,8 +124,9 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
         setValidError(".....Проверка");
       }, 200);
       setTimeout(() => {
-        setValidError("* Введите обязательное поле");
+        setValidError("* Введите название и верное значение начала и окончания события");
       }, 300);
+
     }
 
     // setValidError("ERROR");
@@ -170,7 +165,7 @@ const Modal = ({ isShowing, hide, closeModal, days, month, selectedDate }) => {
                 type="text"
                 name=""
                 id="title"
-                className={!validError ? 'modal-first-input' : 'modal-first-input errored'}
+                className={title.length ? 'modal-first-input' : 'modal-first-input errored'}
                 value={title}
                 placeholder="Добавьте название"
                 onChange={(e) => onChangeTitle(e)}
