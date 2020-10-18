@@ -224,3 +224,13 @@ input:focus{
 input.errored{
   border-bottom: solid 1px #f50505;
 }
+
+/* @media */
+@media (max-width: 479px) {
+  .timepicker {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .show-status{
+    margin-left: 0;
+  }
+}
