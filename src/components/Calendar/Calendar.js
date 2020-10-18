@@ -153,13 +153,13 @@ const Calendar = ({
                 }`}
               </p>
               <div className="mobile_events_buttons">
-                <button
+                <div className="bottom-position"
                   onClick={() => {
                     dateClickHandler(ShowMobileEvents);
                   }}
                 >
-                  +
-                </button>
+                  <img src="/plus.png" srcSet="/plus@2x.png 2x, /plus@3x.png 3x" className="Plus" alt=""/>
+                </div>
                 <span
                   onClick={() =>
                     setShowMobileEvents(

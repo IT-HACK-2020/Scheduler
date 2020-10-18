@@ -396,6 +396,8 @@ $borderColor: #efefef;
 }
 
 .mobile_events{
+    position: relative;
+    min-height: 150px;
     @media screen and (min-width: 991px){
         display: none;
     }
@@ -449,4 +451,15 @@ $borderColor: #efefef;
     .layout-mobile-month {
         grid-template-columns: 1fr;
     }
+}
+
+.bottom-position {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #007bff;
 }
