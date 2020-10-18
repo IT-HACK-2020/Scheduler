@@ -57,7 +57,9 @@ const Login = ({ hide }) => {
         <div className="login-wrapper">
             <div className='login'>
 
-                <span className="close" onClick={hide}>x</span>
+                <span className="close" onClick={hide}>
+                    <img src="/group.png" srcSet="/group@2x.png 2x, /group@3x.png 3x" className="Group" alt=""/>
+                </span>
                 {/* <Link to='/'>
                 <img
                     className="login__logo"

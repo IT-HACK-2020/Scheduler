@@ -144,42 +144,54 @@ const Calendar = ({
         {ShowMobileEvents && (
           <>
             {" "}
-            <p className="mobile_events_date">
-              {`${
-                days[ShowMobileEvents.getDay() - 1] || days[6]
-              }, ${ShowMobileEvents.getDate()} ${
-                month[ShowMobileEvents.getMonth()]
-              }`}
-            </p>
-            <div className="mobile_events_buttons">
-              <button
-                onClick={() =>
-                  setShowMobileEvents(
-                    (prevValue) =>
-                      new Date(
-                        prevValue.getFullYear(),
-                        prevValue.getMonth(),
-                        prevValue.getDate() - 1
-                      )
-                  )
-                }
-              >
-                {"<"}
-              </button>
-              <button
-                onClick={() =>
-                  setShowMobileEvents(
-                    (prevValue) =>
-                      new Date(
-                        prevValue.getFullYear(),
-                        prevValue.getMonth(),
-                        prevValue.getDate() + 1
-                      )
-                  )
-                }
-              >
-                {">"}
-              </button>
+            <div className="layout-mobile-month">
+              <p className="mobile_events_date">
+                {`${
+                  days[ShowMobileEvents.getDay() - 1] || days[6]
+                }, ${ShowMobileEvents.getDate()} ${
+                  month[ShowMobileEvents.getMonth()]
+                }`}
+              </p>
+              <div className="mobile_events_buttons">
+                <span
+                  onClick={() =>
+                    setShowMobileEvents(
+                      (prevValue) =>
+                        new Date(
+                          prevValue.getFullYear(),
+                          prevValue.getMonth(),
+                          prevValue.getDate() - 1
+                        )
+                    )
+                  }
+                >
+                  {<img
+                    src="/arrow.png"
+                    srcSet="/arrow@2x.png 2x, /arrow@3x.png 3x"
+                    className="Arrow"
+                    alt=""
+                  />}
+                </span>
+                <span
+                  onClick={() =>
+                    setShowMobileEvents(
+                      (prevValue) =>
+                        new Date(
+                          prevValue.getFullYear(),
+                          prevValue.getMonth(),
+                          prevValue.getDate() + 1
+                        )
+                    )
+                  }
+                >
+                  {<img
+                    src="/arrow.png"
+                    srcSet="/arrow@2x.png 2x, /arrow@3x.png 3x"
+                    className="Arrow arrow-next"
+                    alt=""
+                  />}
+                </span>
+              </div>
             </div>
           </>
         )}
